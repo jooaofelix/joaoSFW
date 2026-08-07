@@ -104,11 +104,25 @@ section{padding:64px 0;border-bottom:1px solid var(--rule);}
   flex-shrink:0;width:22px;padding-top:1px;}
 .pain .close{margin-top:26px;font-size:17px;color:var(--pine-d);font-weight:600;max-width:56ch;}
 
-.svc{background:var(--wash);padding:26px 24px 28px;border-radius:2px;}
-.svc .n{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ochre);}
-.svc h3{font-family:var(--disp);font-weight:600;font-size:19px;line-height:1.2;
-  margin:10px 0 10px;color:var(--pine-d);}
-.svc p{font-size:15px;line-height:1.55;color:var(--mute);}
+/* ---------- áreas ---------- */
+.hint{font-size:15.5px;line-height:1.5;color:var(--mute);max-width:58ch;margin-top:-22px;
+  margin-bottom:34px;}
+.hint b{color:var(--pine-d);font-weight:600;}
+.area{background:var(--wash);padding:24px 22px 14px;border-radius:2px;
+  display:flex;flex-direction:column;}
+.area .n{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--ochre);}
+.area h3{font-family:var(--disp);font-weight:600;font-size:19px;line-height:1.2;
+  margin:8px 0 8px;color:var(--pine-d);}
+.area > p{font-size:14.5px;line-height:1.5;color:var(--mute);}
+.area ul{list-style:none;margin-top:16px;}
+.area li{border-top:1px solid var(--rule);}
+.area li a{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:11px 0;font-size:15px;line-height:1.4;color:var(--ink);text-decoration:none;
+  transition:color .15s,padding-left .15s;}
+.area li a .go{font-family:var(--mono);font-size:14px;color:var(--ochre);flex-shrink:0;
+  opacity:.4;transition:opacity .15s;}
+.area li a:hover{color:var(--pine);padding-left:5px;}
+.area li a:hover .go{opacity:1;}
 
 .case{border-top:2px solid var(--pine);padding-top:16px;}
 .case .who{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
@@ -150,7 +164,8 @@ section{padding:64px 0;border-bottom:1px solid var(--rule);}
 .tier li{font-size:15px;line-height:1.5;color:var(--mute);padding:7px 0 7px 20px;position:relative;}
 .tier li::before{content:"—";position:absolute;left:0;color:var(--ochre);font-family:var(--mono);}
 .tier p.sub{font-size:15px;line-height:1.5;color:var(--mute);}
-.note{margin-top:26px;font-size:15px;color:var(--mute);max-width:64ch;}
+.note{margin-top:26px;font-size:15px;line-height:1.55;color:var(--mute);max-width:64ch;}
+.note b{color:var(--pine-d);font-weight:600;}
 
 /* ---------- faixa de CTA ---------- */
 .band{background:var(--pine);color:#EFEDE4;border-bottom:none;padding:52px 0;}
@@ -194,7 +209,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
 
 @media (max-width:900px){
-  .g4{grid-template-columns:1fr 1fr;}
+  .g4,.g3{grid-template-columns:1fr 1fr;}
   .g2{grid-template-columns:1fr;gap:36px;}
 }
 @media (max-width:600px){
@@ -214,7 +229,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   html{scroll-padding-top:0;}
   body{font-size:11pt;background:#fff;}
   .top,.band,.no-print{display:none !important;}
-  section,.hero{padding:22pt 0;border-bottom:1px solid #ccc;break-inside:avoid;}
+  section,.hero{padding:22pt 0;border-bottom:1px solid #ccc;}
+  .area,.svc,.case,.tier,.step,.faq details{break-inside:avoid;}
+  .area li a .go{display:none;}
   .refer,.cmp{background:#fff !important;color:#000 !important;}
   .refer h2,.refer p,.cmp .v,.contacts div a,.contacts div span{color:#000 !important;}
   .refer .slab,.cmp .slab,.cmp .k{color:#8a6218 !important;}
@@ -231,7 +248,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <div class="wrap">
     <a class="brand" href="#topo"><span data-site="nome">João Félix</span><span>Sistemas web sob medida</span></a>
     <nav class="nav">
-      <a class="lnk" href="#servicos">O que construo</a>
+      <a class="lnk" href="#servicos">O que resolvo</a>
       <a class="lnk" href="#casos">Casos</a>
       <a class="lnk" href="#processo">Como funciona</a>
       <a class="lnk" href="#investimento">Investimento</a>
@@ -272,31 +289,86 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <section id="servicos">
   <div class="wrap">
     <div class="shead">
-      <div class="slab">O que eu construo</div>
-      <h2>Quatro frentes, sempre feitas sob medida</h2>
+      <div class="slab">Onde eu costumo entrar</div>
+      <h2>Ache o seu problema na lista e me chame por ele</h2>
     </div>
-    <div class="grid g4">
-      <div class="svc">
+    <p class="hint">Não precisa saber o que pedir nem explicar tudo de uma vez. <b>Clique no item que é a sua dor</b> — o WhatsApp abre com a mensagem já escrita e a gente parte daí.</p>
+
+    <div class="grid g3">
+      <div class="area">
         <div class="n">01</div>
-        <h3>Acompanhamento de pacientes</h3>
-        <p>Registro de evolução, humor, adesão e indicadores ao longo do tempo. Gráficos de tendência e relatório pronto para levar à consulta.</p>
+        <h3>Financeiro</h3>
+        <p>O dinheiro entra e sai todo dia, mas o número só aparece no fim do mês — quando já não dá para reagir.</p>
+        <ul>
+          <li><a data-wa="Oi! Queria resolver o fechamento do mês — hoje me toma tempo demais.">Fechar o mês sem perder um sábado<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria conseguir ver quem ainda não me pagou, sem caçar em planilha.">Saber quem ainda não pagou<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria lançar entrada e saída pelo WhatsApp, sem abrir planilha.">Lançar pelo WhatsApp, sem planilha<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria organizar as notas fiscais e os XMLs automaticamente.">Organizar notas e XML de NF-e<span class="go">→</span></a></li>
+        </ul>
       </div>
-      <div class="svc">
+
+      <div class="area">
         <div class="n">02</div>
-        <h3>Controle financeiro e fiscal</h3>
-        <p>Lançamento em linguagem natural pelo WhatsApp, painel de fechamento, resumo automático diário e análise de XML de NF-e.</p>
+        <h3>Organização e agenda</h3>
+        <p>Cadastro num lugar, agenda em outro, histórico num terceiro. E a versão certa é sempre a que está na sua cabeça.</p>
+        <ul>
+          <li><a data-wa="Oi! Queria juntar cadastro, agenda e histórico num lugar só.">Tudo do paciente numa tela só<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria uma agenda em que o próprio paciente marca o horário.">Agenda que o paciente marca sozinho<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria parar de redigitar o mesmo dado em lugares diferentes.">Parar de redigitar o mesmo dado<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria tirar meu controle da planilha sem perder o que já tenho.">Sair da planilha sem perder nada<span class="go">→</span></a></li>
+        </ul>
       </div>
-      <div class="svc">
+
+      <div class="area">
         <div class="n">03</div>
-        <h3>Automação de processo</h3>
-        <p>Formulário que cai direto na planilha, etapas com responsável e prazo, alerta de vencimento e exportação em CSV.</p>
+        <h3>Documentos</h3>
+        <p>Contrato, laudo, recibo, declaração. Sempre o mesmo modelo, sempre preenchido na mão, sempre com risco de ir com o nome errado.</p>
+        <ul>
+          <li><a data-wa="Oi! Queria que meus documentos saíssem preenchidos automaticamente.">Documento que se preenche sozinho<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria gerar relatório de evolução sem montar do zero toda vez.">Relatório pronto em um clique<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria um lugar único pra guardar e achar documento assinado.">Achar o arquivo assinado na hora<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria coletar assinatura e consentimento de forma digital.">Coletar assinatura e consentimento<span class="go">→</span></a></li>
+        </ul>
       </div>
-      <div class="svc">
+
+      <div class="area">
         <div class="n">04</div>
-        <h3>Site e identidade visual</h3>
-        <p>Página de apresentação com agendamento, identidade completa — logo, paleta, tipografia — e artes prontas para redes sociais.</p>
+        <h3>Mensagens</h3>
+        <p>O que some da agenda quase nunca é falta de demanda. É falta de um lembrete que ninguém teve tempo de mandar.</p>
+        <ul>
+          <li><a data-wa="Oi! Queria enviar lembrete de consulta automaticamente.">Lembrete de consulta automático<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria reduzir as faltas com confirmação automática.">Reduzir falta com confirmação<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria avisar quem está com pagamento em aberto, sem ter que cobrar na mão.">Cobrar sem ter que cobrar<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria chamar de volta paciente que sumiu faz tempo.">Chamar de volta quem sumiu<span class="go">→</span></a></li>
+        </ul>
+      </div>
+
+      <div class="area">
+        <div class="n">05</div>
+        <h3>Acompanhamento</h3>
+        <p>Você percebe a evolução do paciente. Só não tem como mostrar — nem para ele, nem para o convênio, nem para você daqui a seis meses.</p>
+        <ul>
+          <li><a data-wa="Oi! Queria acompanhar a evolução do paciente ao longo do tempo.">Ver a evolução em gráfico<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria que o paciente registrasse dados entre as sessões.">Paciente registra entre as sessões<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria aplicar questionário ou escala e ver o resultado somado.">Questionário com resultado somado<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria um painel com os números do meu consultório.">Painel com os números do mês<span class="go">→</span></a></li>
+        </ul>
+      </div>
+
+      <div class="area">
+        <div class="n">06</div>
+        <h3>Equipe e processos</h3>
+        <p>Quando é você sozinho, dá para segurar na memória. Com mais gente, o que não está escrito simplesmente não acontece.</p>
+        <ul>
+          <li><a data-wa="Oi! Queria ver em que pé está cada processo da minha equipe.">Ver em que pé está cada caso<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria definir responsável e prazo pra cada etapa do processo.">Responsável e prazo por etapa<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria receber alerta antes de vencer prazo importante.">Alerta antes de vencer o prazo<span class="go">→</span></a></li>
+          <li><a data-wa="Oi! Queria controlar quem da equipe vê o quê.">Controlar quem vê o quê<span class="go">→</span></a></li>
+        </ul>
       </div>
     </div>
+
+    <p class="note">Também faço <b>site de apresentação com agendamento</b> e <b>identidade visual completa</b> — logo, paleta, tipografia e artes para redes. E se a sua dor não estiver em nenhum item acima, <a data-wa="Oi! Não achei a minha situação nos exemplos do site, queria te contar o meu caso." style="color:var(--pine);font-weight:600">me conte o seu caso</a> — a maioria dos sistemas que entreguei começou assim.</p>
   </div>
 </section>
 
