@@ -16,11 +16,19 @@ const SITE = {
   email:     "contato@exemplo.com.br",
   instagram: "joaofelix",              // sem o @
   cidade:    "São José dos Campos · SP",
+  site:      "https://...",            // endereço público da página
   precos: { 1: "", 2: "", 3: "" }      // vazio = mostra "sob consulta"
 };
 ```
 
+Esse mesmo bloco alimenta o convite em PDF — depois de editar, rode
+`python3 gerar-convite.py` para o PDF sair com os dados novos.
+
 Depois disso, confira à mão:
+
+- [ ] `email`, `instagram` e `site` ainda estão com valor de exemplo.
+      O `site` precisa do endereço real assim que a página estiver publicada,
+      senão o QR code do convite não leva a lugar nenhum.
 
 - [ ] Os três casos da seção **Casos** descrevem trabalhos que você entregou
       mesmo. Se algum for hipotético, troque ou tire — o resto da página perde
@@ -59,6 +67,35 @@ A ordem é um funil: cada seção responde à pergunta que a anterior levanta.
   para não competir com o botão de contato.
 - Se o JavaScript não carregar, os textos caem no valor padrão escrito no HTML
   e a página continua legível — só os links de contato ficam inertes.
+
+## O convite em PDF
+
+`convite.pdf` é a versão para enviar no WhatsApp ou por e-mail: três páginas A4
+com **duas saídas em toda página** — o site (para ver com calma) e o WhatsApp
+(para falar agora). Links de PDF são clicáveis, então os 24 itens da página 2
+abrem a conversa com a mensagem já escrita, igual ao site. E há QR code na capa
+e no fechamento, para funcionar também impresso ou mostrado numa tela.
+
+Para regerar depois de mexer no `const SITE`:
+
+```bash
+pip install segno      # só na primeira vez
+python3 gerar-convite.py
+```
+
+O script lê os dados direto do `index.html`, então **não existe uma segunda
+lista de contatos para manter em dia** — muda num lugar, sai nos dois.
+
+| Arquivo | O que é |
+|---|---|
+| `gerar-convite.py` | O gerador. Aqui ficam os textos das seis áreas. |
+| `convite.template.html` | O layout das três páginas. |
+| `assets/fontes.css` | Fontes embutidas em base64, baixadas uma vez. Deixa o PDF idêntico em qualquer máquina e permite regerar sem internet. |
+| `convite.pdf` | O que você envia. |
+| `convite.html` | Intermediário, sobrescrito a cada execução (fora do git). |
+
+Se o Chrome não for encontrado, o script avisa e você ainda pode abrir o
+`convite.html` no navegador e imprimir em PDF na mão.
 
 ## Sugestões de próximo passo
 
