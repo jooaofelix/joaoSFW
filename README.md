@@ -37,7 +37,7 @@ A ordem é um funil: cada seção responde à pergunta que a anterior levanta.
 |---|---|---|
 | 1 | **Hero** | Diz em uma frase para quem é e o que muda. Dois botões: um para quem já decidiu, outro para quem quer prova. |
 | 2 | **Se algum desses for você** | O visitante precisa se reconhecer antes de te ouvir. Quatro sinais concretos, não adjetivos. |
-| 3 | **O que eu construo** | Só aqui entra o serviço — depois do problema, não antes. |
+| 3 | **Onde eu costumo entrar** | Seis áreas (financeiro, agenda, documentos, mensagens, acompanhamento, equipe). Cada um dos 24 itens é um link de WhatsApp com a mensagem pronta — a pessoa aciona apontando a dor, sem precisar formular o pedido. |
 | 4 | **Casos** | Prova. Cada card termina no resultado, não na funcionalidade. |
 | 5 | **Como funciona + comparativo** | Tira o medo do processo e responde "por que não um pronto?" no mesmo bloco. |
 | 6 | **Faixa de CTA** | Ponto de saída no meio da página, para quem já se convenceu e não vai rolar até o fim. |
@@ -48,8 +48,10 @@ A ordem é um funil: cada seção responde à pergunta que a anterior levanta.
 ## Detalhes de implementação
 
 - **Botões de WhatsApp** já abrem com mensagem escrita, diferente por
-  contexto — dá para saber de qual ponto da página a pessoa saiu.
-  A mensagem fica no atributo `data-wa` de cada botão.
+  contexto — dá para saber de qual ponto da página a pessoa saiu, e a primeira
+  mensagem já chega dizendo qual é o problema. A frase fica no atributo
+  `data-wa` de cada link; para editar um item da seção de áreas, mude o texto
+  visível e o `data-wa` junto.
 - **"Salvar em PDF"** usa a impressão do próprio navegador, com um
   `@media print` que esconde menu e botões e clareia os blocos escuros.
   Não precisa manter um PDF separado atualizado.
