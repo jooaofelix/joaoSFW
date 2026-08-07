@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>João Félix — Sistemas sob medida para consultórios e clínicas</title>
+<meta name="description" content="Sistemas web simples e sob medida para profissionais liberais e clínicas: acompanhamento de pacientes, controle financeiro, automação de processos e presença digital.">
+<meta property="og:title" content="O seu processo já funciona. Ele só não está em lugar nenhum.">
+<meta property="og:description" content="Sistemas web sob medida para consultórios e clínicas — feitos em cima do jeito que você já trabalha.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0A2F27">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<!-- =========================================================
+     EDITE APENAS ESTE BLOCO. Ele preenche nome, WhatsApp,
+     e-mail e Instagram em toda a página de uma vez só.
+     ========================================================= -->
+<script>
+const SITE = {
+  nome:      "João Félix",
+  whatsapp:  "5512999999999",          // só números: 55 + DDD + número
+  email:     "contato@exemplo.com.br",
+  instagram: "joaofelix",              // sem o @
+  cidade:    "São José dos Campos · SP",
+
+  // Faixas de preço. Deixe "" para manter "sob consulta".
+  precos: { 1: "", 2: "", 3: "" }
+};
+</script>
+
+<style>
+:root{
+  --ink:#131A18; --pine:#0F4A3E; --pine-d:#0A2F27; --ochre:#A8761F;
+  --paper:#FCFBF6; --rule:#DFDACD; --mute:#636863; --wash:#F1EEE4;
+  --disp:'Archivo',system-ui,sans-serif;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:78px;}
+body{font-family:var(--body);color:var(--ink);background:var(--paper);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+.slab{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ochre);}
+a:focus-visible,button:focus-visible,summary:focus-visible{
+  outline:2px solid var(--ochre);outline-offset:3px;border-radius:2px;}
+
+/* ---------- topo ---------- */
+.top{border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:20;
+  background:rgba(252,251,246,.94);backdrop-filter:blur(8px);}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;
+  padding-top:14px;padding-bottom:14px;gap:16px;}
+.brand{font-family:var(--disp);font-weight:700;font-size:18px;color:var(--pine-d);
+  letter-spacing:-.01em;text-decoration:none;}
+.brand span{display:block;font-family:var(--mono);font-size:10px;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:3px;}
+.nav{display:flex;align-items:center;gap:26px;}
+.nav a.lnk{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mute);text-decoration:none;transition:color .15s;}
+.nav a.lnk:hover{color:var(--pine-d);}
+@media (max-width:860px){.nav a.lnk{display:none;}}
+
+.btn{display:inline-block;background:var(--pine-d);color:#F7F5EE;text-decoration:none;
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 22px;border-radius:2px;transition:background .15s;}
+.btn:hover{background:var(--pine);}
+.btn.sm{padding:10px 16px;font-size:11px;}
+.btn.ghost{background:transparent;color:var(--pine-d);border:1.5px solid var(--pine-d);}
+.btn.ghost:hover{background:var(--pine-d);color:#F7F5EE;}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 64px;border-bottom:1px solid var(--rule);}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,6.2vw,60px);
+  line-height:1.04;letter-spacing:-.025em;color:var(--pine-d);max-width:16ch;}
+.lede{font-size:clamp(17px,2.2vw,21px);line-height:1.5;color:var(--mute);
+  max-width:60ch;margin-top:24px;}
+.lede b{color:var(--ink);font-weight:600;}
+.hero .cta{margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.reassure{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--mute);
+  margin-top:18px;}
+
+/* ---------- secoes ---------- */
+section{padding:64px 0;border-bottom:1px solid var(--rule);}
+.shead{margin-bottom:36px;}
+.shead h2{font-family:var(--disp);font-weight:600;font-size:clamp(24px,3.4vw,34px);
+  line-height:1.15;letter-spacing:-.02em;color:var(--pine-d);margin-top:10px;max-width:22ch;}
+
+.grid{display:grid;gap:20px;}
+.g4{grid-template-columns:repeat(4,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g2{grid-template-columns:1fr 1fr;gap:48px;}
+
+/* ---------- dor / reconhecimento ---------- */
+.pain{background:var(--wash);border-bottom:1px solid var(--rule);}
+.pain ul{list-style:none;display:grid;gap:0;}
+.pain li{display:flex;gap:16px;align-items:flex-start;padding:18px 0;
+  border-bottom:1px solid var(--rule);font-size:16.5px;line-height:1.5;}
+.pain li:last-child{border-bottom:none;}
+.pain li b{color:var(--pine-d);font-weight:600;}
+.pain .mark{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ochre);
+  flex-shrink:0;width:22px;padding-top:1px;}
+.pain .close{margin-top:26px;font-size:17px;color:var(--pine-d);font-weight:600;max-width:56ch;}
+
+.svc{background:var(--wash);padding:26px 24px 28px;border-radius:2px;}
+.svc .n{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ochre);}
+.svc h3{font-family:var(--disp);font-weight:600;font-size:19px;line-height:1.2;
+  margin:10px 0 10px;color:var(--pine-d);}
+.svc p{font-size:15px;line-height:1.55;color:var(--mute);}
+
+.case{border-top:2px solid var(--pine);padding-top:16px;}
+.case .who{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--pine);}
+.case h3{font-family:var(--disp);font-weight:600;font-size:19px;line-height:1.22;
+  margin:10px 0 10px;color:var(--ink);}
+.case p{font-size:15px;line-height:1.55;color:var(--mute);}
+.case .out{margin-top:12px;font-family:var(--mono);font-size:12px;font-weight:600;
+  letter-spacing:.04em;color:var(--pine-d);}
+
+.step{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--rule);}
+.step:last-child{border-bottom:none;}
+.step .d{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--ochre);
+  flex-shrink:0;width:34px;padding-top:2px;}
+.step h3{font-family:var(--disp);font-weight:600;font-size:19px;color:var(--pine-d);margin-bottom:5px;}
+.step p{font-size:15.5px;line-height:1.55;color:var(--mute);}
+
+.cmp{background:var(--pine-d);color:#EFEDE4;padding:32px 30px;border-radius:2px;align-self:start;}
+.cmp .slab{color:#C7A05A;}
+.cmp .row{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.14);}
+.cmp .row:last-child{border-bottom:none;}
+.cmp .k{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:#C7A05A;margin-bottom:6px;}
+.cmp .v{font-size:15.5px;line-height:1.5;color:#DCDACF;}
+.cmp .top-note{margin-bottom:22px;}
+
+/* ---------- investimento ---------- */
+.tier{border:1.5px solid var(--rule);border-radius:2px;padding:26px 24px 28px;
+  display:flex;flex-direction:column;background:var(--paper);}
+.tier.mid{border-color:var(--pine-d);border-width:2px;}
+.tier .tag{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ochre);}
+.tier h3{font-family:var(--disp);font-weight:600;font-size:20px;color:var(--pine-d);margin:10px 0 6px;}
+.tier .price{font-family:var(--disp);font-weight:700;font-size:26px;color:var(--ink);
+  letter-spacing:-.02em;margin:14px 0 4px;}
+.tier .price small{display:block;font-family:var(--mono);font-size:11px;font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
+.tier ul{list-style:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--rule);}
+.tier li{font-size:15px;line-height:1.5;color:var(--mute);padding:7px 0 7px 20px;position:relative;}
+.tier li::before{content:"—";position:absolute;left:0;color:var(--ochre);font-family:var(--mono);}
+.tier p.sub{font-size:15px;line-height:1.5;color:var(--mute);}
+.note{margin-top:26px;font-size:15px;color:var(--mute);max-width:64ch;}
+
+/* ---------- faixa de CTA ---------- */
+.band{background:var(--pine);color:#EFEDE4;border-bottom:none;padding:52px 0;}
+.band .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;}
+.band h2{font-family:var(--disp);font-weight:700;font-size:clamp(22px,3.2vw,30px);
+  line-height:1.15;letter-spacing:-.02em;color:#FBF9F2;max-width:24ch;}
+.band p{font-size:16px;color:#C6D2CC;margin-top:8px;max-width:46ch;}
+.band .btn{background:#C7A05A;color:#0A2F27;}
+.band .btn:hover{background:#D9B879;}
+
+/* ---------- faq ---------- */
+.faq details{border-bottom:1px solid var(--rule);}
+.faq summary{font-family:var(--disp);font-weight:600;font-size:17.5px;color:var(--pine-d);
+  padding:20px 40px 20px 0;cursor:pointer;list-style:none;position:relative;line-height:1.35;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";position:absolute;right:4px;top:18px;
+  font-family:var(--mono);font-size:20px;font-weight:400;color:var(--ochre);}
+.faq details[open] summary::after{content:"–";}
+.faq .ans{padding:0 0 22px;font-size:16px;line-height:1.6;color:var(--mute);max-width:70ch;}
+
+/* ---------- indicação ---------- */
+.refer{background:var(--pine-d);color:#EFEDE4;border-bottom:none;}
+.refer h2{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4vw,40px);
+  line-height:1.12;letter-spacing:-.02em;color:#FBF9F2;max-width:20ch;margin:12px 0 20px;}
+.refer p{font-size:17.5px;line-height:1.6;color:#CFCDC2;max-width:60ch;}
+.refer .slab{color:#C7A05A;}
+.refer .cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;}
+.refer .btn{background:#C7A05A;color:#0A2F27;}
+.refer .btn:hover{background:#D9B879;}
+.refer .btn.ghost{background:transparent;color:#EFEDE4;border-color:rgba(239,237,228,.45);}
+.refer .btn.ghost:hover{background:#EFEDE4;color:var(--pine-d);}
+.contacts{margin-top:40px;padding-top:26px;border-top:1px solid rgba(255,255,255,.16);
+  display:flex;gap:44px;flex-wrap:wrap;}
+.contacts div .k{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:#9FA79C;margin-bottom:6px;}
+.contacts div a,.contacts div span{font-family:var(--mono);font-size:15px;color:#EFEDE4;text-decoration:none;}
+.contacts div a:hover{color:#C7A05A;}
+
+footer{padding:26px 0;}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+
+@media (max-width:900px){
+  .g4{grid-template-columns:1fr 1fr;}
+  .g2{grid-template-columns:1fr;gap:36px;}
+}
+@media (max-width:600px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px;}
+  .hero{padding:52px 0 44px;}
+  section{padding:48px 0;}
+  .g4,.g3{grid-template-columns:1fr;}
+  .contacts{gap:26px;}
+  .btn{width:100%;text-align:center;}
+  .btn.sm{width:auto;}
+  .top .wrap{padding-top:12px;padding-bottom:12px;}
+}
+
+/* ---------- versão impressa / PDF ---------- */
+@media print{
+  html{scroll-padding-top:0;}
+  body{font-size:11pt;background:#fff;}
+  .top,.band,.no-print{display:none !important;}
+  section,.hero{padding:22pt 0;border-bottom:1px solid #ccc;break-inside:avoid;}
+  .refer,.cmp{background:#fff !important;color:#000 !important;}
+  .refer h2,.refer p,.cmp .v,.contacts div a,.contacts div span{color:#000 !important;}
+  .refer .slab,.cmp .slab,.cmp .k{color:#8a6218 !important;}
+  .contacts{border-top:1px solid #ccc;}
+  a{text-decoration:none;color:#000;}
+  h1{font-size:26pt;}
+  .g4,.g3{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#topo"><span data-site="nome">João Félix</span><span>Sistemas web sob medida</span></a>
+    <nav class="nav">
+      <a class="lnk" href="#servicos">O que construo</a>
+      <a class="lnk" href="#casos">Casos</a>
+      <a class="lnk" href="#processo">Como funciona</a>
+      <a class="lnk" href="#investimento">Investimento</a>
+      <a class="btn sm" data-wa="Olá! Vi o seu site e queria conversar sobre um sistema.">Falar comigo</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="topo">
+  <div class="wrap">
+    <div class="slab">Consultórios · clínicas · profissionais liberais</div>
+    <h1 style="margin-top:14px">O seu processo já funciona. Ele só não está em lugar nenhum.</h1>
+    <p class="lede">Eu construo sistemas web simples para quem atende — <b>feitos em cima do jeito que você já trabalha</b>, não do jeito que um software genérico manda trabalhar.</p>
+    <div class="cta">
+      <a class="btn" data-wa="Olá! Queria agendar o diagnóstico gratuito.">Quero um diagnóstico gratuito</a>
+      <a class="btn ghost" href="#casos">Ver o que já entreguei</a>
+    </div>
+    <p class="reassure">Conversa de 30 minutos · sem custo · sem compromisso</p>
+  </div>
+</div>
+
+<section class="pain">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab">Se algum desses for você</div>
+      <h2>O problema quase nunca é falta de organização</h2>
+    </div>
+    <ul>
+      <li><span class="mark">01</span><div>A informação existe, mas está <b>espalhada em três lugares</b> — uma planilha, um caderno e um grupo de WhatsApp.</div></li>
+      <li><span class="mark">02</span><div>Você já testou um sistema pronto e <b>abandonou em duas semanas</b>, porque ele obrigava a trabalhar de um jeito que não é o seu.</div></li>
+      <li><span class="mark">03</span><div>Toda segunda-feira alguém perde <b>algumas horas juntando dado</b> que já tinha sido digitado antes.</div></li>
+      <li><span class="mark">04</span><div>Você sabe exatamente o que precisa ver na tela — <b>só não existe essa tela</b>.</div></li>
+    </ul>
+    <p class="close">O processo já funciona na sua cabeça. O que falta é ele existir em algum lugar além dela.</p>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab">O que eu construo</div>
+      <h2>Quatro frentes, sempre feitas sob medida</h2>
+    </div>
+    <div class="grid g4">
+      <div class="svc">
+        <div class="n">01</div>
+        <h3>Acompanhamento de pacientes</h3>
+        <p>Registro de evolução, humor, adesão e indicadores ao longo do tempo. Gráficos de tendência e relatório pronto para levar à consulta.</p>
+      </div>
+      <div class="svc">
+        <div class="n">02</div>
+        <h3>Controle financeiro e fiscal</h3>
+        <p>Lançamento em linguagem natural pelo WhatsApp, painel de fechamento, resumo automático diário e análise de XML de NF-e.</p>
+      </div>
+      <div class="svc">
+        <div class="n">03</div>
+        <h3>Automação de processo</h3>
+        <p>Formulário que cai direto na planilha, etapas com responsável e prazo, alerta de vencimento e exportação em CSV.</p>
+      </div>
+      <div class="svc">
+        <div class="n">04</div>
+        <h3>Site e identidade visual</h3>
+        <p>Página de apresentação com agendamento, identidade completa — logo, paleta, tipografia — e artes prontas para redes sociais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="casos">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab">Alguns sistemas que já entreguei</div>
+      <h2>Feitos para o processo de quem ia usar</h2>
+    </div>
+    <div class="grid g3">
+      <div class="case">
+        <div class="who">Prática clínica</div>
+        <h3>Acompanhamento diário de bem-estar</h3>
+        <p>O paciente registra humor, foco e energia todo dia. O profissional vê a curva do período e gera um relatório organizado para a sessão.</p>
+        <div class="out">→ A sessão começa com o histórico já na mesa.</div>
+      </div>
+      <div class="case">
+        <div class="who">Escritório contábil</div>
+        <h3>Central de processos societários</h3>
+        <p>Abertura, alteração e baixa de empresa em cartões por etapa, com responsável, andamento visível para a equipe e exportação em planilha.</p>
+        <div class="out">→ Ninguém mais pergunta “em que pé está?”.</div>
+      </div>
+      <div class="case">
+        <div class="who">Gestão financeira</div>
+        <h3>Controle de caixa pelo WhatsApp</h3>
+        <p>Você manda “recebi 350 consulta” e está lançado. Painel de acompanhamento e um resumo do dia enviado automaticamente.</p>
+        <div class="out">→ Fechamento do mês deixou de ser um sábado.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="processo">
+  <div class="wrap">
+    <div class="grid g2">
+      <div>
+        <div class="shead" style="margin-bottom:12px">
+          <div class="slab">Como funciona</div>
+          <h2>Do primeiro papo ao sistema no ar</h2>
+        </div>
+        <div class="step"><div class="d">01</div><div><h3>Conversa de diagnóstico</h3><p>Uma conversa para eu entender o processo real — inclusive as gambiarras. Sem compromisso e sem custo.</p></div></div>
+        <div class="step"><div class="d">02</div><div><h3>Protótipo funcionando</h3><p>Você recebe uma primeira versão navegável em poucos dias e testa com dado de verdade, não com exemplo.</p></div></div>
+        <div class="step"><div class="d">03</div><div><h3>Ajuste e entrega</h3><p>A gente refina em cima do uso. Entrego publicado, com treinamento e o material de apoio.</p></div></div>
+        <div class="step"><div class="d">04</div><div><h3>O sistema é seu</h3><p>Sem mensalidade de plataforma e sem ficar preso a mim. Roda em infraestrutura sua, com os seus dados.</p></div></div>
+      </div>
+      <div class="cmp">
+        <div class="top-note"><div class="slab">Sob medida × de prateleira</div></div>
+        <div class="row"><div class="k">Custo</div><div class="v">Investimento único, sem assinatura por usuário todo mês.</div></div>
+        <div class="row"><div class="k">Encaixe</div><div class="v">Nasce do seu fluxo. Você não muda o atendimento para caber no software.</div></div>
+        <div class="row"><div class="k">Tamanho</div><div class="v">Só o que você usa. Sem cem funções que atrapalham as três que importam.</div></div>
+        <div class="row"><div class="k">Controle</div><div class="v">Os dados ficam com você, em conta sua, exportáveis a qualquer momento.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band no-print">
+  <div class="wrap">
+    <div>
+      <h2>Vale a conversa mesmo que você ainda não vá contratar.</h2>
+      <p>Em 30 minutos eu te digo se dá para resolver com um sistema — ou se resolve com uma planilha melhor.</p>
+    </div>
+    <a class="btn" data-wa="Olá! Queria marcar os 30 minutos de diagnóstico.">Marcar os 30 minutos</a>
+  </div>
+</section>
+
+<section id="investimento">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab">Investimento</div>
+      <h2>Escopo fechado, preço fechado, antes de começar</h2>
+    </div>
+    <div class="grid g3">
+      <div class="tier">
+        <div class="tag">Ponto único</div>
+        <h3>Resolver uma dor</h3>
+        <p class="sub">Uma tela, um formulário, uma automação. O menor pedaço que já tira o peso do dia a dia.</p>
+        <div class="price"><small>A partir de</small><span data-price="1">sob consulta</span></div>
+        <ul>
+          <li>Uma funcionalidade, feita inteira</li>
+          <li>Entrega em cerca de 1 a 2 semanas</li>
+          <li>Publicado e com treinamento</li>
+        </ul>
+      </div>
+      <div class="tier mid">
+        <div class="tag">Mais procurado</div>
+        <h3>Sistema completo</h3>
+        <p class="sub">O fluxo inteiro de um consultório ou de um setor, do cadastro ao relatório.</p>
+        <div class="price"><small>A partir de</small><span data-price="2">sob consulta</span></div>
+        <ul>
+          <li>Vários módulos integrados</li>
+          <li>Entrega em cerca de 4 a 8 semanas</li>
+          <li>Protótipo navegável já na 1ª semana</li>
+          <li>30 dias de ajuste incluídos</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tag">Contínuo</div>
+        <h3>Evolução e suporte</h3>
+        <p class="sub">Para quem já tem o sistema rodando e quer alguém junto para melhorar e dar manutenção.</p>
+        <div class="price"><small>Mensal, opcional</small><span data-price="3">sob consulta</span></div>
+        <ul>
+          <li>Ajustes e novas telas sob demanda</li>
+          <li>Monitoramento e backup</li>
+          <li>Cancelável a qualquer momento</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">O valor sai depois do diagnóstico, com escopo escrito. Sem cobrança por hora e sem surpresa no meio do caminho: se o escopo não mudar, o preço não muda.</p>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab">Antes de me chamar</div>
+      <h2>O que costumam me perguntar</h2>
+    </div>
+    <details open>
+      <summary>Eu preciso entender de tecnologia?</summary>
+      <div class="ans">Não. A minha parte é justamente essa. O que eu preciso de você é o conhecimento do seu processo — como o atendimento acontece de verdade, incluindo as exceções e os jeitinhos. O resto é comigo.</div>
+    </details>
+    <details>
+      <summary>E os dados dos meus pacientes?</summary>
+      <div class="ans">Ficam em uma conta sua, em infraestrutura sua, e podem ser exportados a qualquer momento. Eu construo com acesso por usuário e registro de quem viu o quê, seguindo o que a LGPD exige para dado de saúde. O sistema é seu, não meu.</div>
+    </details>
+    <details>
+      <summary>Quanto tempo até eu estar usando?</summary>
+      <div class="ans">Você vê um protótipo navegável em poucos dias. Um sistema completo costuma ficar pronto entre 4 e 8 semanas, e nesse meio-tempo você já usa as partes que foram entregues — não é tudo ou nada no fim.</div>
+    </details>
+    <details>
+      <summary>E se eu quiser mudar alguma coisa depois?</summary>
+      <div class="ans">Os 30 dias seguintes à entrega já incluem ajuste. Depois disso, dá para me chamar por demanda ou contratar a evolução contínua. Em nenhum dos casos você fica preso: o código e os dados são seus, e outro profissional consegue continuar.</div>
+    </details>
+    <details>
+      <summary>Por que não usar um sistema pronto de mercado?</summary>
+      <div class="ans">Se um pronto resolver, eu vou te dizer isso na primeira conversa — é mais barato e mais rápido. Sob medida compensa quando o seu jeito de trabalhar é o diferencial do seu atendimento e o software genérico te obriga a abrir mão dele.</div>
+    </details>
+    <details>
+      <summary>Você atende presencial?</summary>
+      <div class="ans">Presencial na região de <span data-site="cidade">São José dos Campos · SP</span> e remoto para todo o Brasil. Boa parte do trabalho acontece por videochamada e WhatsApp, com o protótipo aberto na tela.</div>
+    </details>
+  </div>
+</section>
+
+<section class="refer" id="contato">
+  <div class="wrap">
+    <div class="slab">Indicação</div>
+    <h2>Conhece alguém que precisa disso? Manda esse link.</h2>
+    <p>Boa parte do meu trabalho chega por indicação de quem já usou. Se você conhece um profissional ou uma clínica com o processo travado em planilha, caderno ou grupo de WhatsApp, essa conversa costuma valer a pena — e o diagnóstico inicial é gratuito.</p>
+    <div class="cta no-print">
+      <a class="btn" data-wa="Olá! Cheguei pelo seu site e queria conversar.">Chamar no WhatsApp</a>
+      <a class="btn ghost" href="#" onclick="window.print();return false;">Salvar esta apresentação em PDF</a>
+    </div>
+    <div class="contacts">
+      <div><div class="k">WhatsApp</div><a data-wa-link>—</a></div>
+      <div><div class="k">E-mail</div><a data-mail>—</a></div>
+      <div><div class="k">Instagram</div><a data-ig>—</a></div>
+      <div><div class="k">Base</div><span data-site="cidade">São José dos Campos · SP</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><span data-site="nome">João Félix</span> · Sistemas web sob medida</span>
+    <span>Atende presencial na região e remoto para todo o Brasil</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // nome, cidade e demais campos de texto
+  document.querySelectorAll('[data-site]').forEach(function(el){
+    var v = SITE[el.dataset.site];
+    if(v) el.textContent = v;
+  });
+
+  // faixas de preço (vazio = mantém "sob consulta")
+  document.querySelectorAll('[data-price]').forEach(function(el){
+    var v = (SITE.precos || {})[el.dataset.price];
+    if(v) el.textContent = v;
+  });
+
+  // botões de WhatsApp, cada um com a sua mensagem pronta
+  var wa = String(SITE.whatsapp || '').replace(/\D/g,'');
+  document.querySelectorAll('[data-wa]').forEach(function(a){
+    a.href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(a.dataset.wa);
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+  document.querySelectorAll('[data-wa-link]').forEach(function(a){
+    a.href = 'https://wa.me/' + wa;
+    a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = wa.replace(/^55(\d{2})(\d{4,5})(\d{4})$/, '($1) $2-$3') || wa;
+  });
+
+  document.querySelectorAll('[data-mail]').forEach(function(a){
+    a.href = 'mailto:' + SITE.email; a.textContent = SITE.email;
+  });
+  document.querySelectorAll('[data-ig]').forEach(function(a){
+    a.href = 'https://instagram.com/' + SITE.instagram; a.textContent = '@' + SITE.instagram;
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+
+  // título e og:title usam o nome configurado
+  document.title = SITE.nome + ' — Sistemas sob medida para consultórios e clínicas';
+})();
+</script>
+
+</body>
+</html>
