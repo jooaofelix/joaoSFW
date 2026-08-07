@@ -37,8 +37,8 @@ UA_CHROME = (
 PADRAO = {
     "nome": "João Félix",
     "whatsapp": "5512991338866",
-    "email": "contato@exemplo.com.br",
-    "instagram": "joaofelix",
+    "email": "jvctrfelix@gmail.com",
+    "instagram": "",
     "cidade": "São José dos Campos · SP",
     "site": "https://futuro.jvctrfelix.workers.dev",
 }
@@ -247,7 +247,11 @@ def montar_html(dados, fontes):
         "{{NOME}}": esc(dados["nome"]),
         "{{CIDADE}}": esc(dados["cidade"]),
         "{{EMAIL}}": esc(dados["email"]),
-        "{{INSTAGRAM}}": esc(dados["instagram"]),
+        "{{INSTAGRAM_BLOCO}}": (
+            f'<div><div class="k">Instagram</div>'
+            f'<div class="v">@{esc(dados["instagram"])}</div></div>'
+            if dados["instagram"] else ""
+        ),
         "{{SITE_URL}}": esc(dados["site"]),
         "{{SITE_TXT}}": esc(site_legivel(dados["site"])),
         "{{WA_TXT}}": esc(telefone_legivel(wa)),

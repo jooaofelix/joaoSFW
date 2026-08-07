@@ -21,8 +21,8 @@
 const SITE = {
   nome:      "João Félix",
   whatsapp:  "5512991338866",          // só números: 55 + DDD + número
-  email:     "contato@exemplo.com.br",
-  instagram: "joaofelix",              // sem o @
+  email:     "jvctrfelix@gmail.com",
+  instagram: "",                       // sem o @; deixe "" para não exibir
   cidade:    "São José dos Campos · SP",
   site:      "https://futuro.jvctrfelix.workers.dev",  // endereço público desta página
 
@@ -570,6 +570,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     a.href = 'mailto:' + SITE.email; a.textContent = SITE.email;
   });
   document.querySelectorAll('[data-ig]').forEach(function(a){
+    if(!SITE.instagram){ a.parentNode.remove(); return; }   // sem perfil, sem a linha
     a.href = 'https://instagram.com/' + SITE.instagram; a.textContent = '@' + SITE.instagram;
     a.target = '_blank'; a.rel = 'noopener';
   });
