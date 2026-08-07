@@ -249,7 +249,8 @@ def montar_html(dados, fontes):
         "{{EMAIL}}": esc(dados["email"]),
         "{{INSTAGRAM_BLOCO}}": (
             f'<div><div class="k">Instagram</div>'
-            f'<div class="v">@{esc(dados["instagram"])}</div></div>'
+            f'<a class="v" href="https://instagram.com/{esc(dados["instagram"])}">'
+            f'@{esc(dados["instagram"])}</a></div>'
             if dados["instagram"] else ""
         ),
         "{{SITE_URL}}": esc(dados["site"]),

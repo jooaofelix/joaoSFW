@@ -116,7 +116,7 @@ a{color:inherit;text-decoration:none;}
   display:grid;grid-template-columns:auto auto;justify-content:start;gap:4mm 9mm;}
 .fecha .linhas div .k{font-family:var(--mono);font-size:6.2pt;font-weight:600;
   letter-spacing:.18em;text-transform:uppercase;color:#8E978F;margin-bottom:1mm;}
-.fecha .linhas div .v{font-family:var(--mono);font-size:8.5pt;color:#EFEDE4;}
+.fecha .linhas div .v{display:block;font-family:var(--mono);font-size:8.5pt;color:#EFEDE4;}
 </style>
 </head>
 <body>
@@ -207,19 +207,19 @@ a{color:inherit;text-decoration:none;}
   </div>
   <div class="casos">{{CASOS}}</div>
 
-  <a class="fecha" href="{{WA_DIAG}}">
-    <div class="qr">{{QR_WA}}</div>
+  <div class="fecha">
+    <a class="qr" href="{{WA_DIAG}}">{{QR_WA}}</a>
     <div>
-      <h2>Trinta minutos resolvem se vale a pena.</h2>
+      <a href="{{WA_DIAG}}"><h2>Trinta minutos resolvem se vale a pena.</h2></a>
       <p>Eu escuto o processo e te digo se dá para resolver com um sistema — ou se resolve com uma planilha melhor. Sem custo, sem compromisso, e sem proposta na mesma conversa.</p>
       <div class="linhas">
-        <div><div class="k">WhatsApp</div><div class="v">{{WA_TXT}}</div></div>
-        <div><div class="k">E-mail</div><div class="v">{{EMAIL}}</div></div>
+        <div><div class="k">WhatsApp</div><a class="v" href="{{WA_CAPA}}">{{WA_TXT}}</a></div>
+        <div><div class="k">E-mail</div><a class="v" href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
         {{INSTAGRAM_BLOCO}}
-        <div><div class="k">Site</div><div class="v">{{SITE_TXT}}</div></div>
+        <div><div class="k">Site</div><a class="v" href="{{SITE_URL}}">{{SITE_TXT}}</a></div>
       </div>
     </div>
-  </a>
+  </div>
 
   <div class="rodape">
     <div class="via">
