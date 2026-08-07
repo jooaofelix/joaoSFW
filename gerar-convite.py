@@ -40,7 +40,7 @@ PADRAO = {
     "email": "contato@exemplo.com.br",
     "instagram": "joaofelix",
     "cidade": "São José dos Campos · SP",
-    "site": "https://jooaofelix.github.io/joaoSFW/",
+    "site": "https://futuro.jvctrfelix.workers.dev",
 }
 
 
@@ -306,8 +306,8 @@ def gerar_pdf(origem, destino):
 
 def main():
     dados = ler_config()
-    for chave in ("email", "instagram", "site"):
-        if "exemplo" in dados[chave] or "github.io" in dados[chave]:
+    for chave in ("email", "instagram"):
+        if "exemplo" in dados[chave]:
             print(f"! atenção: `{chave}` ainda é o valor de exemplo do index.html.")
 
     caminho_html = os.path.join(RAIZ, "convite.html")
