@@ -26,7 +26,8 @@ const SITE = {
   cidade:    "São José dos Campos · SP",
   site:      "https://futuro.jvctrfelix.workers.dev",  // endereço público desta página
 
-  // Faixas de preço. Deixe "" para manter "sob consulta".
+  // Preços. Deixe "" para não exibir valor nenhum (recomendado).
+  // Se preencher, ex.: "R$ 2.500", vira "A partir de R$ 2.500" no card.
   precos: { 1: "", 2: "", 3: "" }
 };
 </script>
@@ -161,10 +162,41 @@ section{padding:64px 0;border-bottom:1px solid var(--rule);}
   letter-spacing:-.02em;margin:14px 0 4px;}
 .tier .price small{display:block;font-family:var(--mono);font-size:11px;font-weight:400;
   letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
-.tier ul{list-style:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--rule);}
-.tier li{font-size:15px;line-height:1.5;color:var(--mute);padding:7px 0 7px 20px;position:relative;}
+.tier .entra{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ochre);margin-top:18px;padding-top:16px;
+  border-top:1px solid var(--rule);}
+.tier ul{list-style:none;margin:10px 0 18px;}
+.tier li{font-size:14.5px;line-height:1.45;color:var(--mute);padding:6px 0 6px 18px;position:relative;}
 .tier li::before{content:"—";position:absolute;left:0;color:var(--ochre);font-family:var(--mono);}
 .tier p.sub{font-size:15px;line-height:1.5;color:var(--mute);}
+.tier .prazo{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--pine-d);font-weight:600;}
+.tier .peca{margin-top:14px;font-family:var(--mono);font-size:11.5px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--pine);text-decoration:none;
+  display:inline-flex;gap:7px;align-items:center;transition:gap .15s;}
+.tier .peca:hover{gap:12px;}
+
+/* como o preço funciona */
+.como{background:var(--pine-d);color:#EFEDE4;border-radius:2px;padding:34px 32px 30px;margin-top:34px;}
+.como .slab{color:#C7A05A;}
+.como h3{font-family:var(--disp);font-weight:600;font-size:clamp(20px,2.6vw,25px);
+  line-height:1.15;letter-spacing:-.02em;color:#FBF9F2;margin:10px 0 24px;max-width:26ch;}
+.como .rows{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;}
+.como .row{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.14);}
+.como .rows .row:nth-last-child(-n+2){border-bottom:none;}
+.como .k{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:#C7A05A;margin-bottom:6px;}
+.como .v{font-size:15.5px;line-height:1.5;color:#DCDACF;}
+.como .fecho{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);
+  display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap;}
+.como .fecho p{font-size:16.5px;line-height:1.5;color:#EFEDE4;max-width:46ch;}
+.como .fecho .btn{background:#C7A05A;color:#0A2F27;flex-shrink:0;}
+.como .fecho .btn:hover{background:#D9B879;}
+@media (max-width:700px){
+  .como .rows{grid-template-columns:1fr;}
+  .como .rows .row:nth-last-child(-n+2){border-bottom:1px solid rgba(255,255,255,.14);}
+  .como .rows .row:last-child{border-bottom:none;}
+}
 .note{margin-top:26px;font-size:15px;line-height:1.55;color:var(--mute);max-width:64ch;}
 .note b{color:var(--pine-d);font-weight:600;}
 
@@ -440,45 +472,89 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <div class="wrap">
     <div class="shead">
       <div class="slab">Investimento</div>
-      <h2>Escopo fechado, preço fechado, antes de começar</h2>
+      <h2>Três tamanhos de entrega. Escolha o que cabe agora.</h2>
     </div>
     <div class="grid g3">
       <div class="tier">
         <div class="tag">Ponto único</div>
         <h3>Resolver uma dor</h3>
-        <p class="sub">Uma tela, um formulário, uma automação. O menor pedaço que já tira o peso do dia a dia.</p>
-        <div class="price"><small>A partir de</small><span data-price="1">sob consulta</span></div>
+        <p class="sub">Uma tela, um formulário, uma automação. O menor pedaço que já tira peso do dia a dia — bom para começar sem compromisso grande.</p>
+        <div class="price" data-price="1" hidden></div>
+        <div class="entra">O que entra</div>
         <ul>
-          <li>Uma funcionalidade, feita inteira</li>
-          <li>Entrega em cerca de 1 a 2 semanas</li>
-          <li>Publicado e com treinamento</li>
+          <li>Uma funcionalidade, do começo ao fim</li>
+          <li>Desenhada em cima do seu jeito de trabalhar</li>
+          <li>Seus dados atuais migrados para dentro</li>
+          <li>Publicada e funcionando, não um protótipo</li>
+          <li>Treinamento gravado, para rever quando quiser</li>
+          <li>15 dias de ajuste depois da entrega</li>
         </ul>
+        <div class="prazo">Fica pronto em 1 a 2 semanas</div>
+        <a class="peca" data-wa="Oi! Queria resolver um ponto único primeiro. Posso te contar qual?">Falar sobre um ponto único →</a>
       </div>
       <div class="tier mid">
         <div class="tag">Mais procurado</div>
         <h3>Sistema completo</h3>
-        <p class="sub">O fluxo inteiro de um consultório ou de um setor, do cadastro ao relatório.</p>
-        <div class="price"><small>A partir de</small><span data-price="2">sob consulta</span></div>
+        <p class="sub">O fluxo inteiro de um consultório ou de um setor, do primeiro cadastro ao relatório do mês.</p>
+        <div class="price" data-price="2" hidden></div>
+        <div class="entra">O que entra</div>
         <ul>
-          <li>Vários módulos integrados</li>
-          <li>Entrega em cerca de 4 a 8 semanas</li>
-          <li>Protótipo navegável já na 1ª semana</li>
-          <li>30 dias de ajuste incluídos</li>
+          <li>Todos os módulos que o seu fluxo pedir</li>
+          <li>Protótipo navegável já na primeira semana</li>
+          <li>Acesso por usuário, com permissão por perfil</li>
+          <li>Relatórios prontos e exportação em planilha</li>
+          <li>Migração do que você já tem hoje</li>
+          <li>Publicado em infraestrutura sua, no seu domínio</li>
+          <li>Treinamento da equipe e material de apoio</li>
+          <li>30 dias de ajuste depois da entrega</li>
         </ul>
+        <div class="prazo">Fica pronto em 4 a 8 semanas</div>
+        <a class="peca" data-wa="Oi! Queria um sistema completo. Posso te contar como funciona o meu atendimento?">Falar sobre um sistema completo →</a>
       </div>
       <div class="tier">
         <div class="tag">Contínuo</div>
         <h3>Evolução e suporte</h3>
-        <p class="sub">Para quem já tem o sistema rodando e quer alguém junto para melhorar e dar manutenção.</p>
-        <div class="price"><small>Mensal, opcional</small><span data-price="3">sob consulta</span></div>
+        <p class="sub">Para quem já tem sistema rodando — meu ou de outro — e quer alguém junto para melhorar e manter de pé.</p>
+        <div class="price" data-price="3" hidden></div>
+        <div class="entra">O que entra</div>
         <ul>
-          <li>Ajustes e novas telas sob demanda</li>
-          <li>Monitoramento e backup</li>
+          <li>Ajustes e telas novas sob demanda</li>
+          <li>Correção de problema com prioridade</li>
+          <li>Monitoramento e backup automático</li>
+          <li>Um resumo do que mudou, todo mês</li>
           <li>Cancelável a qualquer momento</li>
         </ul>
+        <div class="prazo">Mensal e opcional — nunca obrigatório</div>
+        <a class="peca" data-wa="Oi! Já tenho um sistema rodando e queria falar sobre evolução e suporte.">Falar sobre suporte contínuo →</a>
       </div>
     </div>
-    <p class="note">O valor sai depois do diagnóstico, com escopo escrito. Sem cobrança por hora e sem surpresa no meio do caminho: se o escopo não mudar, o preço não muda.</p>
+
+    <div class="como">
+      <div class="slab">Como o preço funciona</div>
+      <h3>Você sabe quanto vai custar antes de eu escrever a primeira linha</h3>
+      <div class="rows">
+        <div class="row">
+          <div class="k">Escopo fechado, preço fechado</div>
+          <div class="v">Depois do diagnóstico eu mando o escopo por escrito, com valor e prazo. Se o escopo não mudar, o preço não muda — nem que dê mais trabalho do que eu previa.</div>
+        </div>
+        <div class="row">
+          <div class="k">Não cobro por hora</div>
+          <div class="v">Você paga pelo que recebe, não pelo tempo que eu levei. Se eu resolver rápido, o barato é seu.</div>
+        </div>
+        <div class="row">
+          <div class="k">Pagamento dividido por etapa</div>
+          <div class="v">Uma parte quando você aprova o escopo, o resto quando o sistema está no ar e funcionando. Você nunca paga tudo adiantado.</div>
+        </div>
+        <div class="row">
+          <div class="k">O que faz o preço variar</div>
+          <div class="v">Quantidade de telas, se precisa integrar com algo que você já usa, e quantas pessoas vão acessar ao mesmo tempo. Só isso.</div>
+        </div>
+      </div>
+      <div class="fecho">
+        <p>O número sai da conversa, não de uma tabela — porque antes de saber o seu processo, qualquer valor que eu colocasse aqui seria chute.</p>
+        <a class="btn" data-wa="Oi! Queria entender o investimento pro meu caso.">Descobrir quanto fica no meu caso</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -548,10 +624,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     if(v) el.textContent = v;
   });
 
-  // faixas de preço (vazio = mantém "sob consulta")
+  // preço só aparece se você preencher; vazio não mostra slot nenhum
   document.querySelectorAll('[data-price]').forEach(function(el){
     var v = (SITE.precos || {})[el.dataset.price];
-    if(v) el.textContent = v;
+    if(!v) return;
+    el.innerHTML = '<small>A partir de</small>' + v;
+    el.hidden = false;
   });
 
   // botões de WhatsApp, cada um com a sua mensagem pronta

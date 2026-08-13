@@ -17,7 +17,7 @@ const SITE = {
   instagram: "joaofelix",              // sem o @
   cidade:    "São José dos Campos · SP",
   site:      "https://...",            // endereço público da página
-  precos: { 1: "", 2: "", 3: "" }      // vazio = mostra "sob consulta"
+  precos: { 1: "", 2: "", 3: "" }      // vazio = não exibe valor (recomendado)
 };
 ```
 
@@ -49,7 +49,7 @@ A ordem é um funil: cada seção responde à pergunta que a anterior levanta.
 | 4 | **Casos** | Prova. Cada card termina no resultado, não na funcionalidade. |
 | 5 | **Como funciona + comparativo** | Tira o medo do processo e responde "por que não um pronto?" no mesmo bloco. |
 | 6 | **Faixa de CTA** | Ponto de saída no meio da página, para quem já se convenceu e não vai rolar até o fim. |
-| 7 | **Investimento** | Qualifica o lead. Três escopos, sem obrigar a mostrar número — mas mostrando a lógica do preço. |
+| 7 | **Investimento** | Qualifica o lead detalhando o que entra em cada escopo, e explica a lógica do preço em vez de exibir "sob consulta" num slot vazio. Cada card sai direto para a conversa. Se você preencher `precos`, o valor aparece; vazio, o slot nem existe. |
 | 8 | **FAQ** | As seis objeções que aparecem na conversa. Respondidas aqui, a reunião começa mais adiante. |
 | 9 | **Indicação + contato** | Fecha pedindo o compartilhamento, que é de onde vem boa parte do trabalho. |
 
