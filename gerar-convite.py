@@ -193,8 +193,8 @@ PASSOS = [
      "Uma primeira versão navegável em poucos dias, testada com dado de verdade."),
     ("03", "Ajuste e entrega",
      "A gente refina em cima do uso. Entrego publicado, com treinamento."),
-    ("04", "O sistema é seu",
-     "Sem mensalidade de plataforma. Roda em infraestrutura sua, com os seus dados."),
+    ("04", "Você no controle",
+     "Comprou, roda em infraestrutura sua. Assinou, eu cuido da operação. Nos dois, os dados saem com você."),
 ]
 
 CASOS = [
