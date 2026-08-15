@@ -171,10 +171,30 @@ section{padding:64px 0;border-bottom:1px solid var(--rule);}
 .tier p.sub{font-size:15px;line-height:1.5;color:var(--mute);}
 .tier .prazo{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule);
   font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--pine-d);font-weight:600;}
-.tier .peca{margin-top:14px;font-family:var(--mono);font-size:11.5px;font-weight:600;
+.peca{margin-top:14px;font-family:var(--mono);font-size:11.5px;font-weight:600;
   letter-spacing:.06em;text-transform:uppercase;color:var(--pine);text-decoration:none;
   display:inline-flex;gap:7px;align-items:center;transition:gap .15s;}
-.tier .peca:hover{gap:12px;}
+.peca:hover{gap:12px;}
+
+/* ---------- sistemas prontos ---------- */
+.sis{border:1.5px solid var(--rule);border-radius:2px;overflow:hidden;
+  display:flex;flex-direction:column;background:var(--paper);}
+.sis .cabeca{background:var(--pine-d);padding:22px 24px 19px;}
+.sis .cod{font-family:var(--disp);font-weight:700;font-size:31px;line-height:1;
+  letter-spacing:.03em;color:#FBF9F2;}
+.sis .para{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:#C7A05A;margin-top:10px;}
+.sis .corpo{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1;}
+.sis .corpo > p{font-size:15px;line-height:1.5;color:var(--mute);}
+.sis .pronto{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ochre);margin-top:18px;padding-top:15px;
+  border-top:1px solid var(--rule);}
+.sis ul{list-style:none;margin:10px 0 18px;}
+.sis li{font-size:14.5px;line-height:1.45;color:var(--mute);padding:6px 0 6px 18px;position:relative;}
+.sis li::before{content:"—";position:absolute;left:0;color:var(--ochre);font-family:var(--mono);}
+.sis .adapto{margin-top:auto;padding-top:15px;border-top:1px solid var(--rule);
+  font-size:14.5px;line-height:1.5;color:var(--mute);}
+.sis .adapto b{color:var(--pine-d);font-weight:600;}
 
 /* como o preço funciona */
 .como{background:var(--pine-d);color:#EFEDE4;border-radius:2px;padding:34px 32px 30px;margin-top:34px;}
@@ -282,6 +302,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <a class="brand" href="#topo"><span data-site="nome">João Félix</span><span>Sistemas web sob medida</span></a>
     <nav class="nav">
       <a class="lnk" href="#servicos">O que resolvo</a>
+      <a class="lnk" href="#sistemas">Sistemas</a>
       <a class="lnk" href="#casos">Casos</a>
       <a class="lnk" href="#processo">Como funciona</a>
       <a class="lnk" href="#investimento">Investimento</a>
@@ -297,7 +318,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <p class="lede">Eu construo sistemas web simples para quem atende — <b>feitos em cima do jeito que você já trabalha</b>, não do jeito que um software genérico manda trabalhar.</p>
     <div class="cta">
       <a class="btn" data-wa="Olá! Queria agendar o diagnóstico gratuito.">Quero um diagnóstico gratuito</a>
-      <a class="btn ghost" href="#casos">Ver o que já entreguei</a>
+      <a class="btn ghost" href="#sistemas">Ver os sistemas prontos</a>
     </div>
     <p class="reassure">Conversa de 30 minutos · sem custo · sem compromisso</p>
   </div>
@@ -405,11 +426,88 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   </div>
 </section>
 
+<section id="sistemas">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab">Sistemas prontos</div>
+      <h2>Eu não começo do zero. Você também não precisa esperar como se fosse.</h2>
+    </div>
+    <p class="hint">Estes três já estão construídos e servem de <b>base</b>. Eu parto deles e molde ao seu processo — você recebe em semanas o que um projeto do zero levaria meses, <b>sem virar refém de um genérico</b>: o que muda é feito para você, não escolhido num menu de configuração.</p>
+
+    <div class="grid g3">
+      <div class="sis">
+        <div class="cabeca">
+          <div class="cod">ROTA</div>
+          <div class="para">Para clínicas e consultórios</div>
+        </div>
+        <div class="corpo">
+          <p>O consultório inteiro numa tela: quem é o paciente, quando ele vem, o que aconteceu na última sessão e como ele está evoluindo.</p>
+          <div class="pronto">Já vem pronto</div>
+          <ul>
+            <li>Cadastro e histórico do paciente</li>
+            <li>Agenda, com marcação pelo próprio paciente</li>
+            <li>Evolução e indicadores em gráfico</li>
+            <li>Relatório da sessão gerado pronto</li>
+            <li>Lembrete e confirmação automáticos</li>
+            <li>Acesso por usuário, com permissão por perfil</li>
+          </ul>
+          <div class="adapto"><b>O que eu adapto:</b> os campos que você registra, as etapas do seu atendimento e o formato dos seus relatórios.</div>
+          <a class="peca" data-wa="Oi! Queria ver o ROTA, o sistema para clínicas.">Ver o ROTA de perto →</a>
+        </div>
+      </div>
+
+      <div class="sis">
+        <div class="cabeca">
+          <div class="cod">BASE</div>
+          <div class="para">Para controle financeiro</div>
+        </div>
+        <div class="corpo">
+          <p>Entrada, saída e fechamento sem planilha. Você lança escrevendo do jeito que falaria, e o painel se atualiza sozinho.</p>
+          <div class="pronto">Já vem pronto</div>
+          <ul>
+            <li>Lançamento pelo WhatsApp, em linguagem normal</li>
+            <li>Painel de caixa e fechamento do mês</li>
+            <li>Contas a receber, com quem está em aberto</li>
+            <li>Resumo do dia enviado automaticamente</li>
+            <li>Leitura de XML de NF-e</li>
+            <li>Exportação em planilha quando quiser</li>
+          </ul>
+          <div class="adapto"><b>O que eu adapto:</b> seu plano de contas, suas categorias e os relatórios que o seu contador pede.</div>
+          <a class="peca" data-wa="Oi! Queria ver o BASE, o sistema de finanças.">Ver o BASE de perto →</a>
+        </div>
+      </div>
+
+      <div class="sis">
+        <div class="cabeca">
+          <div class="cod">PROX</div>
+          <div class="para">Para controle de leads</div>
+        </div>
+        <div class="corpo">
+          <p>Cada contato que chega vira um cartão com etapa, responsável e prazo. Nada mais morre esquecido no grupo do WhatsApp.</p>
+          <div class="pronto">Já vem pronto</div>
+          <ul>
+            <li>Funil por etapa, com responsável e prazo</li>
+            <li>Entrada de lead por formulário ou link</li>
+            <li>Alerta de contato parado tempo demais</li>
+            <li>Histórico de conversa por lead</li>
+            <li>Painel de conversão por origem</li>
+            <li>Exportação em CSV quando quiser</li>
+          </ul>
+          <div class="adapto"><b>O que eu adapto:</b> as etapas do seu funil, os campos do lead e a regra de quem recebe o quê.</div>
+          <a class="peca" data-wa="Oi! Queria ver o PROX, o sistema de controle de leads.">Ver o PROX de perto →</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Nenhum dos três é obrigatório. Se o seu processo não se parecer com nenhum deles, eu construo do zero mesmo — <a data-wa="Oi! Acho que o meu caso não encaixa no ROTA, BASE nem PROX. Posso te contar?" style="color:var(--pine);font-weight:600">me conte o seu caso</a> e eu te digo com honestidade qual dos caminhos sai melhor para você.</p>
+  </div>
+</section>
+
 <section id="casos">
   <div class="wrap">
     <div class="shead">
-      <div class="slab">Alguns sistemas que já entreguei</div>
-      <h2>Feitos para o processo de quem ia usar</h2>
+      <div class="slab">No dia a dia de quem usa</div>
+      <h2>O que mudou para quem já recebeu</h2>
     </div>
     <div class="grid g3">
       <div class="case">
