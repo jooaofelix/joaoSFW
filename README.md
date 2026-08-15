@@ -47,7 +47,7 @@ A ordem é um funil: cada seção responde à pergunta que a anterior levanta.
 | 1 | **Hero** | Diz em uma frase para quem é e o que muda. Dois botões: um para quem já decidiu, outro para quem quer prova. |
 | 2 | **Se algum desses for você** | O visitante precisa se reconhecer antes de te ouvir. Quatro sinais concretos, não adjetivos. |
 | 3 | **Onde eu costumo entrar** | Seis áreas (financeiro, agenda, documentos, mensagens, acompanhamento, equipe). Cada um dos 24 itens é um link de WhatsApp com a mensagem pronta — a pessoa aciona apontando a dor, sem precisar formular o pedido. |
-| 4 | **Sistemas prontos** | ROTA, BASE e PROX como bases já construídas. Corta a objeção de prazo e preço sem contradizer o "sob medida": a base é ponto de partida, o que muda é feito, não configurado. |
+| 4 | **Sistemas prontos** | ROTA, BASE e PROX como bases já construídas, cada um levando à sua apresentação aberta. Corta a objeção de prazo e preço sem contradizer o "sob medida": a base é ponto de partida, o que muda é feito, não configurado. |
 | 5 | **Casos** | Prova. Cada card termina no resultado, não na funcionalidade. |
 | 6 | **Como funciona + comparativo** | Tira o medo do processo e responde "por que não um pronto?" no mesmo bloco. |
 | 7 | **Faixa de CTA** | Ponto de saída no meio da página, para quem já se convenceu e não vai rolar até o fim. |
@@ -68,6 +68,9 @@ A ordem é um funil: cada seção responde à pergunta que a anterior levanta.
   caso você prefira imprimir o site direto.
 - **Menu fixo** com âncoras para as cinco seções principais. Some no celular
   para não competir com o botão de contato.
+- **Os links de ROTA, BASE e PROX** ficam no HTML da seção `#sistemas`, não no
+  `const SITE` — são endereços de sistemas diferentes, não dados de contato.
+  Abrem em aba nova para não tirar a pessoa da página.
 - Se o JavaScript não carregar, os textos caem no valor padrão escrito no HTML
   e a página continua legível — só os links de contato ficam inertes.
 
@@ -104,9 +107,9 @@ Se o Chrome não for encontrado, o script avisa e você ainda pode abrir o
 
 Em ordem de retorno, se quiser evoluir:
 
-1. **Print de tela do ROTA, do BASE e do PROX.** Virou a lacuna mais gritante:
-   a seção afirma que os três existem e não mostra nenhum. Uma imagem por card
-   converte mais que qualquer parágrafo — quem vende software vende a tela.
+1. **Print de tela do ROTA, do BASE e do PROX.** Cada card já leva à
+   apresentação do sistema, mas o clique é um pedágio: uma imagem no próprio
+   card faz a pessoa querer clicar. Quem vende software vende a tela.
 2. **Um depoimento real**, mesmo que curto, logo abaixo dos casos.
 3. **Um número concreto** em pelo menos um caso ("reduziu o fechamento de 6h
    para 20min").

@@ -195,6 +195,11 @@ section{padding:64px 0;border-bottom:1px solid var(--rule);}
 .sis .adapto{margin-top:auto;padding-top:15px;border-top:1px solid var(--rule);
   font-size:14.5px;line-height:1.5;color:var(--mute);}
 .sis .adapto b{color:var(--pine-d);font-weight:600;}
+.sis .acoes{margin-top:16px;display:flex;flex-direction:column;align-items:flex-start;gap:9px;}
+.sis .acoes .peca{margin-top:0;}
+.sis .fala{font-size:13.5px;color:var(--mute);text-decoration:underline;
+  text-underline-offset:3px;text-decoration-color:var(--rule);transition:color .15s;}
+.sis .fala:hover{color:var(--pine);text-decoration-color:var(--pine);}
 
 /* como o preço funciona */
 .como{background:var(--pine-d);color:#EFEDE4;border-radius:2px;padding:34px 32px 30px;margin-top:34px;}
@@ -432,7 +437,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
       <div class="slab">Sistemas prontos</div>
       <h2>Eu não começo do zero. Você também não precisa esperar como se fosse.</h2>
     </div>
-    <p class="hint">Estes três já estão construídos e servem de <b>base</b>. Eu parto deles e molde ao seu processo — você recebe em semanas o que um projeto do zero levaria meses, <b>sem virar refém de um genérico</b>: o que muda é feito para você, não escolhido num menu de configuração.</p>
+    <p class="hint">Estes três já estão construídos e servem de <b>base</b>. Eu parto deles e molde ao seu processo — você recebe em semanas o que um projeto do zero levaria meses, <b>sem virar refém de um genérico</b>: o que muda é feito para você, não escolhido num menu. <b>Cada um tem apresentação aberta</b> — entre e veja funcionando antes de falar comigo.</p>
 
     <div class="grid g3">
       <div class="sis">
@@ -452,7 +457,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
             <li>Acesso por usuário, com permissão por perfil</li>
           </ul>
           <div class="adapto"><b>O que eu adapto:</b> os campos que você registra, as etapas do seu atendimento e o formato dos seus relatórios.</div>
-          <a class="peca" data-wa="Oi! Queria ver o ROTA, o sistema para clínicas.">Ver o ROTA de perto →</a>
+          <div class="acoes">
+            <a class="peca" href="https://rota.jvctrfelix.workers.dev/conhecer" target="_blank" rel="noopener">Conhecer o ROTA →</a>
+            <a class="fala" data-wa="Oi! Vi o ROTA e queria conversar sobre ele.">ou fale comigo sobre ele</a>
+          </div>
         </div>
       </div>
 
@@ -473,7 +481,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
             <li>Exportação em planilha quando quiser</li>
           </ul>
           <div class="adapto"><b>O que eu adapto:</b> seu plano de contas, suas categorias e os relatórios que o seu contador pede.</div>
-          <a class="peca" data-wa="Oi! Queria ver o BASE, o sistema de finanças.">Ver o BASE de perto →</a>
+          <div class="acoes">
+            <a class="peca" href="https://base.jvctrfelix.workers.dev/como-funciona" target="_blank" rel="noopener">Ver como o BASE funciona →</a>
+            <a class="fala" data-wa="Oi! Vi o BASE e queria conversar sobre ele.">ou fale comigo sobre ele</a>
+          </div>
         </div>
       </div>
 
@@ -494,7 +505,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
             <li>Exportação em CSV quando quiser</li>
           </ul>
           <div class="adapto"><b>O que eu adapto:</b> as etapas do seu funil, os campos do lead e a regra de quem recebe o quê.</div>
-          <a class="peca" data-wa="Oi! Queria ver o PROX, o sistema de controle de leads.">Ver o PROX de perto →</a>
+          <div class="acoes">
+            <a class="peca" href="https://prox.jvctrfelix.workers.dev/apresentacao" target="_blank" rel="noopener">Ver a apresentação do PROX →</a>
+            <a class="fala" data-wa="Oi! Vi o PROX e queria conversar sobre ele.">ou fale comigo sobre ele</a>
+          </div>
         </div>
       </div>
     </div>
