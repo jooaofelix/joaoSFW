@@ -1,2 +1,7 @@
 # gerado por gerar-convite.py — o que se compartilha é o convite.pdf
 convite.html
+
+# gerado por exemplo.py
+analise-fiscal/exemplo.html
+__pycache__/
+*.pyc

@@ -48,12 +48,13 @@ A ordem é um funil: cada seção responde à pergunta que a anterior levanta.
 | 2 | **Se algum desses for você** | O visitante precisa se reconhecer antes de te ouvir. Quatro sinais concretos, não adjetivos. |
 | 3 | **Onde eu costumo entrar** | Seis áreas (financeiro, agenda, documentos, mensagens, acompanhamento, equipe). Cada um dos 24 itens é um link de WhatsApp com a mensagem pronta — a pessoa aciona apontando a dor, sem precisar formular o pedido. |
 | 4 | **Sistemas prontos** | ROTA, BASE e PROX como bases já construídas, cada um levando à sua apresentação aberta. Corta a objeção de prazo e preço sem contradizer o "sob medida": a base é ponto de partida, o que muda é feito, não configurado. |
-| 5 | **Casos** | Prova. Cada card termina no resultado, não na funcionalidade. |
-| 6 | **Como funciona + comparativo** | Tira o medo do processo e responde "por que não um pronto?" no mesmo bloco. |
-| 7 | **Faixa de CTA** | Ponto de saída no meio da página, para quem já se convenceu e não vai rolar até o fim. |
-| 8 | **Investimento** | Qualifica o lead detalhando o que entra em cada escopo, e explica a lógica do preço em vez de exibir "sob consulta" num slot vazio. Cada card sai direto para a conversa. Se você preencher `precos`, o valor aparece; vazio, o slot nem existe. |
-| 9 | **FAQ** | As seis objeções que aparecem na conversa. Respondidas aqui, a reunião começa mais adiante. |
-| 10 | **Indicação + contato** | Fecha pedindo o compartilhamento, que é de onde vem boa parte do trabalho. |
+| 5 | **Consultas e vínculos** | Consulta pública de CNPJ e mapa de sócios em comum, mirando escritório contábil. Diz o que NÃO faz (e-CAC, débito, certidão) para não criar expectativa que queima na reunião. |
+| 6 | **Casos** | Prova. Cada card termina no resultado, não na funcionalidade. |
+| 7 | **Como funciona + comparativo** | Tira o medo do processo e responde "por que não um pronto?" no mesmo bloco. |
+| 8 | **Faixa de CTA** | Ponto de saída no meio da página, para quem já se convenceu e não vai rolar até o fim. |
+| 9 | **Investimento** | Qualifica o lead detalhando o que entra em cada escopo, e explica a lógica do preço em vez de exibir "sob consulta" num slot vazio. Cada card sai direto para a conversa. Se você preencher `precos`, o valor aparece; vazio, o slot nem existe. |
+| 10 | **FAQ** | As seis objeções que aparecem na conversa. Respondidas aqui, a reunião começa mais adiante. |
+| 11 | **Indicação + contato** | Fecha pedindo o compartilhamento, que é de onde vem boa parte do trabalho. |
 
 ## Detalhes de implementação
 
@@ -102,6 +103,20 @@ lista de contatos para manter em dia** — muda num lugar, sai nos dois.
 
 Se o Chrome não for encontrado, o script avisa e você ainda pode abrir o
 `convite.html` no navegador e imprimir em PDF na mão.
+
+## `analise-fiscal/` — o motor por trás da seção "Consultas e vínculos"
+
+Ferramenta separada, em Python puro, que consulta CNPJ em fontes públicas e
+cruza o quadro societário de uma carteira inteira. Tem o próprio README.
+
+```bash
+cd analise-fiscal
+python3 exemplo.py --html                  # vê funcionando, sem rede
+python3 -m unittest discover -s tests      # 25 testes, todos offline
+```
+
+Não tem relação de código com a landing page — está aqui só porque nasceu
+desta conversa. Quando virar produto, vale mover para um repositório próprio.
 
 ## Sugestões de próximo passo
 

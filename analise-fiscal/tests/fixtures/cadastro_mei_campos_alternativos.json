@@ -1,0 +1,18 @@
+{
+  "cnpj": "77888999000181",
+  "nome": "JOSE DA SILVA 12345678900",
+  "fantasia": "Contabil Silva",
+  "situacao": "ATIVA",
+  "data_abertura": "24/07/2024",
+  "porte": "MICRO EMPRESA",
+  "capital_social": "1.000,00",
+  "cnae_principal_codigo": "6920601",
+  "cnae_principal_descricao": "Atividades de contabilidade",
+  "cidade": "JACAREI",
+  "estado": "SP",
+  "simples_optante": "S",
+  "simples_data_opcao": "24/07/2024",
+  "mei_optante": "S",
+  "mei_data_opcao": "24/07/2024",
+  "socios": []
+}

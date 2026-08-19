@@ -201,6 +201,17 @@ section{padding:64px 0;border-bottom:1px solid var(--rule);}
   text-underline-offset:3px;text-decoration-color:var(--rule);transition:color .15s;}
 .sis .fala:hover{color:var(--pine);text-decoration-color:var(--pine);}
 
+/* ---------- consultas e vínculos ---------- */
+.cons .k{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ochre);padding-bottom:14px;
+  border-bottom:1px solid var(--rule);}
+.cons ul{list-style:none;margin-top:6px;}
+.cons li{font-size:15.5px;line-height:1.45;color:var(--mute);padding:11px 0 11px 20px;
+  position:relative;border-bottom:1px solid var(--wash);}
+.cons li:last-child{border-bottom:none;}
+.cons li::before{content:"—";position:absolute;left:0;color:var(--ochre);font-family:var(--mono);}
+.cons li b{color:var(--pine-d);font-weight:600;}
+
 /* como o preço funciona */
 .como{background:var(--pine-d);color:#EFEDE4;border-radius:2px;padding:34px 32px 30px;margin-top:34px;}
 .como .slab{color:#C7A05A;}
@@ -514,6 +525,55 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     </div>
 
     <p class="note">Nenhum dos três é obrigatório. Se o seu processo não se parecer com nenhum deles, eu construo do zero mesmo — <a data-wa="Oi! Acho que o meu caso não encaixa no ROTA, BASE nem PROX. Posso te contar?" style="color:var(--pine);font-weight:600">me conte o seu caso</a> e eu te digo com honestidade qual dos caminhos sai melhor para você.</p>
+  </div>
+</section>
+
+<section id="consultas">
+  <div class="wrap">
+    <div class="shead">
+      <div class="slab">Consultas e vínculos</div>
+      <h2>O que você cata em quatro sites, numa tela só</h2>
+    </div>
+    <p class="hint">Você digita o CNPJ — ou joga a lista inteira de clientes de uma vez — e recebe a situação de cada um já <b>analisada</b>, não só copiada. Sem captcha, sem login, sem abrir site do governo um por um.</p>
+
+    <div class="grid g2">
+      <div class="cons">
+        <div class="k">O que ele busca</div>
+        <ul>
+          <li>Situação cadastral, com data e motivo da baixa</li>
+          <li>Opção pelo Simples e pelo MEI, com as datas</li>
+          <li>Exclusão do Simples, e quando aconteceu</li>
+          <li>Atividade principal e todas as secundárias</li>
+          <li>Porte, natureza jurídica e capital social</li>
+          <li>Quadro societário, com entrada de cada sócio</li>
+          <li>Sanções e inidoneidade em cadastros federais</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <div class="k">O que ele conclui sozinho</div>
+        <ul>
+          <li><b>Cliente que deixou de estar ativo</b> e ninguém percebeu</li>
+          <li><b>Quem foi excluído do Simples</b> e não voltou</li>
+          <li>Porte no cadastro que <b>não bate com o enquadramento</b></li>
+          <li>Capital social zerado, que trava operação em banco</li>
+          <li><b>Sanção vigente</b> contra a empresa</li>
+          <li>Empresa aberta há pouco tempo, que pede atenção</li>
+          <li><b>Clientes seus que dividem o mesmo sócio</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="como">
+      <div class="slab">Mapa de vínculos societários</div>
+      <h3>Quais dos seus clientes são, na prática, o mesmo grupo?</h3>
+      <p style="font-size:16.5px;line-height:1.55;color:#C6D2CC;max-width:62ch">Passando a carteira inteira, o sistema cruza o quadro societário de todos e mostra quem aparece em mais de uma empresa. É uma pergunta que hoje ninguém no escritório consegue responder sem semanas de garimpo — e que muda planejamento tributário, análise de risco e até a régua de cobrança.</p>
+      <div class="fecho">
+        <p>Roda em cima de dado público, sem procuração e sem certificado digital de ninguém.</p>
+        <a class="btn" data-wa="Oi! Queria falar sobre a consulta de CNPJ e o mapa de vínculos societários.">Quero isso no meu escritório</a>
+      </div>
+    </div>
+
+    <p class="note"><b>O que ele não faz, para ficar claro desde já:</b> não entra no e-CAC, não mostra débito, parcelamento nem certidão. Isso exige procuração eletrônica sua e integração oficial paga — dá para fazer, é um segundo passo, e eu te explico o custo antes de você decidir. O que está descrito acima roda só com dado público, então <b>começa a funcionar na primeira semana</b>.</p>
   </div>
 </section>
 

@@ -1,0 +1,24 @@
+{
+  "cnpj": "44555666000181",
+  "razao_social": "COMERCIO ANTIGO LTDA",
+  "descricao_situacao_cadastral": "BAIXADA",
+  "data_situacao_cadastral": "2022-08-30",
+  "descricao_motivo_situacao_cadastral": "EXTINCAO POR ENCERRAMENTO LIQUIDACAO VOLUNTARIA",
+  "data_inicio_atividade": "2011-01-10",
+  "descricao_porte": "DEMAIS",
+  "natureza_juridica": "206-2 - Sociedade Empresaria Limitada",
+  "capital_social": 0,
+  "cnae_fiscal": "4712100",
+  "cnae_fiscal_descricao": "Comercio varejista de mercadorias em geral",
+  "cnaes_secundarios": [],
+  "municipio": "TAUBATE",
+  "uf": "SP",
+  "opcao_pelo_simples": true,
+  "data_opcao_pelo_simples": "2012-01-01",
+  "data_exclusao_do_simples": "2021-12-31",
+  "opcao_pelo_mei": false,
+  "qsa": [
+    {"nome_socio": "MARIA SOUZA", "cnpj_cpf_do_socio": "***456789**",
+     "qualificacao_socio": "49-Socio-Administrador", "data_entrada_sociedade": "2011-01-10"}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "cnpj": "11222333000181",
+  "razao_social": "CLINICA EXEMPLO LTDA",
+  "nome_fantasia": "Clinica Exemplo",
+  "descricao_situacao_cadastral": "ATIVA",
+  "data_situacao_cadastral": "2019-03-12",
+  "descricao_motivo_situacao_cadastral": "SEM MOTIVO",
+  "data_inicio_atividade": "2019-03-12",
+  "descricao_porte": "MICRO EMPRESA",
+  "natureza_juridica": "206-2 - Sociedade Empresaria Limitada",
+  "capital_social": 50000,
+  "cnae_fiscal": "8630501",
+  "cnae_fiscal_descricao": "Atividade medica ambulatorial com recursos para realizacao de procedimentos cirurgicos",
+  "cnaes_secundarios": [
+    {"codigo": "8650004", "descricao": "Atividades de fisioterapia"}
+  ],
+  "municipio": "SAO JOSE DOS CAMPOS",
+  "uf": "SP",
+  "opcao_pelo_simples": true,
+  "data_opcao_pelo_simples": "2019-04-01",
+  "data_exclusao_do_simples": null,
+  "opcao_pelo_mei": false,
+  "qsa": [
+    {"nome_socio": "MARIA SOUZA", "cnpj_cpf_do_socio": "***456789**",
+     "qualificacao_socio": "49-Socio-Administrador", "data_entrada_sociedade": "2019-03-12"},
+    {"nome_socio": "JOAO PEREIRA", "cnpj_cpf_do_socio": "***111222**",
+     "qualificacao_socio": "22-Socio", "data_entrada_sociedade": "2020-06-01"}
+  ]
+}
