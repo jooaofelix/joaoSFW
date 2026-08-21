@@ -1,0 +1,15 @@
+# Publica o site como Worker de assets estáticos.
+#
+#   npx wrangler deploy
+#
+# ATENÇÃO: isto substitui o Worker chamado "futuro" que já está no ar.
+# Se o atual foi feito de outro jeito (script colado no painel do Cloudflare,
+# outro repositório), o conteúdo dele é trocado pelo index.html daqui.
+
+name = "futuro"
+compatibility_date = "2026-08-21"
+
+[assets]
+directory = "./"
+# qualquer caminho cai na página única, em vez de dar 404
+not_found_handling = "single-page-application"

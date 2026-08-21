@@ -35,6 +35,27 @@ Confira à mão, porque nada disso o código valida:
 - [ ] O link `convite.pdf` funciona depois de publicado (é caminho relativo —
       se o Worker não servir o arquivo, quebra).
 
+## Colocar no ar
+
+**Git push não publica o site.** Ele manda o código para o GitHub; quem coloca
+no ar é o deploy. Para publicar em `futuro.jvctrfelix.workers.dev`:
+
+```bash
+npx wrangler deploy
+```
+
+Sobem só `index.html` e `convite.pdf` — o `.assetsignore` deixa de fora código,
+fontes e o resto. Como o PDF passa a ser servido no mesmo endereço, o botão
+"Baixar a apresentação" funciona sem ajuste.
+
+> **Isto substitui o Worker chamado `futuro` que já está no ar.** Se o atual foi
+> publicado de outro jeito (script colado no painel do Cloudflare, outro
+> repositório), o conteúdo dele é trocado pelo daqui. Confira antes de rodar.
+
+Para o deploy acontecer sozinho a cada push, é preciso um workflow do GitHub
+Actions com um token da API do Cloudflare guardado nos segredos do repositório.
+Não está configurado.
+
 ## A estrutura, e o porquê
 
 | # | Seção | O que ela faz |

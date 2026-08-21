@@ -1,0 +1,11 @@
+# Fora do que vai para o ar: só index.html e convite.pdf interessam ao visitante.
+*.py
+*.toml
+*.md
+.assetsignore
+.gitignore
+.git/
+analise-fiscal/
+assets/
+convite.html
+convite.template.html
