@@ -3,311 +3,178 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>João Félix — Sistemas sob medida para consultórios e clínicas</title>
-<meta name="description" content="Sistemas web simples e sob medida para profissionais liberais e clínicas: acompanhamento de pacientes, controle financeiro, automação de processos e presença digital.">
-<meta property="og:title" content="O seu processo já funciona. Ele só não está em lugar nenhum.">
-<meta property="og:description" content="Sistemas web sob medida para consultórios e clínicas — feitos em cima do jeito que você já trabalha.">
+<title>João Félix — Sistemas para gestão de clínicas</title>
+<meta name="description" content="Resolvo o que trava a gestão da sua clínica: agenda, prontuário, financeiro e retorno de paciente. Sistemas simples, feitos do jeito que a sua clínica já trabalha.">
+<meta property="og:title" content="Eu resolvo o que trava a gestão da sua clínica.">
+<meta property="og:description" content="Agenda, prontuário, financeiro e retorno de paciente — sem planilha e sem software genérico.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0A2F27">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <!-- =========================================================
-     EDITE APENAS ESTE BLOCO. Ele preenche nome, WhatsApp,
-     e-mail e Instagram em toda a página de uma vez só.
+     EDITE APENAS ESTE BLOCO.
      ========================================================= -->
 <script>
 const SITE = {
   nome:      "João Félix",
   whatsapp:  "5512991338866",          // só números: 55 + DDD + número
   email:     "jvctrfelix@gmail.com",
-  instagram: "",                       // sem o @; deixe "" para não exibir
+  instagram: "",                       // sem o @; vazio não exibe a linha
   cidade:    "São José dos Campos · SP",
-  site:      "https://futuro.jvctrfelix.workers.dev",  // endereço público desta página
-
-  // Preços. Deixe "" para não exibir valor nenhum (recomendado).
-  // Se preencher, ex.: "R$ 2.500", vira "A partir de R$ 2.500" no card.
-  precos: { 1: "", 2: "", 3: "" }
+  site:      "https://futuro.jvctrfelix.workers.dev"
 };
 </script>
 
 <style>
 :root{
-  --ink:#131A18; --pine:#0F4A3E; --pine-d:#0A2F27; --ochre:#8A5F17;
-  --paper:#FCFBF6; --rule:#DFDACD; --mute:#636863; --wash:#F1EEE4;
+  --ink:#131A18; --pine:#0F4A3E; --pine-d:#0A2F27; --ochre:#8A5F17; --gold:#C7A05A;
+  --paper:#FCFBF6; --rule:#DFDACD; --mute:#5E635E; --wash:#F1EEE4;
   --disp:'Archivo',system-ui,sans-serif;
   --body:'IBM Plex Sans',system-ui,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:78px;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:76px;}
 body{font-family:var(--body);color:var(--ink);background:var(--paper);
-  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px;}
 .slab{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;
   text-transform:uppercase;color:var(--ochre);}
-a:focus-visible,button:focus-visible,summary:focus-visible{
-  outline:2px solid var(--ochre);outline-offset:3px;border-radius:2px;}
-
-/* ---------- topo ---------- */
-.top{border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:20;
-  background:rgba(252,251,246,.94);backdrop-filter:blur(8px);}
-.top .wrap{display:flex;justify-content:space-between;align-items:center;
-  padding-top:14px;padding-bottom:14px;gap:16px;}
-.brand{font-family:var(--disp);font-weight:700;font-size:18px;color:var(--pine-d);
-  letter-spacing:-.01em;text-decoration:none;}
-.brand span{display:block;font-family:var(--mono);font-size:10px;font-weight:400;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:3px;}
-.nav{display:flex;align-items:center;gap:26px;}
-.nav a.lnk{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--mute);text-decoration:none;transition:color .15s;}
-.nav a.lnk:hover{color:var(--pine-d);}
-@media (max-width:860px){.nav a.lnk{display:none;}}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;}
 
 .btn{display:inline-block;background:var(--pine-d);color:#F7F5EE;text-decoration:none;
-  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  padding:13px 22px;border-radius:2px;transition:background .15s;}
+  font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;padding:15px 26px;border-radius:2px;transition:background .15s;}
 .btn:hover{background:var(--pine);}
 .btn.sm{padding:10px 16px;font-size:11px;}
 .btn.ghost{background:transparent;color:var(--pine-d);border:1.5px solid var(--pine-d);}
 .btn.ghost:hover{background:var(--pine-d);color:#F7F5EE;}
 
+/* ---------- topo ---------- */
+.top{border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:20;
+  background:rgba(252,251,246,.94);backdrop-filter:blur(8px);}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;
+  padding:14px 24px;gap:16px;}
+.brand{font-family:var(--disp);font-weight:700;font-size:18px;color:var(--pine-d);
+  text-decoration:none;letter-spacing:-.01em;}
+.brand span{display:block;font-family:var(--mono);font-size:10px;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:3px;}
+
 /* ---------- hero ---------- */
-.hero{padding:76px 0 64px;border-bottom:1px solid var(--rule);}
-h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,6.2vw,60px);
-  line-height:1.04;letter-spacing:-.025em;color:var(--pine-d);max-width:16ch;}
-.lede{font-size:clamp(17px,2.2vw,21px);line-height:1.5;color:var(--mute);
-  max-width:60ch;margin-top:24px;}
+.hero{padding:84px 0 72px;border-bottom:1px solid var(--rule);}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(36px,6.4vw,60px);
+  line-height:1.03;letter-spacing:-.028em;color:var(--pine-d);max-width:15ch;margin-top:16px;}
+.lede{font-size:clamp(18px,2.2vw,21px);line-height:1.45;color:var(--mute);
+  max-width:52ch;margin-top:22px;}
 .lede b{color:var(--ink);font-weight:600;}
-.hero .cta{margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
-.reassure{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--mute);
+.cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.selo{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--mute);
   margin-top:18px;}
 
-/* ---------- secoes ---------- */
-section{padding:64px 0;border-bottom:1px solid var(--rule);}
-.shead{margin-bottom:36px;}
-.shead h2{font-family:var(--disp);font-weight:600;font-size:clamp(24px,3.4vw,34px);
-  line-height:1.15;letter-spacing:-.02em;color:var(--pine-d);margin-top:10px;max-width:22ch;}
-
-.grid{display:grid;gap:20px;}
-.g4{grid-template-columns:repeat(4,1fr);}
+/* ---------- seções ---------- */
+section{padding:60px 0;border-bottom:1px solid var(--rule);}
+h2{font-family:var(--disp);font-weight:600;font-size:clamp(25px,3.6vw,34px);
+  line-height:1.12;letter-spacing:-.02em;color:var(--pine-d);margin-top:10px;max-width:20ch;}
+.grid{display:grid;gap:18px;margin-top:34px;}
 .g3{grid-template-columns:repeat(3,1fr);}
-.g2{grid-template-columns:1fr 1fr;gap:48px;}
+.g2{grid-template-columns:1fr 1fr;}
 
-/* ---------- dor / reconhecimento ---------- */
-.pain{background:var(--wash);border-bottom:1px solid var(--rule);}
-.pain ul{list-style:none;display:grid;gap:0;}
-.pain li{display:flex;gap:16px;align-items:flex-start;padding:18px 0;
-  border-bottom:1px solid var(--rule);font-size:16.5px;line-height:1.5;}
-.pain li:last-child{border-bottom:none;}
-.pain li b{color:var(--pine-d);font-weight:600;}
-.pain .mark{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ochre);
-  flex-shrink:0;width:22px;padding-top:1px;}
-.pain .close{margin-top:26px;font-size:17px;color:var(--pine-d);font-weight:600;max-width:56ch;}
+/* problemas */
+.dor{display:block;background:var(--wash);border-radius:2px;padding:24px 24px 22px;
+  text-decoration:none;border-left:3px solid transparent;transition:border-color .15s,transform .15s;}
+.dor:hover{border-left-color:var(--ochre);transform:translateX(3px);}
+.dor h3{font-family:var(--disp);font-weight:600;font-size:19px;line-height:1.2;
+  color:var(--pine-d);margin-bottom:8px;}
+.dor p{font-size:15.5px;line-height:1.45;color:var(--mute);}
+.dor .go{display:block;margin-top:14px;font-family:var(--mono);font-size:11px;
+  font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);}
 
-/* ---------- áreas ---------- */
-.hint{font-size:15.5px;line-height:1.5;color:var(--mute);max-width:58ch;margin-top:-22px;
-  margin-bottom:34px;}
-.hint b{color:var(--pine-d);font-weight:600;}
-.area{background:var(--wash);padding:24px 22px 14px;border-radius:2px;
-  display:flex;flex-direction:column;}
-.area .n{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--ochre);}
-.area h3{font-family:var(--disp);font-weight:600;font-size:19px;line-height:1.2;
-  margin:8px 0 8px;color:var(--pine-d);}
-.area > p{font-size:14.5px;line-height:1.5;color:var(--mute);}
-.area ul{list-style:none;margin-top:16px;}
-.area li{border-top:1px solid var(--rule);}
-.area li a{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-  padding:11px 0;font-size:15px;line-height:1.4;color:var(--ink);text-decoration:none;
-  transition:color .15s,padding-left .15s;}
-.area li a .go{font-family:var(--mono);font-size:14px;color:var(--ochre);flex-shrink:0;
-  opacity:.4;transition:opacity .15s;}
-.area li a:hover{color:var(--pine);padding-left:5px;}
-.area li a:hover .go{opacity:1;}
-
-.case{border-top:2px solid var(--pine);padding-top:16px;}
-.case .who{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--pine);}
-.case h3{font-family:var(--disp);font-weight:600;font-size:19px;line-height:1.22;
-  margin:10px 0 10px;color:var(--ink);}
-.case p{font-size:15px;line-height:1.55;color:var(--mute);}
-.case .out{margin-top:12px;font-family:var(--mono);font-size:12px;font-weight:600;
-  letter-spacing:.04em;color:var(--pine-d);}
-
-.step{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--rule);}
-.step:last-child{border-bottom:none;}
-.step .d{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--ochre);
-  flex-shrink:0;width:34px;padding-top:2px;}
-.step h3{font-family:var(--disp);font-weight:600;font-size:19px;color:var(--pine-d);margin-bottom:5px;}
-.step p{font-size:15.5px;line-height:1.55;color:var(--mute);}
-
-.cmp{background:var(--pine-d);color:#EFEDE4;padding:32px 30px;border-radius:2px;align-self:start;}
-.cmp .slab{color:#C7A05A;}
-.cmp .row{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.14);}
-.cmp .row:last-child{border-bottom:none;}
-.cmp .k{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
-  text-transform:uppercase;color:#C7A05A;margin-bottom:6px;}
-.cmp .v{font-size:15.5px;line-height:1.5;color:#DCDACF;}
-.cmp .top-note{margin-bottom:22px;}
-
-/* ---------- investimento ---------- */
-.tier{border:1.5px solid var(--rule);border-radius:2px;padding:26px 24px 28px;
-  display:flex;flex-direction:column;background:var(--paper);}
-.tier.mid{border-color:var(--pine-d);border-width:2px;}
-.tier .tag{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--ochre);}
-.tier h3{font-family:var(--disp);font-weight:600;font-size:20px;color:var(--pine-d);margin:10px 0 6px;}
-.tier .price{font-family:var(--disp);font-weight:700;font-size:26px;color:var(--ink);
-  letter-spacing:-.02em;margin:14px 0 4px;}
-.tier .price small{display:block;font-family:var(--mono);font-size:11px;font-weight:400;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;}
-.tier .entra{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--ochre);margin-top:18px;padding-top:16px;
-  border-top:1px solid var(--rule);}
-.tier ul{list-style:none;margin:10px 0 18px;}
-.tier li{font-size:14.5px;line-height:1.45;color:var(--mute);padding:6px 0 6px 18px;position:relative;}
-.tier li::before{content:"—";position:absolute;left:0;color:var(--ochre);font-family:var(--mono);}
-.tier p.sub{font-size:15px;line-height:1.5;color:var(--mute);}
-.tier .prazo{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule);
-  font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--pine-d);font-weight:600;}
-.peca{margin-top:14px;font-family:var(--mono);font-size:11.5px;font-weight:600;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--pine);text-decoration:none;
-  display:inline-flex;gap:7px;align-items:center;transition:gap .15s;}
-.peca:hover{gap:12px;}
-
-/* ---------- sistemas prontos ---------- */
+/* sistemas */
 .sis{border:1.5px solid var(--rule);border-radius:2px;overflow:hidden;
-  display:flex;flex-direction:column;background:var(--paper);}
-.sis .cabeca{background:var(--pine-d);padding:22px 24px 19px;}
-.sis .cod{font-family:var(--disp);font-weight:700;font-size:31px;line-height:1;
+  display:flex;flex-direction:column;background:#fff;}
+.sis .cabeca{background:var(--pine-d);padding:20px 22px 18px;}
+.sis .cod{font-family:var(--disp);font-weight:700;font-size:29px;line-height:1;
   letter-spacing:.03em;color:#FBF9F2;}
-.sis .para{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;
-  text-transform:uppercase;color:#C7A05A;margin-top:10px;}
-.sis .corpo{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1;}
-.sis .corpo > p{font-size:15px;line-height:1.5;color:var(--mute);}
-.sis .pronto{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--ochre);margin-top:18px;padding-top:15px;
-  border-top:1px solid var(--rule);}
-.sis ul{list-style:none;margin:10px 0 18px;}
-.sis li{font-size:14.5px;line-height:1.45;color:var(--mute);padding:6px 0 6px 18px;position:relative;}
-.sis li::before{content:"—";position:absolute;left:0;color:var(--ochre);font-family:var(--mono);}
-.sis .adapto{margin-top:auto;padding-top:15px;border-top:1px solid var(--rule);
-  font-size:14.5px;line-height:1.5;color:var(--mute);}
-.sis .adapto b{color:var(--pine-d);font-weight:600;}
-.sis .acoes{margin-top:16px;display:flex;flex-direction:column;align-items:flex-start;gap:9px;}
-.sis .acoes .peca{margin-top:0;}
-.sis .fala{font-size:13.5px;color:var(--mute);text-decoration:underline;
-  text-underline-offset:3px;text-decoration-color:var(--rule);transition:color .15s;}
-.sis .fala:hover{color:var(--pine);text-decoration-color:var(--pine);}
+.sis .para{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);margin-top:9px;}
+.sis .corpo{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1;}
+.sis p{font-size:15.5px;line-height:1.45;color:var(--mute);}
+.sis .peca{margin-top:auto;padding-top:18px;font-family:var(--mono);font-size:11.5px;
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--pine);
+  text-decoration:none;display:inline-flex;gap:7px;transition:gap .15s;}
+.sis .peca:hover{gap:12px;}
 
-/* ---------- consultas e vínculos ---------- */
-.cons .k{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--ochre);padding-bottom:14px;
-  border-bottom:1px solid var(--rule);}
-.cons ul{list-style:none;margin-top:6px;}
-.cons li{font-size:15.5px;line-height:1.45;color:var(--mute);padding:11px 0 11px 20px;
-  position:relative;border-bottom:1px solid var(--wash);}
-.cons li:last-child{border-bottom:none;}
-.cons li::before{content:"—";position:absolute;left:0;color:var(--ochre);font-family:var(--mono);}
-.cons li b{color:var(--pine-d);font-weight:600;}
+/* passos */
+.passo{border-top:2px solid var(--pine);padding-top:14px;}
+.passo .d{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
+  color:var(--ochre);}
+.passo h3{font-family:var(--disp);font-weight:600;font-size:18px;color:var(--pine-d);
+  margin:8px 0 6px;}
+.passo p{font-size:15px;line-height:1.45;color:var(--mute);}
+.preco{margin-top:32px;padding:22px 24px;background:var(--wash);border-radius:2px;
+  font-size:16.5px;line-height:1.5;color:var(--ink);}
+.preco b{color:var(--pine-d);font-weight:600;}
 
-/* como o preço funciona */
-.como{background:var(--pine-d);color:#EFEDE4;border-radius:2px;padding:34px 32px 30px;margin-top:34px;}
-.como .slab{color:#C7A05A;}
-.como h3{font-family:var(--disp);font-weight:600;font-size:clamp(20px,2.6vw,25px);
-  line-height:1.15;letter-spacing:-.02em;color:#FBF9F2;margin:10px 0 24px;max-width:26ch;}
-.como .rows{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;}
-.como .row{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.14);}
-.como .rows .row:nth-last-child(-n+2){border-bottom:none;}
-.como .k{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
-  text-transform:uppercase;color:#C7A05A;margin-bottom:6px;}
-.como .v{font-size:15.5px;line-height:1.5;color:#DCDACF;}
-.como .fecho{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);
-  display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap;}
-.como .fecho p{font-size:16.5px;line-height:1.5;color:#EFEDE4;max-width:46ch;}
-.como .fecho .btn{background:#C7A05A;color:#0A2F27;flex-shrink:0;}
-.como .fecho .btn:hover{background:#D9B879;}
-@media (max-width:700px){
-  .como .rows{grid-template-columns:1fr;}
-  .como .rows .row:nth-last-child(-n+2){border-bottom:1px solid rgba(255,255,255,.14);}
-  .como .rows .row:last-child{border-bottom:none;}
-}
-.note{margin-top:26px;font-size:15px;line-height:1.55;color:var(--mute);max-width:64ch;}
-.note b{color:var(--pine-d);font-weight:600;}
-
-/* ---------- faixa de CTA ---------- */
-.band{background:var(--pine);color:#EFEDE4;border-bottom:none;padding:52px 0;}
-.band .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;}
-.band h2{font-family:var(--disp);font-weight:700;font-size:clamp(22px,3.2vw,30px);
-  line-height:1.15;letter-spacing:-.02em;color:#FBF9F2;max-width:24ch;}
-.band p{font-size:16px;color:#C6D2CC;margin-top:8px;max-width:46ch;}
-.band .btn{background:#C7A05A;color:#0A2F27;}
-.band .btn:hover{background:#D9B879;}
-
-/* ---------- faq ---------- */
-.faq details{border-bottom:1px solid var(--rule);}
-.faq summary{font-family:var(--disp);font-weight:600;font-size:17.5px;color:var(--pine-d);
-  padding:20px 40px 20px 0;cursor:pointer;list-style:none;position:relative;line-height:1.35;}
+/* faq enxuto */
+.faq{margin-top:34px;}
+.faq details{border-top:1px solid var(--rule);}
+.faq details:last-of-type{border-bottom:1px solid var(--rule);}
+.faq summary{font-family:var(--disp);font-weight:600;font-size:16.5px;color:var(--pine-d);
+  padding:16px 34px 16px 0;cursor:pointer;list-style:none;position:relative;}
 .faq summary::-webkit-details-marker{display:none;}
-.faq summary::after{content:"+";position:absolute;right:4px;top:18px;
-  font-family:var(--mono);font-size:20px;font-weight:400;color:var(--ochre);}
+.faq summary::after{content:"+";position:absolute;right:2px;top:14px;
+  font-family:var(--mono);font-size:19px;color:var(--ochre);}
 .faq details[open] summary::after{content:"–";}
-.faq .ans{padding:0 0 22px;font-size:16px;line-height:1.6;color:var(--mute);max-width:70ch;}
+.faq .ans{padding:0 0 18px;font-size:15.5px;line-height:1.55;color:var(--mute);max-width:66ch;}
 
-/* ---------- indicação ---------- */
-.refer{background:var(--pine-d);color:#EFEDE4;border-bottom:none;}
-.refer h2{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4vw,40px);
-  line-height:1.12;letter-spacing:-.02em;color:#FBF9F2;max-width:20ch;margin:12px 0 20px;}
-.refer p{font-size:17.5px;line-height:1.6;color:#CFCDC2;max-width:60ch;}
-.refer .slab{color:#C7A05A;}
-.refer .cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;}
-.refer .btn{background:#C7A05A;color:#0A2F27;}
-.refer .btn:hover{background:#D9B879;}
-.refer .btn.ghost{background:transparent;color:#EFEDE4;border-color:rgba(239,237,228,.45);}
-.refer .btn.ghost:hover{background:#EFEDE4;color:var(--pine-d);}
-.contacts{margin-top:40px;padding-top:26px;border-top:1px solid rgba(255,255,255,.16);
-  display:flex;gap:44px;flex-wrap:wrap;}
-.contacts div .k{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;
+/* fechamento */
+.fim{background:var(--pine-d);color:#EFEDE4;border-bottom:none;}
+.fim h2{color:#FBF9F2;font-weight:700;font-size:clamp(28px,4.4vw,42px);max-width:17ch;
+  margin:12px 0 18px;}
+.fim .slab{color:var(--gold);}
+.fim p{font-size:17.5px;line-height:1.55;color:#CFCDC2;max-width:54ch;}
+.fim .cta{margin-top:32px;}
+.fim .btn{background:var(--gold);color:#0A2F27;}
+.fim .btn:hover{background:#D9B879;}
+.fim .btn.ghost{background:transparent;color:#EFEDE4;border-color:rgba(239,237,228,.45);}
+.fim .btn.ghost:hover{background:#EFEDE4;color:var(--pine-d);}
+.contatos{margin-top:38px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16);
+  display:flex;gap:40px;flex-wrap:wrap;}
+.contatos div .k{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;
   text-transform:uppercase;color:#9FA79C;margin-bottom:6px;}
-.contacts div a,.contacts div span{font-family:var(--mono);font-size:15px;color:#EFEDE4;text-decoration:none;}
-.contacts div a:hover{color:#C7A05A;}
+.contatos div a,.contatos div span{font-family:var(--mono);font-size:15px;color:#EFEDE4;
+  text-decoration:none;}
+.contatos div a:hover{color:var(--gold);}
 
-footer{padding:26px 0;}
+footer{padding:24px 0;}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mute);}
 
-@media (max-width:900px){
-  .g4,.g3{grid-template-columns:1fr 1fr;}
-  .g2{grid-template-columns:1fr;gap:36px;}
+@media (max-width:820px){
+  .g3{grid-template-columns:1fr;}
+  .g2{grid-template-columns:1fr;}
 }
 @media (max-width:600px){
   body{font-size:16px;}
   .wrap{padding:0 18px;}
-  .hero{padding:52px 0 44px;}
+  .top .wrap{padding:12px 18px;}
+  .hero{padding:56px 0 48px;}
   section{padding:48px 0;}
-  .g4,.g3{grid-template-columns:1fr;}
-  .contacts{gap:26px;}
+  .contatos{gap:24px;}
   .btn{width:100%;text-align:center;}
   .btn.sm{width:auto;}
-  .top .wrap{padding-top:12px;padding-bottom:12px;}
 }
-
-/* ---------- versão impressa / PDF ---------- */
 @media print{
-  html{scroll-padding-top:0;}
+  .top,.no-print{display:none !important;}
   body{font-size:11pt;background:#fff;}
-  .top,.band,.no-print{display:none !important;}
-  section,.hero{padding:22pt 0;border-bottom:1px solid #ccc;}
-  .area,.svc,.case,.tier,.step,.faq details{break-inside:avoid;}
-  .area li a .go{display:none;}
-  .refer,.cmp{background:#fff !important;color:#000 !important;}
-  .refer h2,.refer p,.cmp .v,.contacts div a,.contacts div span{color:#000 !important;}
-  .refer .slab,.cmp .slab,.cmp .k{color:#8a6218 !important;}
-  .contacts{border-top:1px solid #ccc;}
-  a{text-decoration:none;color:#000;}
-  h1{font-size:26pt;}
-  .g4,.g3{grid-template-columns:1fr 1fr;}
+  section,.hero{padding:20pt 0;}
+  .fim{background:#fff !important;color:#000 !important;}
+  .fim h2,.fim p,.contatos div a,.contatos div span{color:#000 !important;}
+  .g3,.g2{grid-template-columns:1fr 1fr;}
+  .dor,.sis,.passo,.faq details{break-inside:avoid;}
 }
 </style>
 </head>
@@ -315,470 +182,142 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#topo"><span data-site="nome">João Félix</span><span>Sistemas web sob medida</span></a>
-    <nav class="nav">
-      <a class="lnk" href="#servicos">O que resolvo</a>
-      <a class="lnk" href="#sistemas">Sistemas</a>
-      <a class="lnk" href="#casos">Casos</a>
-      <a class="lnk" href="#processo">Como funciona</a>
-      <a class="lnk" href="#investimento">Investimento</a>
-      <a class="btn sm" data-wa="Olá! Vi o seu site e queria conversar sobre um sistema.">Falar comigo</a>
-    </nav>
+    <a class="brand" href="#topo"><span data-site="nome">João Félix</span><span>Gestão clínica sem planilha</span></a>
+    <a class="btn sm" data-wa="Olá! Vi o seu site e queria conversar sobre a gestão da minha clínica.">Falar comigo</a>
   </div>
 </header>
 
 <div class="hero" id="topo">
   <div class="wrap">
-    <div class="slab">Consultórios · clínicas · profissionais liberais</div>
-    <h1 style="margin-top:14px">O seu processo já funciona. Ele só não está em lugar nenhum.</h1>
-    <p class="lede">Eu construo sistemas web simples para quem atende — <b>feitos em cima do jeito que você já trabalha</b>, não do jeito que um software genérico manda trabalhar.</p>
+    <div class="slab">Clínicas e consultórios</div>
+    <h1>Eu resolvo o que trava a gestão da sua clínica.</h1>
+    <p class="lede">Agenda, prontuário, dinheiro e retorno de paciente — <b>organizados do jeito que a sua clínica já trabalha</b>, não do jeito que um software genérico manda.</p>
     <div class="cta">
-      <a class="btn" data-wa="Olá! Queria agendar o diagnóstico gratuito.">Quero um diagnóstico gratuito</a>
+      <a class="btn" data-wa="Olá! Queria te contar o que está travando na minha clínica.">Me conte o seu problema</a>
       <a class="btn ghost" href="#sistemas">Ver os sistemas prontos</a>
     </div>
-    <p class="reassure">Conversa de 30 minutos · sem custo · sem compromisso</p>
+    <p class="selo">Diagnóstico gratuito · resposta no mesmo dia</p>
   </div>
 </div>
 
-<section class="pain">
+<section id="problemas">
   <div class="wrap">
-    <div class="shead">
-      <div class="slab">Se algum desses for você</div>
-      <h2>O problema quase nunca é falta de organização</h2>
+    <div class="slab">O que eu resolvo</div>
+    <h2>Toque no que está doendo hoje</h2>
+    <div class="grid g2">
+      <a class="dor" data-wa="Oi! Minha agenda tem muita falta e buraco de horário. Dá pra resolver?">
+        <h3>A agenda tem falta e buraco</h3>
+        <p>Paciente que não avisa, horário que fica vago e ninguém teve tempo de mandar o lembrete.</p>
+        <span class="go">Resolver isso →</span>
+      </a>
+      <a class="dor" data-wa="Oi! O histórico dos meus pacientes está espalhado em vários lugares.">
+        <h3>O histórico está espalhado</h3>
+        <p>Cadastro numa planilha, evolução num caderno, exame no WhatsApp. A versão certa está só na sua cabeça.</p>
+        <span class="go">Resolver isso →</span>
+      </a>
+      <a class="dor" data-wa="Oi! Só descubro quanto a clínica faturou no fim do mês, e queria mudar isso.">
+        <h3>O dinheiro só aparece no fim do mês</h3>
+        <p>Quando o número chega, já não dá para reagir. E ainda falta saber quem não pagou.</p>
+        <span class="go">Resolver isso →</span>
+      </a>
+      <a class="dor" data-wa="Oi! Tenho muito paciente que sumiu e não volta. Queria recuperar.">
+        <h3>O paciente some e não volta</h3>
+        <p>Não é falta de demanda. É falta de alguém para chamar de volta quem parou no meio do tratamento.</p>
+        <span class="go">Resolver isso →</span>
+      </a>
     </div>
-    <ul>
-      <li><span class="mark">01</span><div>A informação existe, mas está <b>espalhada em três lugares</b> — uma planilha, um caderno e um grupo de WhatsApp.</div></li>
-      <li><span class="mark">02</span><div>Você já testou um sistema pronto e <b>abandonou em duas semanas</b>, porque ele obrigava a trabalhar de um jeito que não é o seu.</div></li>
-      <li><span class="mark">03</span><div>Toda segunda-feira alguém perde <b>algumas horas juntando dado</b> que já tinha sido digitado antes.</div></li>
-      <li><span class="mark">04</span><div>Você sabe exatamente o que precisa ver na tela — <b>só não existe essa tela</b>.</div></li>
-    </ul>
-    <p class="close">O processo já funciona na sua cabeça. O que falta é ele existir em algum lugar além dela.</p>
-  </div>
-</section>
-
-<section id="servicos">
-  <div class="wrap">
-    <div class="shead">
-      <div class="slab">Onde eu costumo entrar</div>
-      <h2>Ache o seu problema na lista e me chame por ele</h2>
-    </div>
-    <p class="hint">Não precisa saber o que pedir nem explicar tudo de uma vez. <b>Clique no item que é a sua dor</b> — o WhatsApp abre com a mensagem já escrita e a gente parte daí.</p>
-
-    <div class="grid g3">
-      <div class="area">
-        <div class="n">01</div>
-        <h3>Financeiro</h3>
-        <p>O dinheiro entra e sai todo dia, mas o número só aparece no fim do mês — quando já não dá para reagir.</p>
-        <ul>
-          <li><a data-wa="Oi! Queria resolver o fechamento do mês — hoje me toma tempo demais.">Fechar o mês sem perder um sábado<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria conseguir ver quem ainda não me pagou, sem caçar em planilha.">Saber quem ainda não pagou<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria lançar entrada e saída pelo WhatsApp, sem abrir planilha.">Lançar pelo WhatsApp, sem planilha<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria organizar as notas fiscais e os XMLs automaticamente.">Organizar notas e XML de NF-e<span class="go">→</span></a></li>
-        </ul>
-      </div>
-
-      <div class="area">
-        <div class="n">02</div>
-        <h3>Organização e agenda</h3>
-        <p>Cadastro num lugar, agenda em outro, histórico num terceiro. E a versão certa é sempre a que está na sua cabeça.</p>
-        <ul>
-          <li><a data-wa="Oi! Queria juntar cadastro, agenda e histórico num lugar só.">Tudo do paciente numa tela só<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria uma agenda em que o próprio paciente marca o horário.">Agenda que o paciente marca sozinho<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria parar de redigitar o mesmo dado em lugares diferentes.">Parar de redigitar o mesmo dado<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria tirar meu controle da planilha sem perder o que já tenho.">Sair da planilha sem perder nada<span class="go">→</span></a></li>
-        </ul>
-      </div>
-
-      <div class="area">
-        <div class="n">03</div>
-        <h3>Documentos</h3>
-        <p>Contrato, laudo, recibo, declaração. Sempre o mesmo modelo, sempre preenchido na mão, sempre com risco de ir com o nome errado.</p>
-        <ul>
-          <li><a data-wa="Oi! Queria que meus documentos saíssem preenchidos automaticamente.">Documento que se preenche sozinho<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria gerar relatório de evolução sem montar do zero toda vez.">Relatório pronto em um clique<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria um lugar único pra guardar e achar documento assinado.">Achar o arquivo assinado na hora<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria coletar assinatura e consentimento de forma digital.">Coletar assinatura e consentimento<span class="go">→</span></a></li>
-        </ul>
-      </div>
-
-      <div class="area">
-        <div class="n">04</div>
-        <h3>Mensagens</h3>
-        <p>O que some da agenda quase nunca é falta de demanda. É falta de um lembrete que ninguém teve tempo de mandar.</p>
-        <ul>
-          <li><a data-wa="Oi! Queria enviar lembrete de consulta automaticamente.">Lembrete de consulta automático<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria reduzir as faltas com confirmação automática.">Reduzir falta com confirmação<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria avisar quem está com pagamento em aberto, sem ter que cobrar na mão.">Cobrar sem ter que cobrar<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria chamar de volta paciente que sumiu faz tempo.">Chamar de volta quem sumiu<span class="go">→</span></a></li>
-        </ul>
-      </div>
-
-      <div class="area">
-        <div class="n">05</div>
-        <h3>Acompanhamento</h3>
-        <p>Você percebe a evolução do paciente. Só não tem como mostrar — nem para ele, nem para o convênio, nem para você daqui a seis meses.</p>
-        <ul>
-          <li><a data-wa="Oi! Queria acompanhar a evolução do paciente ao longo do tempo.">Ver a evolução em gráfico<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria que o paciente registrasse dados entre as sessões.">Paciente registra entre as sessões<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria aplicar questionário ou escala e ver o resultado somado.">Questionário com resultado somado<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria um painel com os números do meu consultório.">Painel com os números do mês<span class="go">→</span></a></li>
-        </ul>
-      </div>
-
-      <div class="area">
-        <div class="n">06</div>
-        <h3>Equipe e processos</h3>
-        <p>Quando é você sozinho, dá para segurar na memória. Com mais gente, o que não está escrito simplesmente não acontece.</p>
-        <ul>
-          <li><a data-wa="Oi! Queria ver em que pé está cada processo da minha equipe.">Ver em que pé está cada caso<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria definir responsável e prazo pra cada etapa do processo.">Responsável e prazo por etapa<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria receber alerta antes de vencer prazo importante.">Alerta antes de vencer o prazo<span class="go">→</span></a></li>
-          <li><a data-wa="Oi! Queria controlar quem da equipe vê o quê.">Controlar quem vê o quê<span class="go">→</span></a></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="note">Também faço <b>site de apresentação com agendamento</b> e <b>identidade visual completa</b> — logo, paleta, tipografia e artes para redes. E se a sua dor não estiver em nenhum item acima, <a data-wa="Oi! Não achei a minha situação nos exemplos do site, queria te contar o meu caso." style="color:var(--pine);font-weight:600">me conte o seu caso</a> — a maioria dos sistemas que entreguei começou assim.</p>
   </div>
 </section>
 
 <section id="sistemas">
   <div class="wrap">
-    <div class="shead">
-      <div class="slab">Sistemas prontos</div>
-      <h2>Eu não começo do zero. Você também não precisa esperar como se fosse.</h2>
-    </div>
-    <p class="hint">Estes três já estão construídos e servem de <b>base</b>. Eu parto deles e molde ao seu processo — você recebe em semanas o que um projeto do zero levaria meses, <b>sem virar refém de um genérico</b>: o que muda é feito para você, não escolhido num menu. <b>Cada um tem apresentação aberta</b> — entre e veja funcionando antes de falar comigo.</p>
-
+    <div class="slab">Já estão prontos</div>
+    <h2>Três sistemas que você pode ver funcionando agora</h2>
     <div class="grid g3">
       <div class="sis">
         <div class="cabeca">
           <div class="cod">ROTA</div>
-          <div class="para">Para clínicas e consultórios</div>
+          <div class="para">A operação da clínica</div>
         </div>
         <div class="corpo">
-          <p>O consultório inteiro numa tela: quem é o paciente, quando ele vem, o que aconteceu na última sessão e como ele está evoluindo.</p>
-          <div class="pronto">Já vem pronto</div>
-          <ul>
-            <li>Cadastro e histórico do paciente</li>
-            <li>Agenda, com marcação pelo próprio paciente</li>
-            <li>Evolução e indicadores em gráfico</li>
-            <li>Relatório da sessão gerado pronto</li>
-            <li>Lembrete e confirmação automáticos</li>
-            <li>Acesso por usuário, com permissão por perfil</li>
-          </ul>
-          <div class="adapto"><b>O que eu adapto:</b> os campos que você registra, as etapas do seu atendimento e o formato dos seus relatórios.</div>
-          <div class="acoes">
-            <a class="peca" href="https://rota.jvctrfelix.workers.dev/conhecer" target="_blank" rel="noopener">Conheça de perto →</a>
-            <a class="fala" data-wa="Oi! Vi o ROTA e queria conversar sobre ele.">ou fale comigo sobre ele</a>
-          </div>
+          <p>Agenda, cadastro, prontuário e evolução do paciente numa tela só. Com lembrete de consulta automático.</p>
+          <a class="peca" href="https://rota.jvctrfelix.workers.dev/conhecer" target="_blank" rel="noopener">Conheça de perto →</a>
         </div>
       </div>
-
       <div class="sis">
         <div class="cabeca">
           <div class="cod">BASE</div>
-          <div class="para">Para controle financeiro</div>
+          <div class="para">O financeiro da clínica</div>
         </div>
         <div class="corpo">
-          <p>Entrada, saída e fechamento sem planilha. Você lança escrevendo do jeito que falaria, e o painel se atualiza sozinho.</p>
-          <div class="pronto">Já vem pronto</div>
-          <ul>
-            <li>Lançamento pelo WhatsApp, em linguagem normal</li>
-            <li>Painel de caixa e fechamento do mês</li>
-            <li>Contas a receber, com quem está em aberto</li>
-            <li>Resumo do dia enviado automaticamente</li>
-            <li>Leitura de XML de NF-e</li>
-            <li>Exportação em planilha quando quiser</li>
-          </ul>
-          <div class="adapto"><b>O que eu adapto:</b> seu plano de contas, suas categorias e os relatórios que o seu contador pede.</div>
-          <div class="acoes">
-            <a class="peca" href="https://base.jvctrfelix.workers.dev/como-funciona" target="_blank" rel="noopener">Conheça de perto →</a>
-            <a class="fala" data-wa="Oi! Vi o BASE e queria conversar sobre ele.">ou fale comigo sobre ele</a>
-          </div>
+          <p>O que entrou, o que falta receber e o fechamento do mês — sem planilha, lançando pelo WhatsApp.</p>
+          <a class="peca" href="https://base.jvctrfelix.workers.dev/como-funciona" target="_blank" rel="noopener">Conheça de perto →</a>
         </div>
       </div>
-
       <div class="sis">
         <div class="cabeca">
           <div class="cod">PROX</div>
-          <div class="para">Para controle de leads</div>
+          <div class="para">Os pacientes que faltam voltar</div>
         </div>
         <div class="corpo">
-          <p>Cada contato que chega vira um cartão com etapa, responsável e prazo. Nada mais morre esquecido no grupo do WhatsApp.</p>
-          <div class="pronto">Já vem pronto</div>
-          <ul>
-            <li>Funil por etapa, com responsável e prazo</li>
-            <li>Entrada de lead por formulário ou link</li>
-            <li>Alerta de contato parado tempo demais</li>
-            <li>Histórico de conversa por lead</li>
-            <li>Painel de conversão por origem</li>
-            <li>Exportação em CSV quando quiser</li>
-          </ul>
-          <div class="adapto"><b>O que eu adapto:</b> as etapas do seu funil, os campos do lead e a regra de quem recebe o quê.</div>
-          <div class="acoes">
-            <a class="peca" href="https://prox.jvctrfelix.workers.dev/apresentacao" target="_blank" rel="noopener">Conheça de perto →</a>
-            <a class="fala" data-wa="Oi! Vi o PROX e queria conversar sobre ele.">ou fale comigo sobre ele</a>
-          </div>
+          <p>Quem entrou em contato, quem parou o tratamento e quem precisa de retorno — com prazo e responsável.</p>
+          <a class="peca" href="https://prox.jvctrfelix.workers.dev/apresentacao" target="_blank" rel="noopener">Conheça de perto →</a>
         </div>
       </div>
     </div>
-
-    <p class="note">Nenhum dos três é obrigatório. Se o seu processo não se parecer com nenhum deles, eu construo do zero mesmo — <a data-wa="Oi! Acho que o meu caso não encaixa no ROTA, BASE nem PROX. Posso te contar?" style="color:var(--pine);font-weight:600">me conte o seu caso</a> e eu te digo com honestidade qual dos caminhos sai melhor para você.</p>
   </div>
 </section>
 
-<section id="consultas">
+<section id="como">
   <div class="wrap">
-    <div class="shead">
-      <div class="slab">Consultas e vínculos</div>
-      <h2>O que você cata em quatro sites, numa tela só</h2>
-    </div>
-    <p class="hint">Você digita o CNPJ — ou joga a lista inteira de clientes de uma vez — e recebe a situação de cada um já <b>analisada</b>, não só copiada. Sem captcha, sem login, sem abrir site do governo um por um.</p>
-
-    <div class="grid g2">
-      <div class="cons">
-        <div class="k">O que ele busca</div>
-        <ul>
-          <li>Situação cadastral, com data e motivo da baixa</li>
-          <li>Opção pelo Simples e pelo MEI, com as datas</li>
-          <li>Exclusão do Simples, e quando aconteceu</li>
-          <li>Atividade principal e todas as secundárias</li>
-          <li>Porte, natureza jurídica e capital social</li>
-          <li>Quadro societário, com entrada de cada sócio</li>
-          <li>Sanções e inidoneidade em cadastros federais</li>
-        </ul>
-      </div>
-      <div class="cons">
-        <div class="k">O que ele conclui sozinho</div>
-        <ul>
-          <li><b>Cliente que deixou de estar ativo</b> e ninguém percebeu</li>
-          <li><b>Quem foi excluído do Simples</b> e não voltou</li>
-          <li>Porte no cadastro que <b>não bate com o enquadramento</b></li>
-          <li>Capital social zerado, que trava operação em banco</li>
-          <li><b>Sanção vigente</b> contra a empresa</li>
-          <li>Empresa aberta há pouco tempo, que pede atenção</li>
-          <li><b>Clientes seus que dividem o mesmo sócio</b></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="como">
-      <div class="slab">Mapa de vínculos societários</div>
-      <h3>Quais dos seus clientes são, na prática, o mesmo grupo?</h3>
-      <p style="font-size:16.5px;line-height:1.55;color:#C6D2CC;max-width:62ch">Passando a carteira inteira, o sistema cruza o quadro societário de todos e mostra quem aparece em mais de uma empresa. É uma pergunta que hoje ninguém no escritório consegue responder sem semanas de garimpo — e que muda planejamento tributário, análise de risco e até a régua de cobrança.</p>
-      <div class="fecho">
-        <p>Roda em cima de dado público, sem procuração e sem certificado digital de ninguém.</p>
-        <a class="btn" data-wa="Oi! Queria falar sobre a consulta de CNPJ e o mapa de vínculos societários.">Quero isso no meu escritório</a>
-      </div>
-    </div>
-
-    <p class="note"><b>O que ele não faz, para ficar claro desde já:</b> não entra no e-CAC, não mostra débito, parcelamento nem certidão. Isso exige procuração eletrônica sua e integração oficial paga — dá para fazer, é um segundo passo, e eu te explico o custo antes de você decidir. O que está descrito acima roda só com dado público, então <b>começa a funcionar na primeira semana</b>.</p>
-  </div>
-</section>
-
-<section id="casos">
-  <div class="wrap">
-    <div class="shead">
-      <div class="slab">No dia a dia de quem usa</div>
-      <h2>O que mudou para quem já recebeu</h2>
-    </div>
+    <div class="slab">Como funciona</div>
+    <h2>Três passos, sem enrolação</h2>
     <div class="grid g3">
-      <div class="case">
-        <div class="who">Prática clínica</div>
-        <h3>Acompanhamento diário de bem-estar</h3>
-        <p>O paciente registra humor, foco e energia todo dia. O profissional vê a curva do período e gera um relatório organizado para a sessão.</p>
-        <div class="out">→ A sessão começa com o histórico já na mesa.</div>
+      <div class="passo">
+        <div class="d">01</div>
+        <h3>A gente conversa</h3>
+        <p>Trinta minutos para eu entender como a sua clínica funciona de verdade. Sem custo.</p>
       </div>
-      <div class="case">
-        <div class="who">Escritório contábil</div>
-        <h3>Central de processos societários</h3>
-        <p>Abertura, alteração e baixa de empresa em cartões por etapa, com responsável, andamento visível para a equipe e exportação em planilha.</p>
-        <div class="out">→ Ninguém mais pergunta “em que pé está?”.</div>
+      <div class="passo">
+        <div class="d">02</div>
+        <h3>Você testa em dias</h3>
+        <p>Recebe uma versão navegável rápido e usa com dado de verdade, não com exemplo.</p>
       </div>
-      <div class="case">
-        <div class="who">Gestão financeira</div>
-        <h3>Controle de caixa pelo WhatsApp</h3>
-        <p>Você manda “recebi 350 consulta” e está lançado. Painel de acompanhamento e um resumo do dia enviado automaticamente.</p>
-        <div class="out">→ Fechamento do mês deixou de ser um sábado.</div>
+      <div class="passo">
+        <div class="d">03</div>
+        <h3>Entra no ar</h3>
+        <p>Publicado, com a equipe treinada e 30 dias de ajuste incluídos.</p>
       </div>
+    </div>
+    <p class="preco"><b>Escopo fechado, preço fechado.</b> O valor sai por escrito depois da conversa e não muda no meio do caminho. Sem cobrança por hora e sem mensalidade por usuário — se preferir mensalidade, também dá, e é sem fidelidade.</p>
+
+    <div class="faq">
+      <details>
+        <summary>E os dados dos meus pacientes?</summary>
+        <div class="ans">Ficam com você, com acesso por usuário e registro de quem viu o quê, seguindo o que a LGPD exige para dado de saúde. Exportáveis a qualquer momento, inclusive no dia em que você quiser sair.</div>
+      </details>
+      <details>
+        <summary>Preciso entender de tecnologia?</summary>
+        <div class="ans">Não. O que eu preciso de você é o conhecimento do seu atendimento — como ele acontece de verdade, com exceções e jeitinhos. O resto é comigo.</div>
+      </details>
+      <details>
+        <summary>Já uso um sistema. Vale trocar?</summary>
+        <div class="ans">Só se o atual estiver te obrigando a trabalhar de um jeito que não é o seu. Se ele resolve, eu te digo isso na primeira conversa — é mais barato para você e mais honesto para mim.</div>
+      </details>
     </div>
   </div>
 </section>
 
-<section id="processo">
+<section class="fim" id="contato">
   <div class="wrap">
-    <div class="grid g2">
-      <div>
-        <div class="shead" style="margin-bottom:12px">
-          <div class="slab">Como funciona</div>
-          <h2>Do primeiro papo ao sistema no ar</h2>
-        </div>
-        <div class="step"><div class="d">01</div><div><h3>Conversa de diagnóstico</h3><p>Uma conversa para eu entender o processo real — inclusive as gambiarras. Sem compromisso e sem custo.</p></div></div>
-        <div class="step"><div class="d">02</div><div><h3>Protótipo funcionando</h3><p>Você recebe uma primeira versão navegável em poucos dias e testa com dado de verdade, não com exemplo.</p></div></div>
-        <div class="step"><div class="d">03</div><div><h3>Ajuste e entrega</h3><p>A gente refina em cima do uso. Entrego publicado, com treinamento e o material de apoio.</p></div></div>
-        <div class="step"><div class="d">04</div><div><h3>Você no controle</h3><p>Comprou, roda em infraestrutura sua. Assinou, eu cuido da operação. Nos dois, os dados saem com você quando quiser — sem fidelidade e sem ficar preso a mim.</p></div></div>
-      </div>
-      <div class="cmp">
-        <div class="top-note"><div class="slab">Sob medida × de prateleira</div></div>
-        <div class="row"><div class="k">Custo</div><div class="v">Investimento único ou mensalidade fixa — você escolhe. Em nenhum dos dois eu cobro por usuário.</div></div>
-        <div class="row"><div class="k">Encaixe</div><div class="v">Nasce do seu fluxo. Você não muda o atendimento para caber no software.</div></div>
-        <div class="row"><div class="k">Tamanho</div><div class="v">Só o que você usa. Sem cem funções que atrapalham as três que importam.</div></div>
-        <div class="row"><div class="k">Controle</div><div class="v">Os dados são seus e saem em planilha a qualquer momento — inclusive no dia em que você cancelar.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band no-print">
-  <div class="wrap">
-    <div>
-      <h2>Vale a conversa mesmo que você ainda não vá contratar.</h2>
-      <p>Em 30 minutos eu te digo se dá para resolver com um sistema — ou se resolve com uma planilha melhor.</p>
-    </div>
-    <a class="btn" data-wa="Olá! Queria marcar os 30 minutos de diagnóstico.">Marcar os 30 minutos</a>
-  </div>
-</section>
-
-<section id="investimento">
-  <div class="wrap">
-    <div class="shead">
-      <div class="slab">Investimento</div>
-      <h2>Três tamanhos de entrega. Escolha o que cabe agora.</h2>
-    </div>
-    <div class="grid g3">
-      <div class="tier">
-        <div class="tag">Ponto único</div>
-        <h3>Resolver uma dor</h3>
-        <p class="sub">Uma tela, um formulário, uma automação. O menor pedaço que já tira peso do dia a dia — bom para começar sem compromisso grande.</p>
-        <div class="price" data-price="1" hidden></div>
-        <div class="entra">O que entra</div>
-        <ul>
-          <li>Uma funcionalidade, do começo ao fim</li>
-          <li>Desenhada em cima do seu jeito de trabalhar</li>
-          <li>Seus dados atuais migrados para dentro</li>
-          <li>Publicada e funcionando, não um protótipo</li>
-          <li>Treinamento gravado, para rever quando quiser</li>
-          <li>15 dias de ajuste depois da entrega</li>
-        </ul>
-        <div class="prazo">Fica pronto em 1 a 2 semanas</div>
-        <a class="peca" data-wa="Oi! Queria resolver um ponto único primeiro. Posso te contar qual?">Falar sobre um ponto único →</a>
-      </div>
-      <div class="tier mid">
-        <div class="tag">Mais procurado</div>
-        <h3>Sistema completo</h3>
-        <p class="sub">O fluxo inteiro de um consultório ou de um setor, do primeiro cadastro ao relatório do mês.</p>
-        <div class="price" data-price="2" hidden></div>
-        <div class="entra">O que entra</div>
-        <ul>
-          <li>Todos os módulos que o seu fluxo pedir</li>
-          <li>Protótipo navegável já na primeira semana</li>
-          <li>Acesso por usuário, com permissão por perfil</li>
-          <li>Relatórios prontos e exportação em planilha</li>
-          <li>Migração do que você já tem hoje</li>
-          <li>Publicado em infraestrutura sua, no seu domínio</li>
-          <li>Treinamento da equipe e material de apoio</li>
-          <li>30 dias de ajuste depois da entrega</li>
-        </ul>
-        <div class="prazo">Fica pronto em 4 a 8 semanas</div>
-        <a class="peca" data-wa="Oi! Queria um sistema completo. Posso te contar como funciona o meu atendimento?">Falar sobre um sistema completo →</a>
-      </div>
-      <div class="tier">
-        <div class="tag">Assinatura</div>
-        <h3>Sistema como serviço</h3>
-        <p class="sub">O mesmo sistema sob medida, sem o investimento cheio de uma vez. Você paga por mês e não encosta em servidor, backup nem atualização.</p>
-        <div class="price" data-price="3" hidden></div>
-        <div class="entra">O que entra</div>
-        <ul>
-          <li>Entrada baixa no lugar do valor integral</li>
-          <li>Hospedagem, domínio e certificado por minha conta</li>
-          <li>Backup diário e monitoramento do ar</li>
-          <li>Melhorias e telas novas todo mês, sem cobrar à parte</li>
-          <li>Suporte direto comigo, sem fila nem robô</li>
-          <li>Seus dados exportáveis quando você quiser</li>
-          <li>Sem fidelidade: cancelou, leva o que é seu</li>
-        </ul>
-        <div class="prazo">Mensalidade fixa — nunca por usuário</div>
-        <a class="peca" data-wa="Oi! Queria entender o modelo de assinatura, o sistema como serviço.">Falar sobre a assinatura →</a>
-      </div>
-    </div>
-
-    <div class="como">
-      <div class="slab">Como o preço funciona</div>
-      <h3>Você sabe quanto vai custar antes de eu escrever a primeira linha</h3>
-      <div class="rows">
-        <div class="row">
-          <div class="k">Escopo fechado, preço fechado</div>
-          <div class="v">Depois do diagnóstico eu mando o escopo por escrito, com valor e prazo. Se o escopo não mudar, o preço não muda — nem que dê mais trabalho do que eu previa.</div>
-        </div>
-        <div class="row">
-          <div class="k">Não cobro por hora</div>
-          <div class="v">Você paga pelo que recebe, não pelo tempo que eu levei. Se eu resolver rápido, o barato é seu.</div>
-        </div>
-        <div class="row">
-          <div class="k">Pagamento dividido por etapa</div>
-          <div class="v">Uma parte quando você aprova o escopo, o resto quando o sistema está no ar e funcionando. Você nunca paga tudo adiantado.</div>
-        </div>
-        <div class="row">
-          <div class="k">O que faz o preço variar</div>
-          <div class="v">Quantidade de telas, se precisa integrar com algo que você já usa, e quantas pessoas vão acessar ao mesmo tempo. Só isso.</div>
-        </div>
-      </div>
-      <div class="fecho">
-        <p>O número sai da conversa, não de uma tabela — porque antes de saber o seu processo, qualquer valor que eu colocasse aqui seria chute.</p>
-        <a class="btn" data-wa="Oi! Queria entender o investimento pro meu caso.">Descobrir quanto fica no meu caso</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="shead">
-      <div class="slab">Antes de me chamar</div>
-      <h2>O que costumam me perguntar</h2>
-    </div>
-    <details open>
-      <summary>Eu preciso entender de tecnologia?</summary>
-      <div class="ans">Não. A minha parte é justamente essa. O que eu preciso de você é o conhecimento do seu processo — como o atendimento acontece de verdade, incluindo as exceções e os jeitinhos. O resto é comigo.</div>
-    </details>
-    <details>
-      <summary>E os dados dos meus pacientes?</summary>
-      <div class="ans">Se você compra o sistema, ficam em uma conta sua, em infraestrutura sua. Na assinatura, ficam em infraestrutura que eu administro, com backup diário — e você exporta tudo a qualquer momento, inclusive no dia em que cancelar. Nos dois casos eu construo com acesso por usuário e registro de quem viu o quê, seguindo o que a LGPD exige para dado de saúde.</div>
-    </details>
-    <details>
-      <summary>Comprar ou assinar? Qual compensa mais?</summary>
-      <div class="ans">Compra, se você prefere resolver de uma vez e não quer depender de ninguém para manter o sistema no ar — o valor é maior no começo e acaba ali. Assinatura, se você prefere entrada baixa e não quer se preocupar com servidor, backup e atualização — sai mais barato agora e as melhorias já vêm incluídas. Na conversa eu faço a conta dos dois para o seu caso e te digo qual fecha melhor, mesmo quando a resposta é a que me paga menos.</div>
-    </details>
-    <details>
-      <summary>Quanto tempo até eu estar usando?</summary>
-      <div class="ans">Você vê um protótipo navegável em poucos dias. Um sistema completo costuma ficar pronto entre 4 e 8 semanas, e nesse meio-tempo você já usa as partes que foram entregues — não é tudo ou nada no fim.</div>
-    </details>
-    <details>
-      <summary>E se eu quiser mudar alguma coisa depois?</summary>
-      <div class="ans">Os 30 dias seguintes à entrega já incluem ajuste. Depois disso, dá para me chamar por demanda ou estar na assinatura, em que as melhorias do mês já entram sem cobrança à parte. Em nenhum dos casos você fica preso: os dados são seus, e na compra o código também — outro profissional consegue continuar.</div>
-    </details>
-    <details>
-      <summary>Por que não usar um sistema pronto de mercado?</summary>
-      <div class="ans">Se um pronto resolver, eu vou te dizer isso na primeira conversa — é mais barato e mais rápido. Sob medida compensa quando o seu jeito de trabalhar é o diferencial do seu atendimento e o software genérico te obriga a abrir mão dele.</div>
-    </details>
-    <details>
-      <summary>Você atende presencial?</summary>
-      <div class="ans">Presencial na região de <span data-site="cidade">São José dos Campos · SP</span> e remoto para todo o Brasil. Boa parte do trabalho acontece por videochamada e WhatsApp, com o protótipo aberto na tela.</div>
-    </details>
-  </div>
-</section>
-
-<section class="refer" id="contato">
-  <div class="wrap">
-    <div class="slab">Indicação</div>
-    <h2>Conhece alguém que precisa disso? Manda esse link.</h2>
-    <p>Boa parte do meu trabalho chega por indicação de quem já usou. Se você conhece um profissional ou uma clínica com o processo travado em planilha, caderno ou grupo de WhatsApp, essa conversa costuma valer a pena — e o diagnóstico inicial é gratuito.</p>
+    <div class="slab">Próximo passo</div>
+    <h2>Me conte o que está travando.</h2>
+    <p>Em trinta minutos eu te digo se dá para resolver com um sistema — ou se resolve com algo mais simples. Sem custo, sem compromisso e sem proposta na mesma conversa.</p>
     <div class="cta no-print">
-      <a class="btn" data-wa="Olá! Cheguei pelo seu site e queria conversar.">Chamar no WhatsApp</a>
-      <a class="btn ghost" href="convite.pdf" download>Baixar o convite em PDF</a>
+      <a class="btn" data-wa="Olá! Queria marcar os 30 minutos de diagnóstico da minha clínica.">Chamar no WhatsApp</a>
+      <a class="btn ghost" href="convite.pdf" download>Baixar a apresentação</a>
     </div>
-    <div class="contacts">
+    <div class="contatos">
       <div><div class="k">WhatsApp</div><a data-wa-link>—</a></div>
       <div><div class="k">E-mail</div><a data-mail>—</a></div>
       <div><div class="k">Instagram</div><a data-ig>—</a></div>
@@ -789,28 +328,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 
 <footer>
   <div class="wrap">
-    <span><span data-site="nome">João Félix</span> · Sistemas web sob medida</span>
-    <span>Atende presencial na região e remoto para todo o Brasil</span>
+    <span><span data-site="nome">João Félix</span> · Gestão clínica sem planilha</span>
+    <span>Presencial na região · remoto para todo o Brasil</span>
   </div>
 </footer>
 
 <script>
 (function(){
-  // nome, cidade e demais campos de texto
   document.querySelectorAll('[data-site]').forEach(function(el){
     var v = SITE[el.dataset.site];
     if(v) el.textContent = v;
   });
 
-  // preço só aparece se você preencher; vazio não mostra slot nenhum
-  document.querySelectorAll('[data-price]').forEach(function(el){
-    var v = (SITE.precos || {})[el.dataset.price];
-    if(!v) return;
-    el.innerHTML = '<small>A partir de</small>' + v;
-    el.hidden = false;
-  });
-
-  // botões de WhatsApp, cada um com a sua mensagem pronta
   var wa = String(SITE.whatsapp || '').replace(/\D/g,'');
   document.querySelectorAll('[data-wa]').forEach(function(a){
     a.href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(a.dataset.wa);
@@ -821,18 +350,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     a.target = '_blank'; a.rel = 'noopener';
     a.textContent = wa.replace(/^55(\d{2})(\d{4,5})(\d{4})$/, '($1) $2-$3') || wa;
   });
-
   document.querySelectorAll('[data-mail]').forEach(function(a){
     a.href = 'mailto:' + SITE.email; a.textContent = SITE.email;
   });
   document.querySelectorAll('[data-ig]').forEach(function(a){
-    if(!SITE.instagram){ a.parentNode.remove(); return; }   // sem perfil, sem a linha
-    a.href = 'https://instagram.com/' + SITE.instagram; a.textContent = '@' + SITE.instagram;
+    if(!SITE.instagram){ a.parentNode.remove(); return; }
+    a.href = 'https://instagram.com/' + SITE.instagram;
+    a.textContent = '@' + SITE.instagram;
     a.target = '_blank'; a.rel = 'noopener';
   });
 
-  // título e og:title usam o nome configurado
-  document.title = SITE.nome + ' — Sistemas sob medida para consultórios e clínicas';
+  document.title = SITE.nome + ' — Sistemas para gestão de clínicas';
 })();
 </script>
 

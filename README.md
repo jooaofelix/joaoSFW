@@ -1,13 +1,17 @@
-# Site de apresentação — sistemas sob medida
+# Site — gestão clínica
 
-Página única, estática. Sem build, sem dependência. É só abrir o `index.html` no
-navegador ou subir o arquivo em qualquer hospedagem (GitHub Pages, Netlify,
-Vercel, ou um servidor comum).
+Página única, estática, sem build. Posicionamento: **resolutor de problemas de
+gestão clínica**. Tudo que falava com outro público (profissional liberal
+genérico, escritório contábil, gestão financeira) saiu — está no histórico do
+git se precisar.
+
+A régua é venda rápida: **451 palavras, 5 seções, ~3 telas.** Antes eram 2.229
+palavras e 11 telas. Toda vez que for acrescentar coisa, pergunte o que sai no
+lugar.
 
 ## Antes de publicar
 
-Edite **só o bloco `const SITE`** no topo do `index.html`. Ele preenche nome,
-WhatsApp, e-mail, Instagram, cidade e preços na página inteira:
+Edite **só o bloco `const SITE`** no topo do `index.html`:
 
 ```js
 const SITE = {
@@ -16,117 +20,79 @@ const SITE = {
   email:     "jvctrfelix@gmail.com",
   instagram: "",                       // sem o @; vazio não exibe a linha
   cidade:    "São José dos Campos · SP",
-  site:      "https://futuro.jvctrfelix.workers.dev",
-  precos: { 1: "", 2: "", 3: "" }      // vazio = não exibe valor (recomendado)
+  site:      "https://futuro.jvctrfelix.workers.dev"
 };
 ```
 
 Esse mesmo bloco alimenta o convite em PDF — depois de editar, rode
-`python3 gerar-convite.py` para o PDF sair com os dados novos.
+`python3 gerar-convite.py`.
 
 Confira à mão, porque nada disso o código valida:
 
-- [ ] **As funções listadas em ROTA, BASE e PROX existem mesmo.** A lista foi
-      montada a partir do que a própria página já afirmava nas áreas e nos
-      casos — se algum item ainda não está construído, tire, porque é a
-      primeira coisa que o cliente vai pedir para ver na demonstração.
-- [ ] Os três casos descrevem trabalhos que você entregou mesmo. Se algum for
-      hipotético, troque ou tire — o resto da página perde força se um for
-      descoberto como inventado.
-- [ ] Os prazos citados (1–2 semanas, 4–8 semanas, 30 dias de ajuste) são os
-      que você consegue cumprir.
-- [ ] O FAQ sobre LGPD e dados descreve o que você realmente faz, e o backup
-      diário prometido na assinatura acontece de verdade.
+- [ ] O que ROTA, BASE e PROX fazem bate com o que as apresentações mostram.
+- [ ] Os prazos e os 30 dias de ajuste são o que você cumpre.
+- [ ] O FAQ sobre LGPD descreve o que você realmente faz.
+- [ ] O link `convite.pdf` funciona depois de publicado (é caminho relativo —
+      se o Worker não servir o arquivo, quebra).
 
-## A estrutura da página, e o porquê de cada bloco
+## A estrutura, e o porquê
 
-A ordem é um funil: cada seção responde à pergunta que a anterior levanta.
-
-| # | Seção | O que ela resolve |
+| # | Seção | O que ela faz |
 |---|---|---|
-| 1 | **Hero** | Diz em uma frase para quem é e o que muda. Dois botões: um para quem já decidiu, outro para quem quer prova. |
-| 2 | **Se algum desses for você** | O visitante precisa se reconhecer antes de te ouvir. Quatro sinais concretos, não adjetivos. |
-| 3 | **Onde eu costumo entrar** | Seis áreas (financeiro, agenda, documentos, mensagens, acompanhamento, equipe). Cada um dos 24 itens é um link de WhatsApp com a mensagem pronta — a pessoa aciona apontando a dor, sem precisar formular o pedido. |
-| 4 | **Sistemas prontos** | ROTA, BASE e PROX como bases já construídas, cada um levando à sua apresentação aberta. Corta a objeção de prazo e preço sem contradizer o "sob medida": a base é ponto de partida, o que muda é feito, não configurado. |
-| 5 | **Consultas e vínculos** | Consulta pública de CNPJ e mapa de sócios em comum, mirando escritório contábil. Diz o que NÃO faz (e-CAC, débito, certidão) para não criar expectativa que queima na reunião. |
-| 6 | **Casos** | Prova. Cada card termina no resultado, não na funcionalidade. |
-| 7 | **Como funciona + comparativo** | Tira o medo do processo e responde "por que não um pronto?" no mesmo bloco. |
-| 8 | **Faixa de CTA** | Ponto de saída no meio da página, para quem já se convenceu e não vai rolar até o fim. |
-| 9 | **Investimento** | Qualifica o lead detalhando o que entra em cada escopo, e explica a lógica do preço em vez de exibir "sob consulta" num slot vazio. Cada card sai direto para a conversa. Se você preencher `precos`, o valor aparece; vazio, o slot nem existe. |
-| 10 | **FAQ** | As seis objeções que aparecem na conversa. Respondidas aqui, a reunião começa mais adiante. |
-| 11 | **Indicação + contato** | Fecha pedindo o compartilhamento, que é de onde vem boa parte do trabalho. |
+| 1 | **Hero** | Diz em uma linha quem é e o que resolve. Um CTA principal, um secundário. |
+| 2 | **Toque no que está doendo hoje** | Quatro problemas de clínica, cada card é um link de WhatsApp com a mensagem pronta. A pessoa aciona apontando a dor, sem formular pedido. |
+| 3 | **Três sistemas** | ROTA, BASE e PROX em uma frase cada, levando à apresentação aberta. Prova concreta sem parágrafo. |
+| 4 | **Como funciona** | Três passos de uma linha, preço em uma frase e três perguntas recolhidas. |
+| 5 | **Próximo passo** | Fecha no diagnóstico gratuito, com os contatos. |
+
+Sem menu de navegação: numa página de três telas, âncora é ruído. Só a marca e
+o botão de contato ficam fixos no topo.
 
 ## Detalhes de implementação
 
-- **Botões de WhatsApp** já abrem com mensagem escrita, diferente por
-  contexto — dá para saber de qual ponto da página a pessoa saiu, e a primeira
-  mensagem já chega dizendo qual é o problema. A frase fica no atributo
-  `data-wa` de cada link; para editar um item da seção de áreas, mude o texto
-  visível e o `data-wa` junto.
-- **"Baixar o convite em PDF"** aponta para `convite.pdf` em caminho relativo.
-  Se a hospedagem não servir esse arquivo, o link quebra — confira depois de
-  publicar. A página também tem um `@media print` que esconde menu e botões,
-  caso você prefira imprimir o site direto.
-- **Menu fixo** com âncoras para as cinco seções principais. Some no celular
-  para não competir com o botão de contato.
-- **Os links de ROTA, BASE e PROX** ficam no HTML da seção `#sistemas`, não no
-  `const SITE` — são endereços de sistemas diferentes, não dados de contato.
-  Abrem em aba nova para não tirar a pessoa da página.
-- Se o JavaScript não carregar, os textos caem no valor padrão escrito no HTML
-  e a página continua legível — só os links de contato ficam inertes.
+- **Cada link de WhatsApp abre com mensagem própria**, no atributo `data-wa`.
+  Você recebe a conversa já sabendo de qual ponto da página a pessoa saiu.
+- **Os links de ROTA, BASE e PROX** ficam no HTML da seção `#sistemas` — são
+  endereços de sistemas, não dados de contato. Abrem em aba nova.
+- Se o JavaScript não carregar, os textos caem no padrão escrito no HTML; só os
+  links de contato ficam inertes.
 
 ## O convite em PDF
 
-`convite.pdf` é a versão para enviar no WhatsApp ou por e-mail: três páginas A4
-com **duas saídas em toda página** — o site (para ver com calma) e o WhatsApp
-(para falar agora). Links de PDF são clicáveis, então os 24 itens da página 2
-abrem a conversa com a mensagem já escrita, igual ao site. E há QR code na capa
-e no fechamento, para funcionar também impresso ou mostrado numa tela.
-
-Para regerar depois de mexer no `const SITE`:
+`convite.pdf` — duas páginas A4 para mandar no WhatsApp ou por e-mail.
+Página 1: promessa, os dois QR codes (site e WhatsApp) e os três passos.
+Página 2: os quatro problemas clicáveis, os três sistemas e o fechamento.
 
 ```bash
 pip install segno      # só na primeira vez
 python3 gerar-convite.py
 ```
 
-O script lê os dados direto do `index.html`, então **não existe uma segunda
-lista de contatos para manter em dia** — muda num lugar, sai nos dois.
+Lê os dados do `index.html`, então não existe segunda lista de contatos para
+manter. O texto do convite (problemas, sistemas, passos) fica no topo do
+`gerar-convite.py`; o layout, em `convite.template.html`.
+
+> As páginas têm altura fixa e cortam o que sobra. Depois de mexer no texto,
+> confira se nada estourou — `.page` tem `overflow:hidden`.
 
 | Arquivo | O que é |
 |---|---|
-| `gerar-convite.py` | O gerador. Aqui ficam os textos das seis áreas. |
-| `convite.template.html` | O layout das três páginas. |
-| `assets/fontes.css` | Fontes embutidas em base64, baixadas uma vez. Deixa o PDF idêntico em qualquer máquina e permite regerar sem internet. |
+| `gerar-convite.py` | O gerador, e os textos do convite. |
+| `convite.template.html` | O layout das duas páginas. |
+| `assets/fontes.css` | Fontes em base64, baixadas uma vez. PDF idêntico em qualquer máquina, e regerável sem internet. |
 | `convite.pdf` | O que você envia. |
 | `convite.html` | Intermediário, sobrescrito a cada execução (fora do git). |
 
-Se o Chrome não for encontrado, o script avisa e você ainda pode abrir o
-`convite.html` no navegador e imprimir em PDF na mão.
+## `analise-fiscal/`
 
-## `analise-fiscal/` — o motor por trás da seção "Consultas e vínculos"
+Ferramenta de consulta de CNPJ em fontes públicas, com cruzamento de sócios.
+**Não está mais no site** — é produto para escritório contábil, fora do foco de
+gestão clínica. O código fica aqui, funcionando e testado, para o dia em que
+virar um projeto próprio. Tem README dedicado.
 
-Ferramenta separada, em Python puro, que consulta CNPJ em fontes públicas e
-cruza o quadro societário de uma carteira inteira. Tem o próprio README.
+## Próximo passo, em ordem de retorno
 
-```bash
-cd analise-fiscal
-python3 exemplo.py --html                  # vê funcionando, sem rede
-python3 -m unittest discover -s tests      # 25 testes, todos offline
-```
-
-Não tem relação de código com a landing page — está aqui só porque nasceu
-desta conversa. Quando virar produto, vale mover para um repositório próprio.
-
-## Sugestões de próximo passo
-
-Em ordem de retorno, se quiser evoluir:
-
-1. **Print de tela do ROTA, do BASE e do PROX.** Cada card já leva à
-   apresentação do sistema, mas o clique é um pedágio: uma imagem no próprio
-   card faz a pessoa querer clicar. Quem vende software vende a tela.
-2. **Um depoimento real**, mesmo que curto, logo abaixo dos casos.
-3. **Um número concreto** em pelo menos um caso ("reduziu o fechamento de 6h
-   para 20min").
-4. **Levar ROTA, BASE e PROX para o convite em PDF**, provavelmente como uma
-   quarta página. Hoje o convite não menciona que existem sistemas prontos.
+1. **Print de tela do ROTA, BASE e PROX** dentro dos cards. A página é toda
+   texto, e quem vende software vende a tela.
+2. **Um depoimento de uma clínica**, curto, logo abaixo dos sistemas.
+3. **Um número concreto** ("reduziu a falta de 30% para 8%").

@@ -146,64 +146,42 @@ def qr_svg(conteudo, cor="#0A2F27"):
 # --------------------------------------------------------------------------
 # 4. conteúdo do convite
 # --------------------------------------------------------------------------
-# (rótulo visível, mensagem que já chega escrita no WhatsApp)
-AREAS = [
-    ("01", "Financeiro", [
-        ("Fechar o mês sem perder um sábado", "Oi! Queria resolver o fechamento do mês — hoje me toma tempo demais."),
-        ("Saber quem ainda não pagou", "Oi! Queria conseguir ver quem ainda não me pagou, sem caçar em planilha."),
-        ("Lançar pelo WhatsApp, sem planilha", "Oi! Queria lançar entrada e saída pelo WhatsApp, sem abrir planilha."),
-        ("Organizar notas e XML de NF-e", "Oi! Queria organizar as notas fiscais e os XMLs automaticamente."),
-    ]),
-    ("02", "Organização e agenda", [
-        ("Tudo do paciente numa tela só", "Oi! Queria juntar cadastro, agenda e histórico num lugar só."),
-        ("Agenda que o paciente marca sozinho", "Oi! Queria uma agenda em que o próprio paciente marca o horário."),
-        ("Parar de redigitar o mesmo dado", "Oi! Queria parar de redigitar o mesmo dado em lugares diferentes."),
-        ("Sair da planilha sem perder nada", "Oi! Queria tirar meu controle da planilha sem perder o que já tenho."),
-    ]),
-    ("03", "Documentos", [
-        ("Documento que se preenche sozinho", "Oi! Queria que meus documentos saíssem preenchidos automaticamente."),
-        ("Relatório pronto em um clique", "Oi! Queria gerar relatório de evolução sem montar do zero toda vez."),
-        ("Achar o arquivo assinado na hora", "Oi! Queria um lugar único pra guardar e achar documento assinado."),
-        ("Coletar assinatura e consentimento", "Oi! Queria coletar assinatura e consentimento de forma digital."),
-    ]),
-    ("04", "Mensagens", [
-        ("Lembrete de consulta automático", "Oi! Queria enviar lembrete de consulta automaticamente."),
-        ("Reduzir falta com confirmação", "Oi! Queria reduzir as faltas com confirmação automática."),
-        ("Cobrar sem ter que cobrar", "Oi! Queria avisar quem está com pagamento em aberto, sem cobrar na mão."),
-        ("Chamar de volta quem sumiu", "Oi! Queria chamar de volta paciente que sumiu faz tempo."),
-    ]),
-    ("05", "Acompanhamento", [
-        ("Ver a evolução em gráfico", "Oi! Queria acompanhar a evolução do paciente ao longo do tempo."),
-        ("Paciente registra entre as sessões", "Oi! Queria que o paciente registrasse dados entre as sessões."),
-        ("Questionário com resultado somado", "Oi! Queria aplicar questionário ou escala e ver o resultado somado."),
-        ("Painel com os números do mês", "Oi! Queria um painel com os números do meu consultório."),
-    ]),
-    ("06", "Equipe e processos", [
-        ("Ver em que pé está cada caso", "Oi! Queria ver em que pé está cada processo da minha equipe."),
-        ("Responsável e prazo por etapa", "Oi! Queria definir responsável e prazo pra cada etapa do processo."),
-        ("Alerta antes de vencer o prazo", "Oi! Queria receber alerta antes de vencer prazo importante."),
-        ("Controlar quem vê o quê", "Oi! Queria controlar quem da equipe vê o quê."),
-    ]),
+# (título, uma linha, mensagem que já chega escrita no WhatsApp)
+PROBLEMAS = [
+    ("A agenda tem falta e buraco",
+     "Paciente que não avisa, horário que fica vago e ninguém teve tempo de mandar o lembrete.",
+     "Oi! Minha agenda tem muita falta e buraco de horário. Dá pra resolver?"),
+    ("O histórico está espalhado",
+     "Cadastro numa planilha, evolução num caderno, exame no WhatsApp. A versão certa está só na sua cabeça.",
+     "Oi! O histórico dos meus pacientes está espalhado em vários lugares."),
+    ("O dinheiro só aparece no fim do mês",
+     "Quando o número chega, já não dá para reagir. E ainda falta saber quem não pagou.",
+     "Oi! Só descubro quanto a clínica faturou no fim do mês, e queria mudar isso."),
+    ("O paciente some e não volta",
+     "Não é falta de demanda. É falta de alguém para chamar de volta quem parou no meio do tratamento.",
+     "Oi! Tenho muito paciente que sumiu e não volta. Queria recuperar."),
+]
+
+# (código, para quê, uma linha, endereço da apresentação)
+SISTEMAS = [
+    ("ROTA", "A operação da clínica",
+     "Agenda, cadastro, prontuário e evolução do paciente numa tela só, com lembrete automático.",
+     "https://rota.jvctrfelix.workers.dev/conhecer"),
+    ("BASE", "O financeiro da clínica",
+     "O que entrou, o que falta receber e o fechamento do mês — sem planilha, lançando pelo WhatsApp.",
+     "https://base.jvctrfelix.workers.dev/como-funciona"),
+    ("PROX", "Os pacientes que faltam voltar",
+     "Quem entrou em contato, quem parou o tratamento e quem precisa de retorno, com prazo e responsável.",
+     "https://prox.jvctrfelix.workers.dev/apresentacao"),
 ]
 
 PASSOS = [
-    ("01", "Conversa de diagnóstico",
-     "Uma conversa para eu entender o processo real — inclusive as gambiarras. Sem custo."),
-    ("02", "Protótipo funcionando",
-     "Uma primeira versão navegável em poucos dias, testada com dado de verdade."),
-    ("03", "Ajuste e entrega",
-     "A gente refina em cima do uso. Entrego publicado, com treinamento."),
-    ("04", "Você no controle",
-     "Comprou, roda em infraestrutura sua. Assinou, eu cuido da operação. Nos dois, os dados saem com você."),
-]
-
-CASOS = [
-    ("Prática clínica", "Acompanhamento diário de bem-estar",
-     "A sessão começa com o histórico já na mesa."),
-    ("Escritório contábil", "Central de processos societários",
-     "Ninguém mais pergunta “em que pé está?”."),
-    ("Gestão financeira", "Controle de caixa pelo WhatsApp",
-     "Fechamento do mês deixou de ser um sábado."),
+    ("01", "A gente conversa",
+     "Trinta minutos para eu entender como a sua clínica funciona de verdade. Sem custo."),
+    ("02", "Você testa em dias",
+     "Recebe uma versão navegável rápido e usa com dado de verdade, não com exemplo."),
+    ("03", "Entra no ar",
+     "Publicado, com a equipe treinada e 30 dias de ajuste incluídos."),
 ]
 
 
@@ -219,27 +197,23 @@ def montar_html(dados, fontes):
     qr_site = qr_svg(dados["site"])
     qr_wa = qr_svg(link_wa(wa, "Oi! Recebi o seu convite e queria conversar."))
 
-    areas = []
-    for numero, titulo, itens in AREAS:
-        linhas = "".join(
-            f'<li><a href="{esc(link_wa(wa, msg))}">{esc(rotulo)}'
-            f'<span class="go">›</span></a></li>'
-            for rotulo, msg in itens
-        )
-        areas.append(
-            f'<div class="area"><div class="n">{numero}</div>'
-            f"<h3>{esc(titulo)}</h3><ul>{linhas}</ul></div>"
-        )
-
+    problemas = "".join(
+        f'<a class="dor" href="{esc(link_wa(wa, msg))}">'
+        f"<h4>{esc(titulo)}</h4><p>{esc(linha)}</p>"
+        f'<span class="go">Resolver isso ›</span></a>'
+        for titulo, linha, msg in PROBLEMAS
+    )
+    sistemas = "".join(
+        f'<a class="sis" href="{esc(url)}">'
+        f'<div class="cod">{esc(cod)}</div><div class="para">{esc(para)}</div>'
+        f"<p>{esc(linha)}</p>"
+        f'<span class="go">Conheça de perto ›</span></a>'
+        for cod, para, linha, url in SISTEMAS
+    )
     passos = "".join(
         f'<div class="passo"><div class="d">{n}</div>'
         f"<h4>{esc(t)}</h4><p>{esc(d)}</p></div>"
         for n, t, d in PASSOS
-    )
-    casos = "".join(
-        f'<div class="caso"><div class="who">{esc(q)}</div>'
-        f"<h4>{esc(t)}</h4><p>{esc(r)}</p></div>"
-        for q, t, r in CASOS
     )
 
     substituicoes = {
@@ -257,13 +231,13 @@ def montar_html(dados, fontes):
         "{{SITE_TXT}}": esc(site_legivel(dados["site"])),
         "{{WA_TXT}}": esc(telefone_legivel(wa)),
         "{{WA_CAPA}}": esc(link_wa(wa, "Oi! Recebi o seu convite e queria conversar.")),
-        "{{WA_DIAG}}": esc(link_wa(wa, "Oi! Queria marcar os 30 minutos de diagnóstico.")),
-        "{{WA_OUTRO}}": esc(link_wa(wa, "Oi! A minha situação não está no convite, queria te contar o meu caso.")),
+        "{{WA_DIAG}}": esc(link_wa(wa, "Oi! Queria marcar os 30 minutos de diagnóstico da minha clínica.")),
+        "{{WA_OUTRO}}": esc(link_wa(wa, "Oi! O meu problema não está no convite, queria te contar.")),
         "{{QR_SITE}}": qr_site,
         "{{QR_WA}}": qr_wa,
-        "{{AREAS}}": "".join(areas),
+        "{{PROBLEMAS}}": problemas,
+        "{{SISTEMAS}}": sistemas,
         "{{PASSOS}}": passos,
-        "{{CASOS}}": casos,
     }
 
     with open(os.path.join(RAIZ, "convite.template.html"), encoding="utf-8") as arq:

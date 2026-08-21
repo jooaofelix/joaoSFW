@@ -16,7 +16,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 @page{size:A4 portrait;margin:0;}
 body{font-family:var(--body);color:var(--ink);background:#fff;
-  font-size:10pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  font-size:10pt;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 a{color:inherit;text-decoration:none;}
 
 .page{width:210mm;height:297mm;padding:15mm 16mm 12mm;background:var(--paper);
@@ -25,17 +25,14 @@ a{color:inherit;text-decoration:none;}
 .slab{font-family:var(--mono);font-size:7.5pt;font-weight:600;letter-spacing:.22em;
   text-transform:uppercase;color:var(--ochre);}
 
-/* ---------- cabeçalho comum ---------- */
 .head{display:flex;justify-content:space-between;align-items:baseline;
   padding-bottom:5mm;border-bottom:1px solid var(--rule);}
-.head .marca{font-family:var(--disp);font-weight:700;font-size:12pt;color:var(--pine-d);
-  letter-spacing:-.01em;}
+.head .marca{font-family:var(--disp);font-weight:700;font-size:12pt;color:var(--pine-d);}
 .head .marca em{display:block;font-family:var(--mono);font-size:6.8pt;font-weight:400;
   font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-top:1mm;}
 .head .pag{font-family:var(--mono);font-size:7.5pt;letter-spacing:.16em;
   text-transform:uppercase;color:var(--mute);}
 
-/* ---------- rodapé com as duas saídas ---------- */
 .rodape{margin-top:auto;padding-top:5mm;border-top:1px solid var(--rule);
   display:flex;justify-content:space-between;align-items:center;gap:8mm;}
 .rodape .via{display:flex;gap:7mm;}
@@ -46,17 +43,15 @@ a{color:inherit;text-decoration:none;}
   text-transform:uppercase;color:var(--mute);text-align:right;}
 
 /* ---------- capa ---------- */
-.capa .miolo{flex:1;display:flex;flex-direction:column;justify-content:center;padding:8mm 0;}
-.capa h1{font-family:var(--disp);font-weight:700;font-size:31pt;line-height:1.03;
-  letter-spacing:-.025em;color:var(--pine-d);max-width:15ch;margin-top:5mm;}
-.capa .lede{font-size:12pt;line-height:1.45;color:var(--mute);max-width:52ch;margin-top:7mm;}
+.capa .miolo{flex:1;display:flex;flex-direction:column;justify-content:center;padding:5mm 0;}
+.capa-passos{margin-top:10mm;padding-top:6mm;border-top:1px solid var(--rule);}
+.capa h1{font-family:var(--disp);font-weight:700;font-size:33pt;line-height:1.02;
+  letter-spacing:-.028em;color:var(--pine-d);max-width:14ch;margin-top:5mm;}
+.capa .lede{font-size:12.5pt;line-height:1.4;color:var(--mute);max-width:46ch;margin-top:7mm;}
 .capa .lede b{color:var(--ink);font-weight:600;}
-.capa .assina{margin-top:9mm;font-size:10pt;color:var(--ink);max-width:50ch;}
-.capa .assina b{font-weight:600;color:var(--pine-d);}
 
-/* dois caminhos: site e contato */
 .portas{display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-top:12mm;}
-.porta{border:1.5px solid var(--rule);border-radius:1mm;padding:6mm 6mm 5mm;
+.porta{border:1.5px solid var(--rule);border-radius:1mm;padding:6mm;
   display:flex;gap:5mm;align-items:center;background:#fff;}
 .porta.destaque{border-color:var(--pine-d);border-width:2px;background:var(--pine-d);}
 .porta .qr{width:22mm;height:22mm;flex-shrink:0;}
@@ -66,54 +61,56 @@ a{color:inherit;text-decoration:none;}
   text-transform:uppercase;color:var(--ochre);margin-bottom:1.5mm;}
 .porta .txt h3{font-family:var(--disp);font-weight:600;font-size:12pt;line-height:1.15;
   color:var(--pine-d);margin-bottom:2mm;}
-.porta .txt p{font-size:8.5pt;line-height:1.4;color:var(--mute);}
+.porta .txt p{font-size:8.5pt;line-height:1.35;color:var(--mute);}
 .porta .txt .v{font-family:var(--mono);font-size:7pt;font-weight:600;color:var(--pine);
-  margin-top:2.5mm;line-height:1.35;letter-spacing:-.01em;overflow-wrap:anywhere;}
+  margin-top:2.5mm;line-height:1.35;overflow-wrap:anywhere;}
 .porta.destaque .txt .k{color:var(--gold);}
 .porta.destaque .txt h3{color:#FBF9F2;}
 .porta.destaque .txt p{color:#B9C4BE;}
 .porta.destaque .txt .v{color:var(--gold);}
 
-/* ---------- áreas ---------- */
-.intro{font-size:9.5pt;line-height:1.5;color:var(--mute);max-width:74ch;margin:5mm 0 6mm;}
-.intro b{color:var(--pine-d);font-weight:600;}
-.shead h2{font-family:var(--disp);font-weight:600;font-size:17pt;line-height:1.15;
+/* ---------- miolo ---------- */
+.shead{margin:5mm 0 2mm;}
+.shead h2{font-family:var(--disp);font-weight:600;font-size:17pt;line-height:1.12;
   letter-spacing:-.02em;color:var(--pine-d);margin-top:2mm;}
-.areas{display:grid;grid-template-columns:1fr 1fr;gap:5mm;}
-.area{background:var(--wash);border-radius:1mm;padding:5mm 5mm 3mm;}
-.area .n{font-family:var(--mono);font-size:7.5pt;font-weight:600;letter-spacing:.14em;color:var(--ochre);}
-.area h3{font-family:var(--disp);font-weight:600;font-size:11.5pt;color:var(--pine-d);margin:1.5mm 0 2mm;}
-.area ul{list-style:none;}
-.area li{border-top:1px solid var(--rule);}
-.area li a{display:flex;justify-content:space-between;align-items:baseline;gap:3mm;
-  padding:2.4mm 0;font-size:9pt;line-height:1.3;color:var(--ink);}
-.area li a .go{font-family:var(--mono);font-size:10pt;color:var(--ochre);flex-shrink:0;}
+.intro{font-size:9.5pt;line-height:1.45;color:var(--mute);max-width:86ch;margin-bottom:4mm;}
+.intro b{color:var(--pine-d);font-weight:600;}
 
-/* ---------- passos e casos ---------- */
-.passos{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-bottom:9mm;}
+.problemas{display:grid;grid-template-columns:1fr 1fr;gap:4mm;}
+.dor{display:block;background:var(--wash);border-radius:1mm;padding:4.5mm 4.5mm 3.5mm;
+  border-left:2.5px solid var(--ochre);}
+.dor h4{font-family:var(--disp);font-weight:600;font-size:12pt;line-height:1.15;
+  color:var(--pine-d);margin-bottom:2mm;}
+.dor p{font-size:9pt;line-height:1.4;color:var(--mute);}
+.dor .go{display:block;margin-top:3mm;font-family:var(--mono);font-size:8pt;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ochre);}
+
+.sistemas{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;}
+.sis{display:flex;flex-direction:column;border:1.2px solid var(--rule);border-radius:1mm;
+  padding:4.5mm 4.5mm 3.5mm;background:#fff;}
+.sis .cod{font-family:var(--disp);font-weight:700;font-size:19pt;line-height:1;
+  letter-spacing:.03em;color:var(--pine-d);}
+.sis .para{font-family:var(--mono);font-size:7pt;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ochre);margin:2mm 0 3mm;}
+.sis p{font-size:8.8pt;line-height:1.4;color:var(--mute);flex:1;}
+.sis .go{display:block;margin-top:3mm;font-family:var(--mono);font-size:8pt;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--pine);}
+
+.passos{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;}
 .passo{border-top:2px solid var(--pine);padding-top:3mm;}
-.passo .d{font-family:var(--mono);font-size:8pt;font-weight:600;color:var(--ochre);letter-spacing:.14em;}
-.passo h4{font-family:var(--disp);font-weight:600;font-size:11pt;color:var(--pine-d);margin:1.5mm 0 1.5mm;}
+.passo .d{font-family:var(--mono);font-size:8pt;font-weight:600;letter-spacing:.14em;color:var(--ochre);}
+.passo h4{font-family:var(--disp);font-weight:600;font-size:11pt;color:var(--pine-d);margin:1.5mm 0;}
 .passo p{font-size:8.8pt;line-height:1.4;color:var(--mute);}
 
-.casos{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;}
-.caso{background:var(--wash);border-radius:1mm;padding:4.5mm 4.5mm 5mm;}
-.caso .who{font-family:var(--mono);font-size:6.5pt;font-weight:600;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--pine);}
-.caso h4{font-family:var(--disp);font-weight:600;font-size:10.5pt;line-height:1.2;
-  color:var(--ink);margin:2mm 0 2mm;}
-.caso p{font-size:8.8pt;line-height:1.4;color:var(--mute);font-style:italic;}
-
-/* ---------- fechamento ---------- */
-.fecha{background:var(--pine-d);border-radius:1mm;padding:8mm 8mm 7mm;
-  margin-top:auto;margin-bottom:2mm;display:flex;gap:8mm;align-items:center;}
-.fecha .qr{width:30mm;height:30mm;flex-shrink:0;background:#fff;padding:2mm;border-radius:1mm;}
+.fecha{background:var(--pine-d);border-radius:1mm;padding:6mm;margin-top:auto;
+  display:flex;gap:7mm;align-items:center;}
+.fecha .qr{width:28mm;height:28mm;flex-shrink:0;background:#fff;padding:2mm;border-radius:1mm;}
 .fecha .qr svg{width:100%;height:100%;display:block;}
-.fecha h2{font-family:var(--disp);font-weight:700;font-size:16pt;line-height:1.12;
-  letter-spacing:-.02em;color:#FBF9F2;max-width:22ch;}
-.fecha p{font-size:9.5pt;line-height:1.5;color:#B9C4BE;margin-top:3mm;max-width:46ch;}
-.fecha .linhas{margin-top:5mm;padding-top:4mm;border-top:1px solid rgba(255,255,255,.18);
-  display:grid;grid-template-columns:auto auto;justify-content:start;gap:4mm 9mm;}
+.fecha h2{font-family:var(--disp);font-weight:700;font-size:15pt;line-height:1.1;
+  letter-spacing:-.02em;color:#FBF9F2;max-width:20ch;}
+.fecha p{font-size:9.5pt;line-height:1.45;color:#B9C4BE;margin-top:3mm;max-width:46ch;}
+.fecha .linhas{margin-top:4mm;padding-top:3.5mm;border-top:1px solid rgba(255,255,255,.18);
+  display:grid;grid-template-columns:auto auto;justify-content:start;gap:3mm 9mm;}
 .fecha .linhas div .k{font-family:var(--mono);font-size:6.2pt;font-weight:600;
   letter-spacing:.18em;text-transform:uppercase;color:#8E978F;margin-bottom:1mm;}
 .fecha .linhas div .v{display:block;font-family:var(--mono);font-size:8.5pt;color:#EFEDE4;}
@@ -121,39 +118,43 @@ a{color:inherit;text-decoration:none;}
 </head>
 <body>
 
-<!-- ============ 1. capa ============ -->
+<!-- ============ 1. capa + problemas ============ -->
 <section class="page capa">
   <div class="head">
-    <div class="marca">{{NOME}}<em>Sistemas web sob medida</em></div>
+    <div class="marca">{{NOME}}<em>Gestão clínica sem planilha</em></div>
     <div class="pag">Convite</div>
   </div>
 
   <div class="miolo">
-    <div class="slab">Consultórios · clínicas · profissionais liberais</div>
-    <h1>O seu processo já funciona. Ele só não está em lugar nenhum.</h1>
-    <p class="lede">Eu construo sistemas web simples para quem atende — <b>feitos em cima do jeito que você já trabalha</b>, não do jeito que um software genérico manda trabalhar.</p>
-    <p class="assina">Este convite tem <b>duas saídas</b>: ver tudo com calma no site, ou falar comigo agora. Aponte a câmera do celular para o quadrado, ou toque nele se estiver lendo na tela.</p>
+    <div class="slab">Clínicas e consultórios</div>
+    <h1>Eu resolvo o que trava a gestão da sua clínica.</h1>
+    <p class="lede">Agenda, prontuário, dinheiro e retorno de paciente — <b>organizados do jeito que a sua clínica já trabalha</b>, não do jeito que um software genérico manda.</p>
 
     <div class="portas">
       <a class="porta" href="{{SITE_URL}}">
         <div class="qr">{{QR_SITE}}</div>
         <div class="txt">
-          <div class="k">Caminho 1</div>
-          <h3>Ver o site completo</h3>
-          <p>Casos, processo, investimento e as perguntas que sempre aparecem.</p>
+          <div class="k">Ver com calma</div>
+          <h3>O site</h3>
+          <p>Os sistemas, o processo e as perguntas que sempre aparecem.</p>
           <div class="v">{{SITE_TXT}}</div>
         </div>
       </a>
       <a class="porta destaque" href="{{WA_CAPA}}">
         <div class="qr">{{QR_WA}}</div>
         <div class="txt">
-          <div class="k">Caminho 2</div>
-          <h3>Falar comigo agora</h3>
-          <p>Abre o WhatsApp com a mensagem já escrita. Você só envia.</p>
+          <div class="k">Falar agora</div>
+          <h3>WhatsApp</h3>
+          <p>Abre com a mensagem já escrita. Você só envia.</p>
           <div class="v">{{WA_TXT}}</div>
         </div>
       </a>
     </div>
+  </div>
+
+  <div class="capa-passos">
+    <div class="slab" style="margin-bottom:4mm">Como funciona</div>
+    <div class="passos">{{PASSOS}}</div>
   </div>
 
   <div class="rodape">
@@ -165,53 +166,31 @@ a{color:inherit;text-decoration:none;}
   </div>
 </section>
 
-<!-- ============ 2. áreas ============ -->
+<!-- ============ 2. problemas, sistemas, passos ============ -->
 <section class="page">
   <div class="head">
-    <div class="marca">{{NOME}}<em>Sistemas web sob medida</em></div>
-    <div class="pag">Onde eu entro · 2 de 3</div>
+    <div class="marca">{{NOME}}<em>Gestão clínica sem planilha</em></div>
+    <div class="pag">2 de 2</div>
   </div>
 
-  <div class="shead" style="margin-top:7mm">
-    <div class="slab">Ache o seu problema na lista</div>
-    <h2>Você não precisa saber o que pedir. Só apontar o que incomoda.</h2>
+  <div class="shead">
+    <div class="slab">O que eu resolvo</div>
+    <h2>Toque no que está doendo hoje</h2>
   </div>
-  <p class="intro"><b>Cada linha abaixo é um link.</b> Toque na que for a sua dor e o WhatsApp abre com a mensagem já escrita — não precisa explicar tudo de uma vez. Se estiver no papel, use o QR da capa e me diga o item pelo nome.</p>
+  <p class="intro"><b>Cada bloco abaixo é um link.</b> Toque no seu caso e o WhatsApp abre com a mensagem já escrita — não precisa explicar tudo de uma vez.</p>
+  <div class="problemas">{{PROBLEMAS}}</div>
 
-  <div class="areas">{{AREAS}}</div>
-
-  <div class="rodape">
-    <div class="via">
-      <div><div class="k">Site</div><a class="v" href="{{SITE_URL}}">{{SITE_TXT}}</a></div>
-      <div><div class="k">WhatsApp</div><a class="v" href="{{WA_CAPA}}">{{WA_TXT}}</a></div>
-    </div>
-    <div class="selo">Não achou a sua?<br><a href="{{WA_OUTRO}}">Me conte o seu caso</a></div>
+  <div class="shead">
+    <div class="slab">Já estão prontos</div>
+    <h2>Três sistemas que você pode ver funcionando agora</h2>
   </div>
-</section>
-
-<!-- ============ 3. como funciona + fechamento ============ -->
-<section class="page">
-  <div class="head">
-    <div class="marca">{{NOME}}<em>Sistemas web sob medida</em></div>
-    <div class="pag">Como funciona · 3 de 3</div>
-  </div>
-
-  <div class="shead" style="margin-top:7mm;margin-bottom:6mm">
-    <div class="slab">Do primeiro papo ao sistema no ar</div>
-    <h2>Quatro passos, sem surpresa no meio do caminho</h2>
-  </div>
-  <div class="passos">{{PASSOS}}</div>
-
-  <div class="shead" style="margin-bottom:5mm">
-    <div class="slab">Alguns sistemas que já entreguei</div>
-  </div>
-  <div class="casos">{{CASOS}}</div>
+  <div class="sistemas">{{SISTEMAS}}</div>
 
   <div class="fecha">
     <a class="qr" href="{{WA_DIAG}}">{{QR_WA}}</a>
     <div>
-      <a href="{{WA_DIAG}}"><h2>Trinta minutos resolvem se vale a pena.</h2></a>
-      <p>Eu escuto o processo e te digo se dá para resolver com um sistema — ou se resolve com uma planilha melhor. Sem custo, sem compromisso, e sem proposta na mesma conversa.</p>
+      <a href="{{WA_DIAG}}"><h2>Me conte o que está travando.</h2></a>
+      <p>Trinta minutos e eu te digo se dá para resolver com um sistema — ou se resolve com algo mais simples. Sem custo e sem compromisso.</p>
       <div class="linhas">
         <div><div class="k">WhatsApp</div><a class="v" href="{{WA_CAPA}}">{{WA_TXT}}</a></div>
         <div><div class="k">E-mail</div><a class="v" href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
@@ -219,14 +198,6 @@ a{color:inherit;text-decoration:none;}
         <div><div class="k">Site</div><a class="v" href="{{SITE_URL}}">{{SITE_TXT}}</a></div>
       </div>
     </div>
-  </div>
-
-  <div class="rodape">
-    <div class="via">
-      <div><div class="k">Ver tudo no site</div><a class="v" href="{{SITE_URL}}">{{SITE_TXT}}</a></div>
-      <div><div class="k">Falar agora</div><a class="v" href="{{WA_CAPA}}">{{WA_TXT}}</a></div>
-    </div>
-    <div class="selo">{{NOME}} · {{CIDADE}}</div>
   </div>
 </section>
 
