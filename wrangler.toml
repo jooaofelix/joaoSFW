@@ -2,11 +2,16 @@
 #
 #   npx wrangler deploy
 #
-# ATENÇÃO: isto substitui o conteúdo do Worker chamado "futuro" que já está
-# no ar. O que estiver publicado lá agora é trocado pelo index.html daqui.
+# O nome do Worker é o endereço: este publica em desata.jvctrfelix.workers.dev.
 # O que vai e o que não vai para o ar está no .assetsignore.
+#
+# ATENÇÃO: o Worker antigo, "futuro", NÃO é renomeado por esta mudança. O
+# primeiro deploy cria um Worker novo, e o "futuro" continua no ar com o site
+# de gestão clínica até você apagá-lo:
+#
+#   npx wrangler delete --name futuro
 
-name = "futuro"
+name = "desata"
 compatibility_date = "2026-08-21"
 
 [assets]

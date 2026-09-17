@@ -2,7 +2,7 @@
 
 Site da **Desata** — *Tecnologia que descomplica*. Página única, estática, sem
 build: HTML, CSS e JavaScript puros. É o que está publicado na raiz deste
-repositório e o que vai para o ar no Worker `futuro`.
+repositório e o que vai para o ar no Worker `desata`.
 
 O repositório também guarda o convite em PDF e a ferramenta de análise fiscal,
 descritos mais abaixo.
@@ -33,7 +33,7 @@ Ainda em aberto:
 
 - **Instagram** — o campo está vazio, então a linha não aparece. Preencher
   quando o perfil existir.
-- **Domínio próprio** — hoje o endereço é `futuro.jvctrfelix.workers.dev`. Ao
+- **Domínio próprio** — hoje o endereço é `desata.jvctrfelix.workers.dev`. Ao
   trocar, atualize `og:url`, `og:image` e o `<link rel="canonical">` no
   `index.html`.
 - **Portfólio** — não existe seção de portfólio. Ela entra quando houver
@@ -55,8 +55,17 @@ npx wrangler deploy
 Sobem o `index.html`, a pasta `assets/` e o `convite.pdf` — o `.assetsignore`
 deixa de fora código, originais da marca e o resto.
 
-> **Isto substitui o conteúdo do Worker `futuro`, que já está no ar.** Confira
-> antes de rodar.
+> **O Worker antigo, `futuro`, não é renomeado por isto.** O nome em
+> `wrangler.toml` é `desata`, então o primeiro deploy cria um Worker novo em
+> `desata.jvctrfelix.workers.dev` — e o `futuro` continua no ar, servindo o
+> site de gestão clínica, até ser apagado:
+>
+> ```bash
+> npx wrangler delete --name futuro
+> ```
+>
+> Quem já tem o link antigo salvo perde o endereço nesse momento. Enquanto os
+> dois existirem, os dois respondem.
 
 Deploy automático a cada push exigiria um workflow do GitHub Actions com um
 token da API do Cloudflare nos segredos do repositório. Não está configurado.

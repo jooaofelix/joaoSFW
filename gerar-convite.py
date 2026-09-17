@@ -41,7 +41,7 @@ PADRAO = {
     "email": "jvctrfelix@gmail.com",
     "instagram": "",
     "cidade": "São José dos Campos · SP",
-    "site": "https://futuro.jvctrfelix.workers.dev",
+    "site": "https://desata.jvctrfelix.workers.dev",
 }
 
 
