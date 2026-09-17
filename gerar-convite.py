@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-Gera o convite em PDF (convite.pdf) a partir dos dados do index.html.
+Gera o convite em PDF (convite.pdf) a partir dos dados de contato do site.
 
     python3 gerar-convite.py
 
 Não edite o convite.html gerado — ele é sobrescrito a cada execução.
-Para mudar nome, telefone, e-mail ou endereço do site, edite o bloco
-`const SITE` no topo do index.html e rode este script de novo.
+Para mudar telefone, e-mail ou cidade, edite assets/js/config.js — o mesmo
+arquivo que o site usa — e rode este script de novo. Nome e endereço do site
+ficam em PADRAO, aqui embaixo.
 
 Requisitos: python3, segno (pip install segno) e o Chromium/Chrome.
 """
@@ -47,24 +48,28 @@ PADRAO = {
 # --------------------------------------------------------------------------
 # 1. dados do site
 # --------------------------------------------------------------------------
+# No config do site a cidade se chama `local`; aqui, `cidade`.
+CHAVES = {"whatsapp": "whatsapp", "email": "email", "instagram": "instagram", "cidade": "local"}
+
+
 def ler_config():
-    """Extrai o bloco `const SITE` do index.html, com fallback nos padrões."""
+    """Lê os contatos de assets/js/config.js, com fallback nos padrões."""
     dados = dict(PADRAO)
-    caminho = os.path.join(RAIZ, "index.html")
+    caminho = os.path.join(RAIZ, "assets", "js", "config.js")
     try:
         with open(caminho, encoding="utf-8") as arq:
             fonte = arq.read()
     except OSError:
-        print("! index.html não encontrado — usando os valores de exemplo.")
+        print("! assets/js/config.js não encontrado — usando os valores de exemplo.")
         return dados
 
-    bloco = re.search(r"const SITE\s*=\s*\{(.*?)\n\};", fonte, re.S)
+    bloco = re.search(r"DESATA_CONFIG\s*=\s*\{(.*?)\n\};", fonte, re.S)
     if not bloco:
-        print("! bloco `const SITE` não encontrado — usando os valores de exemplo.")
+        print("! bloco `DESATA_CONFIG` não encontrado — usando os valores de exemplo.")
         return dados
 
-    for chave in PADRAO:
-        achou = re.search(rf'\b{chave}\s*:\s*"([^"]*)"', bloco.group(1))
+    for chave, no_config in CHAVES.items():
+        achou = re.search(rf'\b{no_config}\s*:\s*"([^"]*)"', bloco.group(1))
         if achou and achou.group(1).strip():
             dados[chave] = achou.group(1).strip()
 

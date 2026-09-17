@@ -1,4 +1,5 @@
-# Fora do que vai para o ar: só index.html e convite.pdf interessam ao visitante.
+# Fora do que vai para o ar: o visitante só precisa do index.html, dos
+# arquivos de assets/ e do convite.pdf.
 *.py
 *.toml
 *.md
@@ -6,6 +7,7 @@
 .gitignore
 .git/
 analise-fiscal/
-assets/
+marca/
+assets/fontes.css
 convite.html
 convite.template.html

@@ -1,96 +1,130 @@
-# Site — gestão clínica
+# Site da Desata
 
-Página única, estática, sem build. Posicionamento: **resolutor de problemas de
-gestão clínica**. Tudo que falava com outro público (profissional liberal
-genérico, escritório contábil, gestão financeira) saiu — está no histórico do
-git se precisar.
+Site da **Desata** — *Tecnologia que descomplica*. Página única, estática, sem
+build: HTML, CSS e JavaScript puros. É o que está publicado na raiz deste
+repositório e o que vai para o ar no Worker `futuro`.
 
-A régua é venda rápida: **451 palavras, 5 seções, ~3 telas.** Antes eram 2.229
-palavras e 11 telas. Toda vez que for acrescentar coisa, pergunte o que sai no
-lugar.
+O repositório também guarda o convite em PDF e a ferramenta de análise fiscal,
+descritos mais abaixo.
+
+> O site anterior — página de venda com posicionamento de gestão clínica
+> (ROTA, BASE e PROX) — saiu do ar quando o site da Desata assumiu a raiz.
+> Ele está no histórico do git: `git log -- index.html`.
 
 ## Antes de publicar
 
-Edite **só o bloco `const SITE`** no topo do `index.html`:
+Os dados de contato ficam em **`assets/js/config.js`**, e só ali:
 
 ```js
-const SITE = {
-  nome:      "João Félix",
-  whatsapp:  "5512991338866",          // só números: 55 + DDD + número
-  email:     "jvctrfelix@gmail.com",
-  instagram: "",                       // sem o @; vazio não exibe a linha
-  cidade:    "São José dos Campos · SP",
-  site:      "https://futuro.jvctrfelix.workers.dev"
+window.DESATA_CONFIG = {
+  whatsapp: "5512991338866",              // só números: 55 + DDD + número
+  email:    "jvctrfelix@gmail.com",
+  instagram: "",                          // sem o @; vazio não exibe a linha
+  local:    "São José dos Campos · SP"
 };
 ```
 
-Esse mesmo bloco alimenta o convite em PDF — depois de editar, rode
-`python3 gerar-convite.py`.
+Se o WhatsApp ou o e-mail ficarem vazios, a seção de contato mostra um aviso
+listando o que falta, em vez de um botão que não abre conversa nenhuma. O
+`gerar-convite.py` lê esse mesmo arquivo, então não existe segunda lista de
+contatos para manter.
 
-Confira à mão, porque nada disso o código valida:
+Ainda em aberto:
 
-- [ ] O que ROTA, BASE e PROX fazem bate com o que as apresentações mostram.
-- [ ] Os prazos e os 30 dias de ajuste são o que você cumpre.
-- [ ] O FAQ sobre LGPD descreve o que você realmente faz.
-- [ ] O link `convite.pdf` funciona depois de publicado (é caminho relativo —
-      se o Worker não servir o arquivo, quebra).
+- **Instagram** — o campo está vazio, então a linha não aparece. Preencher
+  quando o perfil existir.
+- **Domínio próprio** — hoje o endereço é `futuro.jvctrfelix.workers.dev`. Ao
+  trocar, atualize `og:url`, `og:image` e o `<link rel="canonical">` no
+  `index.html`.
+- **Portfólio** — não existe seção de portfólio. Ela entra quando houver
+  projeto real para mostrar; demonstração precisa estar identificada como
+  demonstração.
+
+Nada de preço, prazo, cliente, depoimento ou número de projeto foi inventado no
+site. O que não está confirmado não está lá.
 
 ## Colocar no ar
 
 **Git push não publica o site.** Ele manda o código para o GitHub; quem coloca
-no ar é o deploy. Para publicar em `futuro.jvctrfelix.workers.dev`:
+no ar é o deploy:
 
 ```bash
 npx wrangler deploy
 ```
 
-Sobem só `index.html` e `convite.pdf` — o `.assetsignore` deixa de fora código,
-fontes e o resto. Como o PDF passa a ser servido no mesmo endereço, o botão
-"Baixar a apresentação" funciona sem ajuste.
+Sobem o `index.html`, a pasta `assets/` e o `convite.pdf` — o `.assetsignore`
+deixa de fora código, originais da marca e o resto.
 
-> **Isto substitui o Worker chamado `futuro` que já está no ar.** Se o atual foi
-> publicado de outro jeito (script colado no painel do Cloudflare, outro
-> repositório), o conteúdo dele é trocado pelo daqui. Confira antes de rodar.
+> **Isto substitui o conteúdo do Worker `futuro`, que já está no ar.** Confira
+> antes de rodar.
 
-Para o deploy acontecer sozinho a cada push, é preciso um workflow do GitHub
-Actions com um token da API do Cloudflare guardado nos segredos do repositório.
-Não está configurado.
+Deploy automático a cada push exigiria um workflow do GitHub Actions com um
+token da API do Cloudflare nos segredos do repositório. Não está configurado.
 
-## A estrutura, e o porquê
+Para ver localmente:
+
+```bash
+python3 -m http.server 8000     # abre http://localhost:8000
+```
+
+## A estrutura do site
 
 | # | Seção | O que ela faz |
 |---|---|---|
-| 1 | **Hero** | Diz em uma linha quem é e o que resolve. Um CTA principal, um secundário. |
-| 2 | **Toque no que está doendo hoje** | Quatro problemas de clínica, cada card é um link de WhatsApp com a mensagem pronta. A pessoa aciona apontando a dor, sem formular pedido. |
-| 3 | **Três sistemas** | ROTA, BASE e PROX em uma frase cada, levando à apresentação aberta. Prova concreta sem parágrafo. |
-| 4 | **Como funciona** | Três passos de uma linha, preço em uma frase e três perguntas recolhidas. |
-| 5 | **Próximo passo** | Fecha no diagnóstico gratuito, com os contatos. |
+| 1 | **Abertura** | "Seu negócio pode fluir melhor" + o que a Desata faz, em duas linhas, e o botão de conversa. |
+| 2 | **O que trava o dia** | Seis situações concretas do cotidiano de quem empreende. A pessoa se reconhece antes de ouvir a oferta. |
+| 3 | **Serviços** | Criação de sites em destaque; sistemas web e automações em seguida. Diz também o que a Desata ainda não vende. |
+| 4 | **Como funciona** | Entender, definir escopo, desenvolver, validar, entregar. Suporte posterior é definido na proposta. |
+| 5 | **A Desata** | A ideia de desatar nós e quem está por trás. |
+| 6 | **Dúvidas** | Sete perguntas sobre contratação: preço, prazo, domínio, textos, alterações. |
+| 7 | **Contato** | Fecha no WhatsApp, com a mensagem já escrita. |
 
-Sem menu de navegação: numa página de três telas, âncora é ruído. Só a marca e
-o botão de contato ficam fixos no topo.
+### Onde mexer em cada coisa
 
-## Detalhes de implementação
+| O que | Onde |
+|---|---|
+| Textos, seções, dúvidas | `index.html` |
+| Cores e tipografia | bloco `:root`, no topo de `assets/css/estilo.css` |
+| Contatos | `assets/js/config.js` |
+| Menu, animações, links de contato | `assets/js/main.js` |
+| Originais da identidade visual | `marca/` (não vai para o ar) |
 
-- **Cada link de WhatsApp abre com mensagem própria**, no atributo `data-wa`.
-  Você recebe a conversa já sabendo de qual ponto da página a pessoa saiu.
-- **Os links de ROTA, BASE e PROX** ficam no HTML da seção `#sistemas` — são
-  endereços de sistemas, não dados de contato. Abrem em aba nova.
-- Se o JavaScript não carregar, os textos caem no padrão escrito no HTML; só os
-  links de contato ficam inertes.
+### Cores da marca
+
+| Cor | Código | Uso |
+|---|---|---|
+| Off-white | `#F4F0E8` | fundo principal |
+| Grafite | `#242424` | texto e seções de contraste |
+| Laranja queimado | `#E66A35` | destaques, botões e os laços gráficos |
+
+Laranja com texto **grafite** dá contraste 4,8:1 (WCAG AA). Laranja com texto
+**branco** só passa em tamanho grande, por isso branco sobre laranja aparece só
+em títulos. Para texto pequeno em laranja sobre o off-white, o site usa o tom
+mais escuro `#A34517`.
+
+### Detalhes de implementação
+
+- Fonte Figtree servida pelo próprio site (~30 KB em `assets/fonts/`): nenhuma
+  requisição a terceiros, em nenhum lugar da página.
+- Sem JavaScript a página continua inteira e navegável — só os links de contato
+  ficam inertes. As dúvidas são `<details>`, funcionam sem script.
+- Menu mobile com `aria-expanded`, fechamento por `Esc` e por clique fora.
+- Animações discretas, todas desligadas com `prefers-reduced-motion`.
+- Não há formulário. Se um dia entrar, precisa de destino de envio real e
+  mensagem de sucesso e de erro de verdade — nada de simular envio concluído.
 
 ## O convite em PDF
 
-`convite.pdf` — duas páginas A4 para mandar no WhatsApp ou por e-mail.
-Página 1: promessa, os dois QR codes (site e WhatsApp) e os três passos.
-Página 2: os quatro problemas clicáveis, os três sistemas e o fechamento.
+`convite.pdf` — duas páginas A4 para mandar no WhatsApp ou por e-mail. O texto
+é o da apresentação de gestão clínica, anterior ao site da Desata.
 
 ```bash
 pip install segno      # só na primeira vez
 python3 gerar-convite.py
 ```
 
-Lê os dados do `index.html`, então não existe segunda lista de contatos para
-manter. O texto do convite (problemas, sistemas, passos) fica no topo do
+Lê os contatos de `assets/js/config.js`; nome e endereço do site ficam em
+`PADRAO`, no topo do script. O texto do convite fica no próprio
 `gerar-convite.py`; o layout, em `convite.template.html`.
 
 > As páginas têm altura fixa e cortam o que sobra. Depois de mexer no texto,
@@ -100,20 +134,12 @@ manter. O texto do convite (problemas, sistemas, passos) fica no topo do
 |---|---|
 | `gerar-convite.py` | O gerador, e os textos do convite. |
 | `convite.template.html` | O layout das duas páginas. |
-| `assets/fontes.css` | Fontes em base64, baixadas uma vez. PDF idêntico em qualquer máquina, e regerável sem internet. |
-| `convite.pdf` | O que você envia. |
+| `assets/fontes.css` | Fontes em base64 do convite, baixadas uma vez. PDF idêntico em qualquer máquina, regerável sem internet. Não confunda com `assets/css/fontes.css`, que é a fonte do site. |
+| `convite.pdf` | O que você envia. Continua servido em `/convite.pdf`. |
 | `convite.html` | Intermediário, sobrescrito a cada execução (fora do git). |
 
 ## `analise-fiscal/`
 
 Ferramenta de consulta de CNPJ em fontes públicas, com cruzamento de sócios.
-**Não está mais no site** — é produto para escritório contábil, fora do foco de
-gestão clínica. O código fica aqui, funcionando e testado, para o dia em que
+Não está no site. O código fica aqui, funcionando e testado, para o dia em que
 virar um projeto próprio. Tem README dedicado.
-
-## Próximo passo, em ordem de retorno
-
-1. **Print de tela do ROTA, BASE e PROX** dentro dos cards. A página é toda
-   texto, e quem vende software vende a tela.
-2. **Um depoimento de uma clínica**, curto, logo abaixo dos sistemas.
-3. **Um número concreto** ("reduziu a falta de 30% para 8%").

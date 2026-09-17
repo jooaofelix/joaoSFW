@@ -1,10 +1,10 @@
-# Publica o site como Worker de assets estáticos.
+# Publica o site da Desata como Worker de assets estáticos.
 #
 #   npx wrangler deploy
 #
-# ATENÇÃO: isto substitui o Worker chamado "futuro" que já está no ar.
-# Se o atual foi feito de outro jeito (script colado no painel do Cloudflare,
-# outro repositório), o conteúdo dele é trocado pelo index.html daqui.
+# ATENÇÃO: isto substitui o conteúdo do Worker chamado "futuro" que já está
+# no ar. O que estiver publicado lá agora é trocado pelo index.html daqui.
+# O que vai e o que não vai para o ar está no .assetsignore.
 
 name = "futuro"
 compatibility_date = "2026-08-21"
