@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-Gera a apresentação de venda em PDF (apresentacao-desata.pdf).
+Gera as apresentações de venda em PDF.
 
-    python3 apresentacao/gerar-apresentacao.py
+    python3 apresentacao/gerar-apresentacao.py            # todos os perfis
+    python3 apresentacao/gerar-apresentacao.py psicologia # só um
 
-O texto fica em apresentacao.template.html. Aqui ficam só os dados que mudam
-de um envio para o outro: para quem é, o segmento e os valores.
+Cada perfil em PERFIS aponta para um template e um PDF de saída: para quem é,
+o segmento e os valores. O texto de cada apresentação fica no seu template; o
+visual, em estilo.css, compartilhado por todas.
 
 Os contatos vêm de assets/js/config.js — o mesmo arquivo que o site usa.
 Requisito: Chromium ou Google Chrome instalado.
@@ -20,15 +22,31 @@ import subprocess
 import sys
 
 # --------------------------------------------------------------------------
-# EDITE AQUI
+# EDITE AQUI — um bloco por apresentação
 # --------------------------------------------------------------------------
-EMPRESA = "Vallemed"                                  # quem vai receber
-DESTINATARIO = "medicina e segurança do trabalho"     # aparece na capa
-PRECO_SITE = "R$ 900"                                 # "a partir de"
-PRECO_SITE_CHEIO = "R$ 1.800"                         # valor de tabela; "" = sem desconto
-SELO_SITE = "condição de primeiro projeto"            # "" = sem selo
-PRECO_MENSAL = "R$ 150"                               # acompanhamento opcional
 NOME = "João Félix · Desata"
+
+VALORES_PADRAO = {
+    "preco_site": "R$ 900",            # "a partir de"
+    "preco_site_cheio": "R$ 1.800",    # valor de tabela; "" = sem desconto
+    "selo_site": "condição de primeiro projeto",   # "" = sem selo
+    "preco_mensal": "R$ 150",          # acompanhamento opcional
+}
+
+PERFIS = {
+    "sst": {
+        "template": "apresentacao.template.html",
+        "saida": "apresentacao-desata.pdf",
+        "empresa": "Vallemed",
+        "destinatario": "medicina e segurança do trabalho",
+    },
+    "psicologia": {
+        "template": "psicologia.template.html",
+        "saida": "apresentacao-psicologia.pdf",
+        "empresa": "Alvo Psicologia",
+        "destinatario": "psicologia clínica",
+    },
+}
 
 # --------------------------------------------------------------------------
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -129,6 +147,52 @@ def gerar_pdf(origem, destino):
     return True
 
 
+def gerar(nome_perfil, perfil, dados, comuns):
+    precos = dict(VALORES_PADRAO)
+    precos.update({k: v for k, v in perfil.items() if k in VALORES_PADRAO})
+
+    cheio, selo, preco = precos["preco_site_cheio"], precos["selo_site"], precos["preco_site"]
+    de_site = f'<small class="de">de {cheio}</small>' if cheio else ""
+    selo_site = f'<span class="selo">{selo}</span>' if selo else ""
+    nota_desconto = (
+        f" O valor de {preco} é uma condição de abertura, para os primeiros "
+        "projetos da Desata, e vale para o escopo descrito nesta apresentação."
+    ) if cheio else ""
+
+    valores = dict(comuns)
+    valores.update({
+        "EMPRESA": perfil["empresa"],
+        "DESTINATARIO": perfil["destinatario"],
+        "PRECO_SITE": preco,
+        "DE_SITE": de_site,
+        "SELO_SITE": selo_site,
+        "NOTA_DESCONTO": nota_desconto,
+        "PRECO_MENSAL": precos["preco_mensal"],
+    })
+
+    with open(os.path.join(AQUI, perfil["template"]), encoding="utf-8") as arq:
+        html = arq.read()
+    for chave, valor in valores.items():
+        html = html.replace("{{" + chave + "}}", valor)
+
+    sobraram = re.findall(r"\{\{(\w+)\}\}", html)
+    if sobraram:
+        print("! marcadores sem valor em " + perfil["template"] + ": "
+              + ", ".join(sorted(set(sobraram))))
+
+    caminho_html = os.path.join(AQUI, f"_{nome_perfil}.html")
+    caminho_pdf = os.path.join(AQUI, perfil["saida"])
+    with open(caminho_html, "w", encoding="utf-8") as arq:
+        arq.write(html)
+
+    if not gerar_pdf(caminho_html, caminho_pdf):
+        return False
+    de = f" (de {cheio})" if cheio else ""
+    print(f"· {perfil['saida']} ({os.path.getsize(caminho_pdf) // 1024} KB)"
+          f" — {perfil['empresa']}: site {preco}{de} · mensal {precos['preco_mensal']}")
+    return True
+
+
 def main():
     dados = ler_config()
     faltando = [c for c in ("whatsapp", "email") if not dados[c]]
@@ -136,58 +200,36 @@ def main():
         print("! faltam contatos em assets/js/config.js: " + ", ".join(faltando))
         return 1
 
+    pedidos = sys.argv[1:] or list(PERFIS)
+    desconhecidos = [p for p in pedidos if p not in PERFIS]
+    if desconhecidos:
+        print("! perfil desconhecido: " + ", ".join(desconhecidos))
+        print("  disponíveis: " + ", ".join(PERFIS))
+        return 1
+
     hoje = datetime.date.today()
     logo = os.path.join(RAIZ, "assets", "img", "logo-desata-colorido.png")
     logo_branco = os.path.join(RAIZ, "assets", "img", "logo-desata-branco.png")
 
-    de_site = f'<small class="de">de {PRECO_SITE_CHEIO}</small>' if PRECO_SITE_CHEIO else ""
-    selo_site = f'<span class="selo">{SELO_SITE}</span>' if SELO_SITE else ""
-    nota_desconto = (
-        f" O valor de {PRECO_SITE} é uma condição de abertura, para os primeiros "
-        "projetos da Desata, e vale para o escopo descrito nesta apresentação."
-    ) if PRECO_SITE_CHEIO else ""
+    with open(os.path.join(AQUI, "estilo.css"), encoding="utf-8") as arq:
+        estilo = arq.read()
 
-    valores = {
+    comuns = {
         "FONTES": montar_fontes(),
+        "ESTILO": estilo,
         "LOGO_COR": embutir(logo, "image/png"),
         "LOGO_BRANCO": embutir(logo_branco, "image/png"),
-        "EMPRESA": EMPRESA,
-        "DESTINATARIO": DESTINATARIO,
         "NOME": NOME,
         "CIDADE": dados["local"],
         "DATA": f"{hoje.day} de {MESES[hoje.month - 1]} de {hoje.year}",
         "WHATSAPP": telefone_legivel(dados["whatsapp"]),
         "EMAIL": dados["email"],
         "SITE": dados["site"],
-        "PRECO_SITE": PRECO_SITE,
-        "DE_SITE": de_site,
-        "SELO_SITE": selo_site,
-        "NOTA_DESCONTO": nota_desconto,
-        "PRECO_MENSAL": PRECO_MENSAL,
     }
 
-    with open(os.path.join(AQUI, "apresentacao.template.html"), encoding="utf-8") as arq:
-        html = arq.read()
-    for chave, valor in valores.items():
-        html = html.replace("{{" + chave + "}}", valor)
+    ok = all([gerar(nome, PERFIS[nome], dados, comuns) for nome in pedidos])
+    return 0 if ok else 1
 
-    sobraram = re.findall(r"\{\{(\w+)\}\}", html)
-    if sobraram:
-        print("! marcadores sem valor no template: " + ", ".join(sorted(set(sobraram))))
-
-    caminho_html = os.path.join(AQUI, "apresentacao.html")
-    caminho_pdf = os.path.join(AQUI, "apresentacao-desata.pdf")
-    with open(caminho_html, "w", encoding="utf-8") as arq:
-        arq.write(html)
-    print(f"· apresentacao.html gerado ({os.path.getsize(caminho_html) // 1024} KB)")
-
-    if gerar_pdf(caminho_html, caminho_pdf):
-        print(f"· apresentacao-desata.pdf gerado ({os.path.getsize(caminho_pdf) // 1024} KB)")
-        print(f"\n  Para:     {EMPRESA}")
-        de = f" (de {PRECO_SITE_CHEIO})" if PRECO_SITE_CHEIO else ""
-        print(f"  Site:     {PRECO_SITE}{de} · Mensal: {PRECO_MENSAL}")
-        print(f"  WhatsApp: {valores['WHATSAPP']}")
-    return 0
 
 
 if __name__ == "__main__":

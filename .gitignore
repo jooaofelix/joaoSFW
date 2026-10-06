@@ -7,4 +7,4 @@ __pycache__/
 *.pyc
 
 # intermediário da apresentação (regerado a cada execução)
-apresentacao/apresentacao.html
+apresentacao/_*.html
