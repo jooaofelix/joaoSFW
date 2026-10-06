@@ -24,7 +24,9 @@ import sys
 # --------------------------------------------------------------------------
 EMPRESA = "Vallemed"                                  # quem vai receber
 DESTINATARIO = "medicina e segurança do trabalho"     # aparece na capa
-PRECO_SITE = "R$ 1.800"                               # "a partir de"
+PRECO_SITE = "R$ 900"                                 # "a partir de"
+PRECO_SITE_CHEIO = "R$ 1.800"                         # valor de tabela; "" = sem desconto
+SELO_SITE = "condição de primeiro projeto"            # "" = sem selo
 PRECO_MENSAL = "R$ 150"                               # acompanhamento opcional
 NOME = "João Félix · Desata"
 
@@ -138,6 +140,13 @@ def main():
     logo = os.path.join(RAIZ, "assets", "img", "logo-desata-colorido.png")
     logo_branco = os.path.join(RAIZ, "assets", "img", "logo-desata-branco.png")
 
+    de_site = f'<small class="de">de {PRECO_SITE_CHEIO}</small>' if PRECO_SITE_CHEIO else ""
+    selo_site = f'<span class="selo">{SELO_SITE}</span>' if SELO_SITE else ""
+    nota_desconto = (
+        f" O valor de {PRECO_SITE} é uma condição de abertura, para os primeiros "
+        "projetos da Desata, e vale para o escopo descrito nesta apresentação."
+    ) if PRECO_SITE_CHEIO else ""
+
     valores = {
         "FONTES": montar_fontes(),
         "LOGO_COR": embutir(logo, "image/png"),
@@ -151,6 +160,9 @@ def main():
         "EMAIL": dados["email"],
         "SITE": dados["site"],
         "PRECO_SITE": PRECO_SITE,
+        "DE_SITE": de_site,
+        "SELO_SITE": selo_site,
+        "NOTA_DESCONTO": nota_desconto,
         "PRECO_MENSAL": PRECO_MENSAL,
     }
 
@@ -172,7 +184,8 @@ def main():
     if gerar_pdf(caminho_html, caminho_pdf):
         print(f"· apresentacao-desata.pdf gerado ({os.path.getsize(caminho_pdf) // 1024} KB)")
         print(f"\n  Para:     {EMPRESA}")
-        print(f"  Site:     {PRECO_SITE} · Mensal: {PRECO_MENSAL}")
+        de = f" (de {PRECO_SITE_CHEIO})" if PRECO_SITE_CHEIO else ""
+        print(f"  Site:     {PRECO_SITE}{de} · Mensal: {PRECO_MENSAL}")
         print(f"  WhatsApp: {valores['WHATSAPP']}")
     return 0
 

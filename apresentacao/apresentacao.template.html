@@ -104,6 +104,11 @@ p{text-wrap:pretty;}
 .valor__preco{font-size:15pt;font-weight:800;letter-spacing:-.02em;white-space:nowrap;}
 .valor__preco small{font-size:8.5pt;font-weight:600;display:block;text-align:right;
                     letter-spacing:.04em;text-transform:uppercase;opacity:.9;}
+.valor__preco small.de{font-size:10pt;text-decoration:line-through;text-transform:none;
+                       letter-spacing:-.01em;opacity:.8;margin-bottom:.5mm;}
+.selo{display:inline-block;font-size:6.8pt;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;background:var(--grafite);color:var(--off-white);
+      padding:1mm 2.8mm;border-radius:9mm;margin-left:2.5mm;vertical-align:middle;}
 .nota{margin-top:5mm;font-size:9pt;max-width:60ch;border-left:.8mm solid var(--grafite);padding-left:4mm;}
 
 .proximo{margin-top:auto;}
@@ -263,10 +268,10 @@ p{text-wrap:pretty;}
   <div class="valores">
     <div class="valor">
       <div>
-        <h3>Site profissional</h3>
+        <h3>Site profissional{{SELO_SITE}}</h3>
         <p>Projeto fechado, sem mensalidade obrigatória. O domínio e o site ficam no nome da sua empresa.</p>
       </div>
-      <span class="valor__preco">{{PRECO_SITE}}<small>a partir de</small></span>
+      <span class="valor__preco">{{DE_SITE}}{{PRECO_SITE}}<small>a partir de</small></span>
     </div>
     <div class="valor">
       <div>
@@ -286,7 +291,7 @@ p{text-wrap:pretty;}
 
   <p class="nota">
     O valor final depende do escopo. Nenhum trabalho começa sem proposta escrita,
-    com o que entra, o que não entra e o prazo combinado.
+    com o que entra, o que não entra e o prazo combinado.{{NOTA_DESCONTO}}
   </p>
 
   <div class="proximo">
