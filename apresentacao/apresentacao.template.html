@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Desata — Apresentação</title>
+<style>
+{{FONTES}}
+
+@page { size: A4; margin: 0; }
+
+:root{
+  --off-white:#F4F0E8; --grafite:#242424; --laranja:#E66A35;
+  --off-2:#EBE5D9; --grafite-2:#2E2E2E; --grafite-3:#3D3D3D;
+  --suave:#5B5650; --claro:rgba(244,240,232,.76); --laranja-texto:#A34517;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{font-family:'Figtree',system-ui,sans-serif;color:var(--grafite);
+     font-size:10.5pt;line-height:1.55;}
+
+.page{width:210mm;height:297mm;padding:17mm 16mm 14mm;position:relative;
+      overflow:hidden;page-break-after:always;background:var(--off-white);
+      display:flex;flex-direction:column;}
+.page:last-child{page-break-after:auto;}
+.page--escura{background:var(--grafite);color:var(--off-white);}
+.page--laranja{background:var(--laranja);color:var(--grafite);}
+.page--laranja > *:not(.laco){position:relative;z-index:1;}
+
+h1{font-size:33pt;line-height:1.04;letter-spacing:-.025em;font-weight:800;}
+h2{font-size:22pt;line-height:1.08;letter-spacing:-.025em;font-weight:800;}
+h3{font-size:12.5pt;line-height:1.2;letter-spacing:-.015em;font-weight:700;}
+p{text-wrap:pretty;}
+
+.logo{height:11mm;width:auto;align-self:flex-start;}  /* align-self: senão o flex estica a imagem */
+.logo--rodape{height:8mm;width:auto;}
+
+.olho{font-size:7.6pt;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--laranja-texto);display:flex;align-items:center;gap:3mm;}
+.olho::before{content:"";width:9mm;height:.7mm;background:currentColor;border-radius:1mm;flex:none;}
+.page--escura .olho{color:var(--laranja);}
+.page--laranja .olho{color:var(--grafite);}
+
+.suave{color:var(--suave);}
+.page--escura .suave{color:var(--claro);}
+
+.laco{position:absolute;pointer-events:none;}
+.laco path{fill:none;stroke:currentColor;stroke-width:9;stroke-linecap:round;}
+
+/* ---------- capa ---------- */
+.capa__meio{flex:1;display:flex;flex-direction:column;justify-content:center;}
+.capa h1{max-width:15ch;margin:6mm 0 7mm;}
+.capa h1 .ponto{color:var(--laranja);}
+.capa__texto{font-size:12pt;max-width:46ch;color:var(--suave);}
+.capa__laco{right:-18mm;bottom:38mm;width:120mm;color:var(--laranja);}
+.capa__base{display:flex;justify-content:space-between;align-items:flex-end;
+            border-top:.4mm solid var(--off-2);padding-top:5mm;font-size:8.6pt;}
+.assinatura{letter-spacing:.16em;text-transform:uppercase;color:var(--suave);font-weight:500;}
+
+/* ---------- lista de problemas ---------- */
+.intro{font-size:11.5pt;max-width:52ch;margin-top:4mm;}
+.problemas{margin-top:9mm;display:flex;flex-direction:column;gap:0;flex:1;justify-content:space-between;}
+.problema{display:grid;grid-template-columns:13mm 1fr;gap:0 5mm;
+          padding:6.5mm 0;border-top:.3mm solid var(--grafite-3);}
+.problema:last-of-type{border-bottom:.3mm solid var(--grafite-3);}
+.problema__n{font-size:13pt;font-weight:800;color:var(--laranja);letter-spacing:-.03em;}
+.problema p{font-size:10pt;color:var(--claro);max-width:62ch;margin-top:1mm;}
+.fecho{margin-top:7mm;font-size:13pt;font-weight:700;letter-spacing:-.02em;max-width:34ch;}
+.fecho em{font-style:normal;color:var(--laranja);}
+
+/* ---------- serviços ---------- */
+.servicos{display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-top:7mm;}
+.card{border:.35mm solid var(--off-2);border-radius:4mm;padding:7mm 6.5mm;background:#fff6;}
+.card--destaque{background:var(--grafite);color:var(--off-white);border-color:var(--grafite);}
+.tag{display:inline-block;font-size:7pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+     background:var(--laranja);color:var(--grafite);padding:1mm 3mm;border-radius:9mm;margin-bottom:3.5mm;}
+.card p{font-size:9.4pt;color:var(--suave);margin-top:2mm;}
+.card--destaque p{color:var(--claro);}
+.card ul{list-style:none;margin-top:4mm;display:flex;flex-direction:column;gap:1.6mm;}
+.card li{font-size:9.2pt;padding-left:5mm;position:relative;color:var(--suave);}
+.card--destaque li{color:var(--claro);}
+.card li::before{content:"";position:absolute;left:0;top:2.1mm;width:3mm;height:.6mm;
+                 background:var(--laranja);border-radius:1mm;}
+
+.passos{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;margin-top:8mm;}
+.passo{border-top:.6mm solid var(--laranja);padding-top:3mm;}
+.passo__n{font-size:8pt;font-weight:700;color:var(--laranja);letter-spacing:.1em;}
+.passo h3{font-size:9.6pt;margin:1mm 0 1.5mm;}
+.passo p{font-size:8.4pt;color:var(--suave);line-height:1.4;}
+
+.nao-prometo{margin-top:auto;background:var(--off-2);border-radius:4mm;padding:6mm 6.5mm;}
+.nao-prometo h3{margin-bottom:2.5mm;}
+.nao-prometo ul{list-style:none;display:flex;flex-direction:column;gap:1.4mm;}
+.nao-prometo li{font-size:9.2pt;color:var(--suave);padding-left:5mm;position:relative;}
+.nao-prometo li::before{content:"";position:absolute;left:0;top:2.1mm;width:3mm;height:.6mm;
+                        background:var(--grafite);border-radius:1mm;}
+
+/* ---------- valores ---------- */
+.valores{margin-top:8mm;display:flex;flex-direction:column;gap:0;}
+.valor{display:grid;grid-template-columns:1fr auto;gap:6mm;align-items:baseline;
+       padding:5.5mm 0;border-top:.35mm solid rgba(36,36,36,.28);}
+.valor:last-of-type{border-bottom:.35mm solid rgba(36,36,36,.28);}
+.valor h3{font-size:12pt;}
+.valor p{font-size:9.4pt;max-width:52ch;margin-top:1mm;}
+.valor__preco{font-size:15pt;font-weight:800;letter-spacing:-.02em;white-space:nowrap;}
+.valor__preco small{font-size:8.5pt;font-weight:600;display:block;text-align:right;
+                    letter-spacing:.04em;text-transform:uppercase;opacity:.9;}
+.nota{margin-top:5mm;font-size:9pt;max-width:60ch;border-left:.8mm solid var(--grafite);padding-left:4mm;}
+
+.proximo{margin-top:auto;}
+.proximo h2{margin-bottom:3mm;}
+.proximo p{font-size:11.5pt;max-width:48ch;font-weight:500;}
+.contatos{margin-top:7mm;display:flex;gap:9mm;flex-wrap:wrap;
+          border-top:.35mm solid rgba(36,36,36,.28);padding-top:5mm;}
+.contato__rotulo{font-size:7.4pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.7;}
+.contato__valor{font-size:11pt;font-weight:700;letter-spacing:-.01em;margin-top:.8mm;}
+.valores__laco{right:-22mm;top:122mm;width:112mm;color:rgba(244,240,232,.5);z-index:0;}
+</style>
+</head>
+<body>
+
+<!-- ============ 1. capa ============ -->
+<section class="page capa">
+  <img class="logo" src="{{LOGO_COR}}" alt="Desata">
+
+  <div class="capa__meio">
+    <p class="olho">Apresentação · {{DESTINATARIO}}</p>
+    <h1>Você organiza a segurança de todo mundo. E a sua própria rotina<span class="ponto">?</span></h1>
+    <p class="capa__texto">
+      A Desata desenvolve <strong>sites</strong> e <strong>sistemas web sob medida</strong> para
+      quem presta serviço. Esta apresentação é sobre o que dá para desatar na rotina de uma
+      empresa de SST — em português claro, sem promessa grande.
+    </p>
+  </div>
+
+  <svg class="laco capa__laco" viewBox="0 0 420 300">
+    <path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/>
+  </svg>
+
+  <div class="capa__base">
+    <div>
+      <span class="assinatura">Tecnologia que descomplica.</span>
+      <p class="suave" style="font-size:8.6pt;margin-top:1.5mm">{{NOME}} · {{CIDADE}}</p>
+    </div>
+    <div style="text-align:right">
+      <p class="contato__rotulo" style="font-size:7.4pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.6">Preparado para</p>
+      <p style="font-size:11pt;font-weight:700;letter-spacing:-.01em;margin-top:.8mm">{{EMPRESA}}</p>
+      <p class="suave" style="font-size:8.6pt">{{DATA}}</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. o que trava ============ -->
+<section class="page page--escura">
+  <p class="olho">O que costuma travar</p>
+  <h2 style="margin-top:4mm">Nada disso é desorganização.</h2>
+  <p class="intro suave">
+    É processo manual demais para o tamanho do serviço. Veja quantos destes
+    acontecem na sua semana:
+  </p>
+
+  <div class="problemas">
+    <div class="problema">
+      <span class="problema__n">01</span>
+      <div>
+        <h3>O vencimento mora numa planilha</h3>
+        <p>ASO, periódico, treinamento, reciclagem. A planilha só avisa quem abre ela — e ninguém abre todo dia. O eSocial e as normas não perguntam se a semana foi corrida.</p>
+      </div>
+    </div>
+    <div class="problema">
+      <span class="problema__n">02</span>
+      <div>
+        <h3>O mesmo documento, pedido de novo</h3>
+        <p>PGR, PCMSO, LTCAT, PPP, ASO. O cliente liga pedindo cópia e alguém para o que estava fazendo para ir procurar na pasta.</p>
+      </div>
+    </div>
+    <div class="problema">
+      <span class="problema__n">03</span>
+      <div>
+        <h3>Agenda e confirmação no meio da conversa</h3>
+        <p>Marcar, confirmar e remarcar exame no mesmo WhatsApp em que chega todo o resto do dia.</p>
+      </div>
+    </div>
+    <div class="problema">
+      <span class="problema__n">04</span>
+      <div>
+        <h3>Cada empresa cliente em um canto</h3>
+        <p>WhatsApp, e-mail, pasta no computador, caderno. A informação existe; o que falta é um lugar só.</p>
+      </div>
+    </div>
+    <div class="problema">
+      <span class="problema__n">05</span>
+      <div>
+        <h3>Relatório montado à mão</h3>
+        <p>Juntar dado de três lugares toda vez que um cliente pede uma posição de como está a empresa dele.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="fecho">Se você reconheceu dois desses, <em>já temos o que conversar.</em></p>
+</section>
+
+<!-- ============ 3. o que a Desata faz ============ -->
+<section class="page">
+  <p class="olho">O que a Desata faz</p>
+  <h2 style="margin-top:4mm">Duas frentes, uma de cada vez.</h2>
+
+  <div class="servicos">
+    <article class="card card--destaque">
+      <span class="tag">Começa por aqui</span>
+      <h3>Site profissional</h3>
+      <p>Uma página que apresenta a empresa, explica os serviços e facilita o pedido de orçamento. Quem procura por SST na internet encontra, entende e chama.</p>
+      <ul>
+        <li>Estrutura e textos organizados junto com você</li>
+        <li>Funciona bem no celular e no computador</li>
+        <li>Botão direto para o WhatsApp</li>
+        <li>Preparado para ser encontrado no Google</li>
+        <li>A identidade da sua empresa aplicada com cuidado</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3>Sistema web sob medida</h3>
+      <p>Construído em cima da sua rotina, não de um modelo pronto. Exemplos do que costuma fazer sentido numa empresa de SST:</p>
+      <ul>
+        <li>Painel de vencimentos que avisa antes de vencer</li>
+        <li>Agenda de exames com confirmação pelo WhatsApp</li>
+        <li>Documentos centralizados por cliente e por funcionário</li>
+        <li>Registro de treinamentos e reciclagens</li>
+        <li>Relatório pronto para mandar ao cliente</li>
+      </ul>
+      <p style="margin-top:4mm;font-size:8.8pt">Cada projeto é avaliado conforme a necessidade e a viabilidade de entrega.</p>
+    </article>
+  </div>
+
+  <p class="olho" style="margin-top:10mm">Como funciona</p>
+  <div class="passos">
+    <div class="passo"><span class="passo__n">01</span><h3>Entender</h3><p>Conversa para saber o que trava hoje.</p></div>
+    <div class="passo"><span class="passo__n">02</span><h3>Escopo</h3><p>Por escrito: o que entra, o que fica para depois.</p></div>
+    <div class="passo"><span class="passo__n">03</span><h3>Desenvolver</h3><p>Construção, com notícias do andamento.</p></div>
+    <div class="passo"><span class="passo__n">04</span><h3>Validar</h3><p>Você testa e aponta ajustes antes de publicar.</p></div>
+    <div class="passo"><span class="passo__n">05</span><h3>Entregar</h3><p>Publicação e explicação de como usar.</p></div>
+  </div>
+
+  <div class="nao-prometo">
+    <h3>O que eu não prometo</h3>
+    <ul>
+      <li>Prazo antes de saber o tamanho do projeto.</li>
+      <li>Integração com um sistema que eu ainda não olhei por dentro.</li>
+      <li>Software pronto vendido como se servisse para toda empresa igual.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4. valores e próximo passo ============ -->
+<section class="page page--laranja">
+  <svg class="laco valores__laco" viewBox="0 0 420 300">
+    <path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/>
+  </svg>
+
+  <p class="olho">Valores</p>
+  <h2 style="margin-top:4mm">Sem pegadinha no rodapé.</h2>
+
+  <div class="valores">
+    <div class="valor">
+      <div>
+        <h3>Site profissional</h3>
+        <p>Projeto fechado, sem mensalidade obrigatória. O domínio e o site ficam no nome da sua empresa.</p>
+      </div>
+      <span class="valor__preco">{{PRECO_SITE}}<small>a partir de</small></span>
+    </div>
+    <div class="valor">
+      <div>
+        <h3>Sistema web sob medida</h3>
+        <p>O valor depende do que precisa existir. Sai por escrito depois da conversa, com escopo e prazo.</p>
+      </div>
+      <span class="valor__preco">Sob medida<small>após o escopo</small></span>
+    </div>
+    <div class="valor">
+      <div>
+        <h3>Acompanhamento mensal <span style="font-weight:500">(opcional)</span></h3>
+        <p>Alterações e ajustes depois da entrega. Só se você quiser — não é condição para nada.</p>
+      </div>
+      <span class="valor__preco">{{PRECO_MENSAL}}<small>por mês</small></span>
+    </div>
+  </div>
+
+  <p class="nota">
+    O valor final depende do escopo. Nenhum trabalho começa sem proposta escrita,
+    com o que entra, o que não entra e o prazo combinado.
+  </p>
+
+  <div class="proximo">
+    <h2>O próximo passo é uma conversa.</h2>
+    <p>
+      Trinta minutos, sem custo e sem compromisso. Você conta o que está travando;
+      eu digo se dá para resolver, como seria o caminho e quanto custaria.
+    </p>
+
+    <div class="contatos">
+      <div>
+        <p class="contato__rotulo">WhatsApp</p>
+        <p class="contato__valor">{{WHATSAPP}}</p>
+      </div>
+      <div>
+        <p class="contato__rotulo">E-mail</p>
+        <p class="contato__valor">{{EMAIL}}</p>
+      </div>
+      <div>
+        <p class="contato__rotulo">Site</p>
+        <p class="contato__valor">{{SITE}}</p>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <img class="logo logo--rodape" src="{{LOGO_BRANCO}}" alt="Desata" style="margin-left:auto">
+        <p class="contato__rotulo" style="margin-top:2mm">Tecnologia que descomplica</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
