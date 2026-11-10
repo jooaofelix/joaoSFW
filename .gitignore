@@ -8,3 +8,6 @@ __pycache__/
 
 # intermediário da apresentação (regerado a cada execução)
 apresentacao/_*.html
+
+# gravação intermediária do vídeo
+demos/loja-roupas/.gravacao/

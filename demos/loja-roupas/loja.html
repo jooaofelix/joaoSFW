@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>148 — demonstração</title>
+<link rel="stylesheet" href="../../assets/css/fontes.css">
+<style>
+:root{
+  --off:#F4F0E8; --graf:#242424; --lar:#E66A35;
+  --off2:#EBE5D9; --off3:#DED7C8; --suave:#5B5650; --verde:#1F7A4D;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Figtree',system-ui,sans-serif;background:var(--off);color:var(--graf);
+     font-size:15px;line-height:1.5;overflow-x:hidden;}
+::-webkit-scrollbar{display:none;}
+h1,h2,h3{letter-spacing:-.025em;line-height:1.08;font-weight:800;}
+img,svg{display:block;max-width:100%;}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;}
+
+/* ---------- topo ---------- */
+.topo{position:sticky;top:0;z-index:20;background:var(--off);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 20px;border-bottom:1px solid transparent;transition:border-color .3s;}
+.topo.rolou{border-bottom-color:var(--off3);}
+.marca{font-size:26px;font-weight:900;letter-spacing:-.06em;}
+.marca span{color:var(--lar);}
+.sacola-btn{position:relative;width:40px;height:40px;display:grid;place-items:center;
+            border-radius:50%;background:var(--graf);color:var(--off);}
+.sacola-btn svg{width:19px;height:19px;}
+.badge{position:absolute;top:-3px;right:-3px;min-width:20px;height:20px;border-radius:10px;
+       background:var(--lar);color:var(--graf);font-size:11px;font-weight:800;
+       display:grid;place-items:center;transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
+.badge.on{transform:scale(1);}
+
+/* ---------- vitrine ---------- */
+.hero{padding:26px 20px 22px;position:relative;overflow:hidden;}
+.hero .olho{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+            color:var(--lar);margin-bottom:10px;}
+.hero h1{font-size:40px;max-width:9ch;}
+.hero p{color:var(--suave);margin-top:10px;font-size:14px;max-width:26ch;}
+.hero .laco{position:absolute;right:-40px;bottom:-26px;width:190px;color:var(--lar);opacity:.9;}
+.laco path{fill:none;stroke:currentColor;stroke-width:11;stroke-linecap:round;}
+
+.filtros{display:flex;gap:8px;padding:4px 20px 18px;overflow-x:auto;}
+.chip{flex:none;padding:8px 16px;border-radius:999px;border:1.5px solid var(--off3);
+      font-size:13px;font-weight:600;color:var(--suave);transition:all .25s;}
+.chip.on{background:var(--graf);border-color:var(--graf);color:var(--off);}
+
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 20px 28px;}
+.card{border-radius:16px;overflow:hidden;background:var(--off2);
+      opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.card.ver{opacity:1;transform:none;}
+.card.fora{display:none;}
+.card .foto{aspect-ratio:3/4;display:grid;place-items:center;transition:transform .5s;}
+.card:active .foto{transform:scale(.97);}
+.card .info{padding:10px 12px 14px;background:var(--off);}
+.card h3{font-size:14px;font-weight:700;letter-spacing:-.01em;}
+.card .preco{font-size:15px;font-weight:800;margin-top:3px;}
+.card .tams{font-size:11px;color:var(--suave);margin-top:3px;letter-spacing:.06em;}
+
+/* ---------- detalhe ---------- */
+.detalhe{position:fixed;inset:0;z-index:40;background:var(--off);
+         transform:translateY(100%);transition:transform .5s cubic-bezier(.4,0,.2,1);
+         display:flex;flex-direction:column;}
+.detalhe.on{transform:none;}
+.detalhe .foto-grande{height:46%;display:grid;place-items:center;position:relative;}
+.voltar{position:absolute;top:16px;left:16px;width:38px;height:38px;border-radius:50%;
+        background:#fffc;display:grid;place-items:center;font-size:19px;}
+.detalhe .corpo{flex:1;padding:22px 20px;display:flex;flex-direction:column;}
+.detalhe h2{font-size:26px;}
+.detalhe .preco{font-size:24px;font-weight:800;margin-top:6px;}
+.detalhe .desc{color:var(--suave);font-size:13.5px;margin-top:10px;}
+.rotulo{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+        color:var(--suave);margin:20px 0 9px;}
+.tamanhos{display:flex;gap:9px;}
+.tam{width:46px;height:46px;border-radius:12px;border:1.5px solid var(--off3);
+     display:grid;place-items:center;font-weight:700;font-size:14px;transition:all .25s;}
+.tam.on{background:var(--graf);border-color:var(--graf);color:var(--off);transform:scale(1.06);}
+.tam.off{opacity:.3;text-decoration:line-through;}
+.btn{margin-top:auto;height:54px;border-radius:999px;background:var(--lar);color:var(--graf);
+     font-weight:800;font-size:16px;display:grid;place-items:center;transition:transform .2s,background .2s;}
+.btn:active{transform:scale(.98);}
+.btn--zap{background:var(--verde);color:#fff;display:flex;gap:9px;align-items:center;justify-content:center;}
+.btn--zap svg{width:21px;height:21px;}
+
+/* ---------- sacola ---------- */
+.sacola{position:fixed;inset:0;z-index:50;background:var(--off);
+        transform:translateY(100%);transition:transform .5s cubic-bezier(.4,0,.2,1);
+        display:flex;flex-direction:column;padding:20px;}
+.sacola.on{transform:none;}
+.sacola h2{font-size:24px;margin-bottom:4px;}
+.sacola .sub{color:var(--suave);font-size:13px;margin-bottom:18px;}
+.item{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--off3);
+      opacity:0;transform:translateX(16px);animation:entra .45s ease forwards;}
+@keyframes entra{to{opacity:1;transform:none;}}
+.item .mini{width:52px;height:64px;border-radius:9px;display:grid;place-items:center;flex:none;}
+.item h3{font-size:14px;}
+.item .tam-txt{font-size:12px;color:var(--suave);}
+.item .p{margin-left:auto;font-weight:800;font-size:15px;}
+.total{display:flex;justify-content:space-between;align-items:baseline;
+       border-top:1.5px solid var(--graf);margin-top:14px;padding-top:14px;font-weight:800;}
+.total .v{font-size:22px;}
+
+/* ---------- mensagem do whatsapp ---------- */
+.zap{position:fixed;inset:0;z-index:60;background:#0b141a;opacity:0;pointer-events:none;
+     transition:opacity .4s;padding:60px 18px 0;display:flex;flex-direction:column;}
+.zap.on{opacity:1;}
+.zap .cab{display:flex;align-items:center;gap:10px;margin-bottom:22px;color:#e9edef;}
+.zap .av{width:34px;height:34px;border-radius:50%;background:var(--lar);color:var(--graf);
+         display:grid;place-items:center;font-weight:900;font-size:14px;}
+.zap .nome{font-size:15px;font-weight:600;}
+.zap .st{font-size:11px;color:#8696a0;}
+.balao{background:#005c4b;color:#e9edef;border-radius:14px 14px 4px 14px;padding:11px 13px;
+       font-size:13.5px;line-height:1.5;align-self:flex-end;max-width:85%;
+       opacity:0;transform:translateY(10px) scale(.96);
+       transition:opacity .4s,transform .45s cubic-bezier(.34,1.56,.64,1);white-space:pre-line;}
+.balao.on{opacity:1;transform:none;}
+.balao .hora{font-size:10px;color:#ffffff99;text-align:right;margin-top:4px;}
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <div class="marca">1<span>4</span>8</div>
+  <button class="sacola-btn" id="btn-sacola">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+    <span class="badge" id="badge">0</span>
+  </button>
+</header>
+
+<section class="hero">
+  <p class="olho">Coleção nova</p>
+  <h1>Peça vista, peça pedida.</h1>
+  <p>Escolha o tamanho e feche o pedido direto no WhatsApp.</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<nav class="filtros" id="filtros"></nav>
+<main class="grade" id="grade"></main>
+
+<div class="detalhe" id="detalhe"></div>
+
+<div class="sacola" id="sacola">
+  <h2>Sua sacola</h2>
+  <p class="sub">Confira e finalize no WhatsApp.</p>
+  <div id="itens"></div>
+  <div class="total"><span>Total</span><span class="v" id="total">R$ 0</span></div>
+  <button class="btn btn--zap" id="btn-zap" style="margin-top:20px">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.14 6.44 2.14 11.9c0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm4.52 13.97c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.73 2.65 4.2 3.72.59.25 1.04.4 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+    Finalizar no WhatsApp
+  </button>
+</div>
+
+<div class="zap" id="zap">
+  <div class="cab">
+    <div class="av">148</div>
+    <div><div class="nome">148 · Loja</div><div class="st">online</div></div>
+  </div>
+  <div class="balao" id="balao"></div>
+</div>
+
+<script>
+const PECAS = [
+  {id:1, nome:"Camiseta Linho",  preco:129, tams:["P","M","G"],      cor:"#C9D4C5", tipo:"camiseta"},
+  {id:2, nome:"Vestido Midi",    preco:259, tams:["P","M","G","GG"], cor:"#E6C8B0", tipo:"vestido"},
+  {id:3, nome:"Jaqueta Jeans",   preco:329, tams:["G","GG"],         cor:"#AFC0D4", tipo:"jaqueta"},
+  {id:4, nome:"Calça Alfaiataria",preco:289,tams:["P","M","G"],      cor:"#D8D2C4", tipo:"calca"},
+  {id:5, nome:"Moletom Oversized",preco:219,tams:["M","G","GG"],     cor:"#E1B9A6", tipo:"moletom"},
+  {id:6, nome:"Saia Plissada",   preco:189, tams:["P"],              cor:"#CFC6DC", tipo:"saia"},
+];
+
+const FORMAS = {
+  camiseta:'<path d="M28 26 48 16l12 8 12-8 20 10-8 18-10-4v46H46V40l-10 4z"/>',
+  vestido: '<path d="M34 24 50 14l10 7 10-7 16 10-9 16-6-3 9 55H31l9-55-6 3z"/>',
+  jaqueta: '<path d="M30 26 48 16v62H34V44l-8 4zm60 0L72 16v62h14V44l8 4zM48 16h24v62H48z"/>',
+  calca:   '<path d="M38 18h44l-4 34-3 44H63l-3-38-3 38H45l-3-44z"/>',
+  moletom: '<path d="M26 30 48 18h24l22 12-9 18-9-5v49H44V43l-9 5z"/>',
+  saia:    '<path d="M40 22h40l4 10-6 4 10 48H32l10-48-6-4z"/>'
+};
+const svgPeca = (p,s) => `<svg viewBox="0 0 120 110" style="width:${s}%"><g fill="${p.cor}">${FORMAS[p.tipo]}</g></svg>`;
+const reais = n => "R$ " + n.toLocaleString("pt-BR");
+
+let sacola = [], filtro = "Todos";
+const $ = s => document.querySelector(s);
+
+$("#filtros").innerHTML = ["Todos","P","M","G","GG"]
+  .map(t => `<button class="chip${t===filtro?" on":""}" data-tam="${t}">${t==="Todos"?"Todos":"Tam "+t}</button>`).join("");
+
+$("#grade").innerHTML = PECAS.map(p => `
+  <article class="card" data-id="${p.id}" data-tams="${p.tams.join(",")}">
+    <div class="foto" style="background:${p.cor}22">${svgPeca(p,68)}</div>
+    <div class="info">
+      <h3>${p.nome}</h3>
+      <div class="preco">${reais(p.preco)}</div>
+      <div class="tams">${p.tams.join(" · ")}</div>
+    </div>
+  </article>`).join("");
+
+const api = {
+  revelar(){ document.querySelectorAll(".card").forEach((c,i)=>setTimeout(()=>c.classList.add("ver"), i*90)); },
+  rolar(y, ms=900){
+    return new Promise(r=>{ const ini=scrollY, dif=y-ini, t0=performance.now();
+      (function passo(t){ const k=Math.min(1,(t-t0)/ms), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+        scrollTo(0, ini+dif*e); k<1?requestAnimationFrame(passo):r(); })(t0); });
+  },
+  filtrar(tam){
+    filtro = tam;
+    document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on", c.dataset.tam===tam));
+    document.querySelectorAll(".card").forEach(c=>{
+      const ok = tam==="Todos" || c.dataset.tams.split(",").includes(tam);
+      c.classList.toggle("fora", !ok);
+    });
+  },
+  abrir(id){
+    const p = PECAS.find(x=>x.id===id);
+    $("#detalhe").innerHTML = `
+      <div class="foto-grande" style="background:${p.cor}33">
+        ${svgPeca(p,52)}<div class="voltar">←</div>
+      </div>
+      <div class="corpo">
+        <h2>${p.nome}</h2>
+        <div class="preco">${reais(p.preco)}</div>
+        <p class="desc">Modelagem confortável, caimento solto. Foto e descrição cadastradas pela loja em um minuto.</p>
+        <p class="rotulo">Escolha o tamanho</p>
+        <div class="tamanhos">${["P","M","G","GG"].map(t=>
+          `<div class="tam ${p.tams.includes(t)?"":"off"}" data-tam="${t}">${t}</div>`).join("")}</div>
+        <button class="btn" id="btn-add">Adicionar à sacola</button>
+      </div>`;
+    $("#detalhe").classList.add("on");
+  },
+  tamanho(t){ document.querySelectorAll(".tam").forEach(e=>e.classList.toggle("on", e.dataset.tam===t)); },
+  add(id, tam){
+    const p = PECAS.find(x=>x.id===id);
+    sacola.push({...p, tam});
+    const b = $("#badge"); b.textContent = sacola.length; b.classList.add("on");
+    const btn = $("#btn-add"); if(btn){ btn.textContent = "Adicionado ✓"; btn.style.background = "#1F7A4D"; btn.style.color="#fff"; }
+  },
+  fechar(){ $("#detalhe").classList.remove("on"); },
+  verSacola(){
+    $("#itens").innerHTML = sacola.map((p,i)=>`
+      <div class="item" style="animation-delay:${i*.12}s">
+        <div class="mini" style="background:${p.cor}33">${svgPeca(p,74)}</div>
+        <div><h3>${p.nome}</h3><div class="tam-txt">Tamanho ${p.tam}</div></div>
+        <div class="p">${reais(p.preco)}</div>
+      </div>`).join("");
+    $("#total").textContent = reais(sacola.reduce((s,p)=>s+p.preco,0));
+    $("#sacola").classList.add("on");
+  },
+  whatsapp(){
+    const linhas = sacola.map(p=>`• ${p.nome} — tam ${p.tam} — ${reais(p.preco)}`).join("\n");
+    const total = reais(sacola.reduce((s,p)=>s+p.preco,0));
+    $("#zap").classList.add("on");
+    setTimeout(()=>{
+      $("#balao").innerHTML = `Olá! Quero fechar este pedido na 148:\n\n${linhas}\n\nTotal: ${total}<div class="hora">agora ✓✓</div>`;
+      $("#balao").classList.add("on");
+    }, 450);
+  }
+};
+window.api = api;
+addEventListener("scroll", ()=> $("#topo").classList.toggle("rolou", scrollY>6));
+</script>
+</body>
+</html>
