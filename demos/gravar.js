@@ -1,10 +1,12 @@
 /*
- * Grava o vídeo de demonstração.
+ * Grava os vídeos de demonstração.
  *
- *   npm i playwright   (uma vez)
- *   node demos/loja-roupas/gravar.js
+ *   npm i playwright                                    (uma vez)
+ *   node demos/gravar.js loja-roupas 148-demonstracao
+ *   node demos/gravar.js landing-roupas 148-landing
  *
- * Sai um MP4 1080x1920 em demos/loja-roupas/. Precisa do ffmpeg no PATH.
+ * Abre o palco da pasta indicada, filma e salva um MP4 1080x1920 ali dentro.
+ * Precisa do ffmpeg no PATH.
  */
 const { chromium } = require("playwright");
 const { execFileSync } = require("child_process");
@@ -12,9 +14,14 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const AQUI = __dirname;
-const RAIZ = path.resolve(AQUI, "..", "..");
-const SAIDA = path.join(AQUI, "148-demonstracao.mp4");
+const DEMO = process.argv[2];
+if (!DEMO) {
+  console.error("uso: node demos/gravar.js <pasta-do-demo> [nome-do-mp4]");
+  process.exit(1);
+}
+const AQUI = path.join(__dirname, DEMO);
+const RAIZ = path.resolve(__dirname, "..");
+const SAIDA = path.join(AQUI, (process.argv[3] || DEMO) + ".mp4");
 const TEMP = path.join(AQUI, ".gravacao");
 
 function contatos() {
@@ -46,8 +53,16 @@ function servir(raiz) {
 }
 
 function acharChrome() {
-  const fixos = [process.env.CHROME_BIN, "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"];
-  return fixos.find(p => p && fs.existsSync(p));
+  if (process.env.CHROME_BIN && fs.existsSync(process.env.CHROME_BIN)) return process.env.CHROME_BIN;
+  const base = process.env.PLAYWRIGHT_BROWSERS_PATH || "/opt/pw-browsers";
+  if (!fs.existsSync(base)) return undefined;   // deixa o Playwright procurar sozinho
+  for (const dir of fs.readdirSync(base).filter(d => d.startsWith("chromium-")).sort().reverse()) {
+    for (const sub of ["chrome-linux64", "chrome-linux"]) {
+      const p = path.join(base, dir, sub, "chrome");
+      if (fs.existsSync(p)) return p;
+    }
+  }
+  return undefined;
 }
 
 (async () => {

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trama — peças numeradas</title>
+<link rel="stylesheet" href="../../assets/css/fontes.css">
+<link rel="stylesheet" href="fraunces.css">
+<style>
+/* =========================================================
+   Trama — marca de exemplo, de roupas em peças numeradas.
+   Identidade própria, separada da Desata: papel greige, tinta
+   e cobalto. O número da edição é a estrutura da página.
+   ========================================================= */
+:root{
+  --papel:#E5E1D6; --tinta:#191917; --cobalto:#2538C9; --giz:#F2F0EA;
+  --mudo:#6A675E; --linha:#C9C4B6;
+  --display:'Fraunces',Georgia,serif;
+  --texto:'Figtree',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--texto);background:var(--papel);color:var(--tinta);
+     font-size:15px;line-height:1.6;padding-bottom:92px;}
+::-webkit-scrollbar{display:none;}
+svg{display:block;}
+.display{font-family:var(--display);font-weight:400;letter-spacing:-.02em;line-height:.98;
+         font-variation-settings:'opsz' 110;}
+
+/* ---------- abertura ---------- */
+.capa{background:var(--cobalto);color:var(--giz);padding:34px 22px 30px;position:relative;overflow:hidden;min-height:430px;
+      display:flex;flex-direction:column;}
+.capa__marca{font-family:var(--display);font-size:17px;letter-spacing:.04em;opacity:.85;}
+.capa__num{font-family:var(--display);font-size:132px;line-height:.82;margin-top:30px;
+           font-variation-settings:'opsz' 144;font-weight:300;
+           opacity:0;transform:translateY(14px);}
+.capa.vivo .capa__num{opacity:1;transform:none;transition:opacity 1s ease,transform 1.1s cubic-bezier(.2,.8,.2,1);}
+.capa__leva{font-size:13px;letter-spacing:.02em;opacity:.78;margin-top:10px;
+            opacity:0;transform:translateY(10px);}
+.capa.vivo .capa__leva{opacity:.78;transform:none;transition:opacity .9s ease .2s,transform 1s ease .2s;}
+.capa__peca{position:absolute;right:-26px;top:84px;width:220px;opacity:.26;}
+.capa__peca path{fill:none;stroke:var(--giz);stroke-width:2.4;}
+.capa__frase{font-family:var(--display);font-size:26px;line-height:1.16;max-width:15ch;margin-top:26px;
+             opacity:0;transform:translateY(12px);}
+.capa.vivo .capa__frase{opacity:1;transform:none;transition:opacity .9s ease .35s,transform 1s cubic-bezier(.2,.8,.2,1) .35s;}
+.capa__sub{font-size:14px;opacity:.82;max-width:30ch;margin-top:14px;
+           opacity:0;transform:translateY(10px);}
+.capa.vivo .capa__sub{opacity:.82;transform:none;transition:opacity .9s ease .6s,transform 1s ease .6s;}
+.capa__rastro{margin-top:auto;padding-top:26px;display:flex;align-items:center;gap:12px;font-size:12.5px;opacity:.7;}
+.capa__rastro i{display:block;width:34px;height:1px;background:currentColor;}
+
+/* ---------- lotes ---------- */
+.lotes{padding:38px 22px 10px;}
+.lotes__titulo{font-family:var(--display);font-size:32px;line-height:1.06;}
+.lotes__linha{font-size:14px;color:var(--mudo);margin-top:8px;max-width:34ch;}
+
+.lote{margin-top:30px;}
+.lote__quadro{position:relative;aspect-ratio:4/5;border-radius:2px;display:grid;place-items:center;overflow:hidden;}
+.lote__quadro::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E");}
+.lote--largo{margin-left:-22px;margin-right:-22px;}
+.lote--largo .lote__quadro{border-radius:0;aspect-ratio:1/1;}
+.lote--largo .lote__nome,.lote--largo .lote__preco,.lote--largo .lote__btn{margin-left:22px;}
+.lote__ed{position:absolute;top:12px;left:12px;font-family:var(--display);font-size:30px;
+          font-variation-settings:'opsz' 144;line-height:1;color:var(--tinta);mix-blend-mode:multiply;}
+.lote__ed small{display:block;font-family:var(--texto);font-size:9.5px;font-weight:700;
+                letter-spacing:.1em;opacity:.55;margin-top:3px;}
+.lote__nome{font-family:var(--display);font-style:italic;font-size:27px;margin-top:14px;}
+.lote__preco{font-size:17px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums;}
+.lote__btn{margin-top:14px;display:inline-flex;align-items:center;gap:9px;height:46px;padding:0 22px;
+           border-radius:2px;background:var(--tinta);color:var(--giz);border:0;cursor:pointer;
+           font-family:var(--texto);font-size:14px;font-weight:700;letter-spacing:.01em;
+           transition:background .25s;}
+.lote__btn svg{width:17px;height:17px;fill:currentColor;}
+.lote__btn.pedido{background:var(--cobalto);}
+
+/* ---------- como funciona ---------- */
+.passos{margin-top:46px;background:var(--tinta);color:var(--giz);padding:36px 22px;}
+.passos h2{font-family:var(--display);font-size:30px;line-height:1.08;}
+.passo{display:grid;grid-template-columns:46px 1fr;gap:14px;padding:18px 0;
+       border-bottom:1px solid #f2f0ea2b;}
+.passo:first-of-type{margin-top:16px;border-top:1px solid #f2f0ea2b;}
+.passo__n{font-family:var(--display);font-size:26px;line-height:1;opacity:.55;}
+.passo h3{font-size:16px;font-weight:700;}
+.passo p{font-size:13.5px;color:#f2f0eab0;margin-top:2px;}
+
+/* ---------- dúvidas ---------- */
+.duvidas{padding:36px 22px 10px;}
+.duvidas h2{font-family:var(--display);font-size:30px;margin-bottom:14px;}
+.duvida{border-top:1px solid var(--linha);padding:15px 0;}
+.duvida h3{font-size:15.5px;font-weight:700;}
+.duvida p{font-size:13.5px;color:var(--mudo);margin-top:2px;}
+
+/* ---------- fecho ---------- */
+.fecho{margin-top:34px;background:var(--cobalto);color:var(--giz);padding:44px 22px 46px;text-align:center;}
+.fecho p{font-family:var(--display);font-size:30px;line-height:1.14;max-width:16ch;margin:0 auto;}
+.fecho small{display:block;font-family:var(--texto);font-size:13.5px;opacity:.78;margin-top:14px;}
+
+/* ---------- barra que segue ---------- */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px 18px;
+       background:linear-gradient(to top,var(--papel) 70%,#e5e1d600);}
+.barra__btn{width:100%;height:54px;border:0;cursor:pointer;border-radius:2px;background:var(--cobalto);
+            color:var(--giz);font-family:var(--texto);font-size:15.5px;font-weight:700;
+            display:flex;align-items:center;justify-content:center;gap:10px;}
+.barra__btn svg{width:20px;height:20px;fill:currentColor;}
+.barra__btn.chama{animation:chama 1.2s ease 2;}
+@keyframes chama{50%{transform:translateY(-3px);box-shadow:0 12px 26px -10px #2538c9cc;}}
+
+/* ---------- perfil: onde o funil começa ---------- */
+.perfil{position:fixed;inset:0;z-index:60;background:var(--giz);padding:28px 22px;
+        display:flex;flex-direction:column;align-items:center;transition:opacity .5s,transform .55s;}
+.perfil.sai{opacity:0;transform:scale(1.03);pointer-events:none;}
+.perfil__av{width:86px;height:86px;border-radius:50%;background:var(--cobalto);color:var(--giz);
+            display:grid;place-items:center;font-family:var(--display);font-size:27px;}
+.perfil__user{font-weight:700;font-size:18px;margin-top:13px;}
+.perfil__bio{font-size:13.5px;color:var(--mudo);text-align:center;margin-top:5px;line-height:1.5;}
+.perfil__nums{display:flex;gap:28px;margin-top:14px;font-size:12.5px;color:var(--mudo);text-align:center;}
+.perfil__nums b{display:block;font-size:16px;color:var(--tinta);font-weight:700;}
+.perfil__link{margin-top:18px;width:100%;height:44px;border-radius:2px;border:1.5px solid var(--cobalto);
+              color:var(--cobalto);display:flex;align-items:center;justify-content:center;
+              font-weight:700;font-size:13.5px;}
+.perfil__grade{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;width:100%;margin-top:20px;}
+.perfil__grade div{aspect-ratio:1;display:grid;place-items:center;}
+.perfil__nota{margin-top:auto;font-size:10.5px;color:#9a948c;letter-spacing:.08em;}
+
+/* ---------- whatsapp ---------- */
+.zap{position:fixed;inset:0;z-index:70;background:#0b141a;opacity:0;pointer-events:none;
+     transition:opacity .4s;padding:52px 16px 0;display:flex;flex-direction:column;}
+.zap.on{opacity:1;}
+.zap__cab{display:flex;align-items:center;gap:10px;margin-bottom:20px;color:#e9edef;}
+.zap__av{width:34px;height:34px;border-radius:50%;background:var(--cobalto);color:var(--giz);
+         display:grid;place-items:center;font-family:var(--display);font-size:13px;}
+.zap__nome{font-size:15px;font-weight:600;}
+.zap__st{font-size:11px;color:#8696a0;}
+.balao{background:#005c4b;color:#e9edef;border-radius:12px 12px 3px 12px;padding:11px 13px;
+       font-size:13.5px;line-height:1.5;align-self:flex-end;max-width:86%;white-space:pre-line;
+       opacity:0;transform:translateY(9px) scale(.97);
+       transition:opacity .35s,transform .4s cubic-bezier(.34,1.56,.64,1);}
+.balao.on{opacity:1;transform:none;}
+.balao small{display:block;font-size:10px;color:#ffffff8c;text-align:right;margin-top:4px;}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- ========== o funil começa no link do perfil ========== -->
+<div class="perfil" id="perfil">
+  <div class="perfil__av">T</div>
+  <p class="perfil__user">@trama.atelier</p>
+  <p class="perfil__bio">Peças numeradas, feitas em pouca quantidade.<br>Entrega para todo o Brasil.</p>
+  <div class="perfil__nums">
+    <div><b>4.812</b>seguidores</div>
+    <div><b>186</b>publicações</div>
+  </div>
+  <div class="perfil__link" id="link-bio">Ver a coleção e pedir</div>
+  <div class="perfil__grade">
+    <div style="background:#2538C918"><svg viewBox="0 0 120 110" width="50"><path fill="#2538C9" opacity=".75" d="M34 24 50 14l10 7 10-7 16 10-9 16-6-3 9 55H31l9-55-6 3z"/></svg></div>
+    <div style="background:#19191710"><svg viewBox="0 0 120 110" width="50"><path fill="#191917" opacity=".6" d="M30 26 48 16v62H34V44l-8 4zm60 0L72 16v62h14V44l8 4zM48 16h24v62H48z"/></svg></div>
+    <div style="background:#2538C910"><svg viewBox="0 0 120 110" width="50"><path fill="#2538C9" opacity=".5" d="M28 26 48 16l12 8 12-8 20 10-8 18-10-4v46H46V40l-10 4z"/></svg></div>
+  </div>
+  <p class="perfil__nota">marca e perfil fictícios, de demonstração</p>
+</div>
+
+<!-- ========== abertura ========== -->
+<header class="capa" id="capa">
+  <p class="capa__marca">Trama</p>
+  <p class="capa__num display">09</p>
+  <p class="capa__leva">peças nesta leva</p>
+  <svg class="capa__peca" viewBox="0 0 120 110"><path d="M34 24 50 14l10 7 10-7 16 10-9 16-6-3 9 55H31l9-55-6 3z"/></svg>
+  <p class="capa__frase">Cada peça é numerada. Quando acaba, acabou.</p>
+  <p class="capa__sub">Você escolhe aqui e fecha a compra conversando com a gente. Sem cadastro, sem carrinho.</p>
+  <p class="capa__rastro"><i></i> role para ver a leva de outubro</p>
+</header>
+
+<!-- ========== as peças ========== -->
+<section class="lotes" id="lotes">
+  <h2 class="lotes__titulo">A leva de outubro</h2>
+  <p class="lotes__linha">Nove peças saíram do atelier. Cada botão abre o WhatsApp já dizendo qual delas é.</p>
+  <div id="pecas"></div>
+</section>
+
+<!-- ========== como funciona ========== -->
+<section class="passos">
+  <h2>Comprar aqui é uma conversa.</h2>
+  <div class="passo">
+    <span class="passo__n display">1</span>
+    <div><h3>Você escolhe a peça</h3><p>Nesta página, sem criar conta.</p></div>
+  </div>
+  <div class="passo">
+    <span class="passo__n display">2</span>
+    <div><h3>Chama no WhatsApp</h3><p>A mensagem já vai escrita, com a peça e o número dela.</p></div>
+  </div>
+  <div class="passo">
+    <span class="passo__n display">3</span>
+    <div><h3>Combina entrega e pagamento</h3><p>Pix, cartão ou na entrega. A gente acerta na conversa.</p></div>
+  </div>
+</section>
+
+<!-- ========== dúvidas ========== -->
+<section class="duvidas">
+  <h2>Antes de perguntar</h2>
+  <div class="duvida"><h3>E se não servir?</h3><p>Troca em até 7 dias, com a etiqueta na peça.</p></div>
+  <div class="duvida"><h3>Quanto tempo leva?</h3><p>Combinamos na conversa, conforme a sua cidade.</p></div>
+  <div class="duvida"><h3>Dá para ver antes?</h3><p>Mandamos foto e vídeo da peça real no WhatsApp.</p></div>
+</section>
+
+<!-- ========== fecho ========== -->
+<section class="fecho">
+  <p class="display">A peça sai da leva quando alguém chama.</p>
+  <small>Chame agora e a gente separa a sua.</small>
+</section>
+
+<div class="barra">
+  <button class="barra__btn" id="btn-fixo">
+    <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.14 6.44 2.14 11.9c0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm4.52 13.97c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.73 2.65 4.2 3.72.59.25 1.04.4 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+    Falar no WhatsApp
+  </button>
+</div>
+
+<div class="zap" id="zap">
+  <div class="zap__cab">
+    <div class="zap__av">T</div>
+    <div><p class="zap__nome">Trama atelier</p><p class="zap__st">online</p></div>
+  </div>
+  <div class="balao" id="balao"></div>
+</div>
+
+<script>
+const ZAP_SVG = '<svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.14 6.44 2.14 11.9c0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm4.52 13.97c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.73 2.65 4.2 3.72.59.25 1.04.4 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>';
+
+const PECAS = [
+  {id:1, nome:"Vestido de linho", ed:"07", de:"12", preco:259, fundo:"#D8D3C4", tom:"#EDE9DE", traco:"#2538C9", largo:true,
+   d:'<path d="M34 24 50 14l10 7 10-7 16 10-9 16-6-3 9 55H31l9-55-6 3z"/>'},
+  {id:2, nome:"Jaqueta jeans",    ed:"03", de:"08", preco:329, fundo:"#C6CBD8", tom:"#E3E7EF", traco:"#191917",
+   d:'<path d="M30 26 48 16v62H34V44l-8 4zm60 0L72 16v62h14V44l8 4zM48 16h24v62H48z"/>'},
+  {id:3, nome:"Camisa de algodão",ed:"11", de:"20", preco:189, fundo:"#DDDCCF", tom:"#F0EFE6", traco:"#2538C9",
+   d:'<path d="M28 26 48 16l12 8 12-8 20 10-8 18-10-4v46H46V40l-10 4z"/>'},
+];
+const reais = n => "R$ " + n.toLocaleString("pt-BR");
+const $ = s => document.querySelector(s);
+
+$("#pecas").innerHTML = PECAS.map(p => `
+  <article class="lote${p.largo ? " lote--largo" : ""}" data-id="${p.id}">
+    <div class="lote__quadro" style="background:${p.fundo}">
+      <svg viewBox="0 0 120 110" width="${p.largo ? "52%" : "62%"}">
+        <path d="${p.d.match(/d="([^"]+)"/)[1]}" fill="${p.tom}" stroke="${p.traco}" stroke-width="1.6"/>
+      </svg>
+      <span class="lote__ed display">${p.ed}<small>de ${p.de}</small></span>
+    </div>
+    <p class="lote__nome display">${p.nome}</p>
+    <p class="lote__preco">${reais(p.preco)}</p>
+    <button class="lote__btn">${ZAP_SVG} Pedir esta peça</button>
+  </article>`).join("");
+
+const api = {
+  abrirCapa(){ $("#capa").classList.add("vivo"); },
+  entrar(){ $("#perfil").classList.add("sai"); this.abrirCapa(); },
+  rolar(y, ms=1000){
+    return new Promise(r=>{ const ini=scrollY, dif=y-ini, t0=performance.now();
+      (function passo(t){ const k=Math.min(1,(t-t0)/ms), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+        scrollTo(0, ini+dif*e); k<1?requestAnimationFrame(passo):r(); })(t0); });
+  },
+  chamar(){ $("#btn-fixo").classList.add("chama"); setTimeout(()=>$("#btn-fixo").classList.remove("chama"),2600); },
+  pedir(id){
+    const p = PECAS.find(x=>x.id===id);
+    const b = document.querySelector(`.lote[data-id="${id}"] .lote__btn`);
+    if(b){ b.classList.add("pedido"); b.innerHTML = ZAP_SVG + " Abrindo o WhatsApp"; }
+    this.msg(`Oi! Vi no site e quero esta peça:\n\n${p.nome} — número ${p.ed} de ${p.de}\n${reais(p.preco)}\n\nAinda está disponível?`);
+  },
+  geral(){ this.msg("Oi! Vim pelo site e quero ver o que ainda tem da leva de outubro."); },
+  msg(t){
+    $("#zap").classList.add("on");
+    setTimeout(()=>{ $("#balao").innerHTML = t + "<small>agora ✓✓</small>"; $("#balao").classList.add("on"); }, 400);
+  },
+  fecharZap(){
+    $("#zap").classList.remove("on"); $("#balao").classList.remove("on");
+    document.querySelectorAll(".lote__btn").forEach(b=>{ b.classList.remove("pedido"); b.innerHTML = ZAP_SVG + " Pedir esta peça"; });
+  }
+};
+window.api = api;
+</script>
+</body>
+</html>
