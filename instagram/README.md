@@ -16,7 +16,8 @@ node instagram/gerar-artes.js         # regera tudo que está em artes/
 | `gerar-artes.js` | Vira cada bloco em PNG, na pasta `artes/`. |
 | `artes/` | Os PNGs prontos para postar. |
 | `artes-fonte/icone.png` | O símbolo recortado do logo. Serve de máscara para as fotos de perfil — a cor vem do CSS, então não existe um arquivo por variação. |
-| `textos.md` | Bio, opções de @, legendas e calendário das três primeiras semanas. |
+| `textos.md` | Bio, nome do perfil, legendas e calendário das três primeiras semanas. |
+| `estrategia.md` | Ganchos de abertura, regra de música, o passo a passo de cada publicação e a rotina semanal. |
 
 ## As artes
 
