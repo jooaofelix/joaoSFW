@@ -71,9 +71,32 @@ https://wa.me/5512991338866?text=Ol%C3%A1!%20Vim%20pelo%20Instagram%20da%20Desat
 ```
 
 ### Destaques
-As capas estão em `artes/destaque-*.png`: Serviços, Como funciona, Dúvidas e
-Contato. Crie os quatro mesmo com pouco conteúdo — um destaque vazio é melhor
-que nenhum, porque ele diz que você tem resposta para aquilo.
+
+O nome do destaque é o texto embaixo da bolinha, e o Instagram corta por volta
+de 10 caracteres. Por isso os quatro são curtos:
+
+| Capa | Nome |
+|---|---|
+| `artes/destaque-servicos.png` | Serviços |
+| `artes/destaque-processo.png` | Processo |
+| `artes/destaque-duvidas.png` | Dúvidas |
+| `artes/destaque-contato.png` | Contato |
+
+**Um destaque não existe sem story dentro.** Primeiro publique o story, depois
+crie o destaque a partir dele e só então troque a capa (Editar destaque →
+Editar capa → escolher da galeria).
+
+**Crie na ordem inversa**: Contato, Dúvidas, Processo, Serviços. O destaque mais
+recente fica à esquerda, então criando ao contrário eles acabam na ordem certa.
+
+O que colocar dentro de cada um, no mínimo:
+
+| Destaque | Conteúdo |
+|---|---|
+| Serviços | Um story por frente: sites, sistemas, automações. |
+| Processo | As cinco telas do carrossel, uma por story. |
+| Dúvidas | Um story por pergunta: preço, prazo, domínio. |
+| Contato | Um story com o botão de WhatsApp e o link. |
 
 ---
 
