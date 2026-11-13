@@ -75,6 +75,28 @@ body{background:#777;font-family:'Figtree',system-ui,sans-serif;}
 .perfil--off .perfil__marca{background:var(--lar);}
 .perfil--laranja-escuro{background:var(--lar);}
 .perfil--laranja-escuro .perfil__marca{background:var(--graf);}
+
+/* ---------- stories (1080x1920) ----------
+   O Instagram cobre o topo e o pé do story com a própria interface, então o
+   conteúdo fica na faixa do meio. */
+.story{position:relative;width:1080px;height:1920px;background:var(--off);color:var(--graf);
+       padding:300px 110px 300px;display:flex;flex-direction:column;overflow:hidden;margin:20px;}
+.story--escura{background:var(--graf);color:var(--off);}
+.story--laranja{background:var(--lar);color:var(--graf);}
+.story__logo{width:280px;flex:none;}
+.story__meio{flex:1;display:flex;flex-direction:column;justify-content:center;}
+.story__n{font-size:38px;font-weight:800;letter-spacing:.16em;color:var(--lar);margin-bottom:28px;}
+.story--laranja .story__n{color:var(--off);}
+.story h2{font-size:104px;line-height:1.02;letter-spacing:-.035em;font-weight:800;max-width:12ch;}
+.story h2.menor{font-size:84px;max-width:14ch;}
+.story p{font-size:42px;line-height:1.42;color:var(--suave);margin-top:40px;max-width:21ch;font-weight:500;}
+.story--escura p{color:var(--claro);}
+.story--laranja p{color:#242424c4;}
+.story__pe{position:relative;z-index:2;flex:none;font-size:32px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--suave);}
+.story--escura .story__pe{color:var(--claro);}
+.story--laranja .story__pe{color:#242424b0;}
+.story .laco{right:-180px;bottom:70px;width:620px;color:var(--lar);}  /* abaixo do rodapé, não por cima */
+.story--escura .laco,.story--laranja .laco{color:var(--off);opacity:.9;}
 </style>
 </head>
 <body>
@@ -218,6 +240,139 @@ body{background:#777;font-family:'Figtree',system-ui,sans-serif;}
 <div class="perfil perfil--grafite" data-nome="perfil-grafite"><div class="perfil__marca"></div></div>
 <div class="perfil perfil--off" data-nome="perfil-off-white"><div class="perfil__marca"></div></div>
 <div class="perfil perfil--laranja-escuro" data-nome="perfil-laranja-grafite"><div class="perfil__marca"></div></div>
+
+<!-- ============ stories ============ -->
+<div class="story" data-nome="story-servicos-1">
+  <img class="story__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="story__meio">
+    
+    <h2>Sites profissionais</h2>
+    <p>A página que apresenta sua empresa, explica os serviços e facilita o pedido de orçamento.</p>
+  </div>
+  <p class="story__pe">Serviços · 1 de 3</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story story--escura" data-nome="story-servicos-2">
+  <img class="story__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="story__meio">
+    
+    <h2>Sistemas sob medida</h2>
+    <p>Pedidos, acompanhamento, formulários — a informação da operação num lugar só.</p>
+  </div>
+  <p class="story__pe">Serviços · 2 de 3</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story story--laranja" data-nome="story-servicos-3">
+  <img class="story__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="story__meio">
+    
+    <h2>Automações</h2>
+    <p>A tarefa que você repete toda semana virando rotina automática.</p>
+  </div>
+  <p class="story__pe">Serviços · 3 de 3</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story" data-nome="story-processo-1">
+  <img class="story__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="story__meio">
+    <p class="story__n">PASSO 01</p>
+    <h2>A gente conversa</h2>
+    <p>Trinta minutos para eu entender como o seu negócio funciona de verdade. Sem custo.</p>
+  </div>
+  <p class="story__pe">Processo</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story" data-nome="story-processo-2">
+  <img class="story__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="story__meio">
+    <p class="story__n">PASSO 02</p>
+    <h2 class="menor">O escopo vai por escrito</h2>
+    <p>O que entra, o que fica para depois e o que eu preciso de você.</p>
+  </div>
+  <p class="story__pe">Processo</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story story--escura" data-nome="story-processo-3">
+  <img class="story__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="story__meio">
+    <p class="story__n">PASSO 03</p>
+    <h2>Eu desenvolvo</h2>
+    <p>Com notícias do andamento, sem você precisar cobrar.</p>
+  </div>
+  <p class="story__pe">Processo</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story" data-nome="story-processo-4">
+  <img class="story__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="story__meio">
+    <p class="story__n">PASSO 04</p>
+    <h2>Você valida</h2>
+    <p>Testa no seu celular e aponta os ajustes antes de ir ao ar.</p>
+  </div>
+  <p class="story__pe">Processo</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story story--laranja" data-nome="story-processo-5">
+  <img class="story__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="story__meio">
+    <p class="story__n">PASSO 05</p>
+    <h2 class="menor">Entrego e explico</h2>
+    <p>Sem manual de 40 páginas. O suporte depois fica definido na proposta.</p>
+  </div>
+  <p class="story__pe">Processo</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story" data-nome="story-duvidas-1">
+  <img class="story__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="story__meio">
+    
+    <h2 class="menor">Quanto custa?</h2>
+    <p>Depende do tamanho do projeto. Não publico tabela: eu entendo a necessidade e envio uma proposta com valor fechado.</p>
+  </div>
+  <p class="story__pe">Dúvidas · 1 de 3</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story story--escura" data-nome="story-duvidas-2">
+  <img class="story__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="story__meio">
+    
+    <h2 class="menor">Quanto tempo leva?</h2>
+    <p>O prazo sai junto com a proposta, depois que sabemos o tamanho do projeto.</p>
+  </div>
+  <p class="story__pe">Dúvidas · 2 de 3</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story" data-nome="story-duvidas-3">
+  <img class="story__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="story__meio">
+    
+    <h2 class="menor">Preciso ter domínio?</h2>
+    <p>Se já tem, usamos o que existe. Se não, eu explico as opções — e a contratação fica no seu nome.</p>
+  </div>
+  <p class="story__pe">Dúvidas · 3 de 3</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
+
+<div class="story story--laranja" data-nome="story-contato">
+  <img class="story__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="story__meio">
+    
+    <h2 class="menor">Vamos desatar esse nó?</h2>
+    <p>Me conta em poucas linhas o que está travando. Eu respondo dizendo se dá para resolver e como seria.</p>
+  </div>
+  <p class="story__pe">@desatasistemas</p>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</div>
 
 </body>
 </html>

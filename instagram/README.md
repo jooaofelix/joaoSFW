@@ -33,6 +33,7 @@ de destaque:
 | `07-processo-1` … `11-processo-5` | Carrossel de como funciona contratar. |
 | `destaque-*` | Capas dos destaques: Serviços, Como funciona, Dúvidas, Contato. |
 | `perfil-*` | Quatro opções de foto de perfil, só com o símbolo. |
+| `story-*` | Doze telas de story, em 1080×1920, para encher os quatro destaques. |
 
 ## Formatos
 

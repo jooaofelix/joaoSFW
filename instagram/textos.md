@@ -89,14 +89,18 @@ Editar capa → escolher da galeria).
 **Crie na ordem inversa**: Contato, Dúvidas, Processo, Serviços. O destaque mais
 recente fica à esquerda, então criando ao contrário eles acabam na ordem certa.
 
-O que colocar dentro de cada um, no mínimo:
+As telas de story já estão prontas em `artes/story-*.png`, em 1080x1920 — as
+artes dos posts são 4:5 e ficariam com tarja no story.
 
-| Destaque | Conteúdo |
+| Destaque | Stories, nesta ordem |
 |---|---|
-| Serviços | Um story por frente: sites, sistemas, automações. |
-| Processo | As cinco telas do carrossel, uma por story. |
-| Dúvidas | Um story por pergunta: preço, prazo, domínio. |
-| Contato | Um story com o botão de WhatsApp e o link. |
+| Serviços | `story-servicos-1` · `-2` · `-3` (sites, sistemas, automações) |
+| Processo | `story-processo-1` a `-5` (os cinco passos) |
+| Dúvidas | `story-duvidas-1` · `-2` · `-3` (preço, prazo, domínio) |
+| Contato | `story-contato` + o sticker de link e o de WhatsApp por cima |
+
+No story de contato, acrescente o **sticker de link** apontando para o site (ou
+para o WhatsApp) antes de publicar: dentro do destaque ele continua clicável.
 
 ---
 
