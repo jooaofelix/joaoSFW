@@ -59,6 +59,21 @@ body{background:#777;font-family:'Figtree',system-ui,sans-serif;}
 .capa span{font-size:92px;font-weight:800;letter-spacing:-.02em;color:var(--graf);text-align:center;line-height:1.05;}
 .capa--escura span{color:var(--off);}
 .capa .laco{right:-170px;bottom:-130px;width:620px;color:#F4F0E8;opacity:.45;}
+
+/* foto de perfil: só o símbolo, grande, dentro da área que o corte redondo
+   preserva. A cor do símbolo vem de mask-image, não de outro arquivo. */
+.perfil{width:1080px;height:1080px;display:grid;place-items:center;margin:20px;position:relative;overflow:hidden;}
+.perfil__marca{width:54%;aspect-ratio:1/1;
+  -webkit-mask:url(artes-fonte/icone.png) center/contain no-repeat;
+          mask:url(artes-fonte/icone.png) center/contain no-repeat;}
+.perfil--laranja{background:var(--lar);}
+.perfil--laranja .perfil__marca{background:var(--off);}
+.perfil--grafite{background:var(--graf);}
+.perfil--grafite .perfil__marca{background:var(--lar);}
+.perfil--off{background:var(--off);}
+.perfil--off .perfil__marca{background:var(--lar);}
+.perfil--laranja-escuro{background:var(--lar);}
+.perfil--laranja-escuro .perfil__marca{background:var(--graf);}
 </style>
 </head>
 <body>
@@ -194,6 +209,12 @@ body{background:#777;font-family:'Figtree',system-ui,sans-serif;}
   <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg></div>
 <div class="capa capa--escura" data-nome="destaque-contato"><span>Contato</span>
   <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg></div>
+
+<!-- ============ fotos de perfil ============ -->
+<div class="perfil perfil--laranja" data-nome="perfil-laranja"><div class="perfil__marca"></div></div>
+<div class="perfil perfil--grafite" data-nome="perfil-grafite"><div class="perfil__marca"></div></div>
+<div class="perfil perfil--off" data-nome="perfil-off-white"><div class="perfil__marca"></div></div>
+<div class="perfil perfil--laranja-escuro" data-nome="perfil-laranja-grafite"><div class="perfil__marca"></div></div>
 
 </body>
 </html>

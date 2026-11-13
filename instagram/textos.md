@@ -7,9 +7,18 @@ Tudo aqui é para copiar e colar. As artes estão em `artes/`.
 ## 1. O perfil
 
 ### Foto
-`marca/desata-perfil.png` — o símbolo laranja no fundo grafite. Em 32px, que é
-o tamanho que aparece nos comentários, o símbolo sozinho lê melhor do que o
-logo inteiro com a palavra.
+Quatro opções em `artes/perfil-*.png`, todas só com o símbolo: em 32px, que é
+o tamanho que aparece nos comentários, o logo inteiro com a palavra vira um
+borrão — o símbolo sozinho continua legível.
+
+| Arquivo | Fundo e símbolo |
+|---|---|
+| `perfil-grafite.png` | Grafite com símbolo laranja. **A que eu usaria**: círculo escuro se destaca na interface branca do Instagram, e o laranja faz o trabalho da marca. |
+| `perfil-laranja.png` | Laranja com símbolo off-white. A mais barulhenta; combina com o kit original. |
+| `perfil-off-white.png` | Off-white com símbolo laranja. A mais discreta — some um pouco no fundo branco do app. |
+| `perfil-laranja-grafite.png` | Laranja com símbolo grafite. Maior contraste dos quatro. |
+
+Testei os quatro reduzidos a 32px: todos continuam reconhecíveis.
 
 ### Nome (o campo "Nome", não o @)
 Esse campo entra na busca do Instagram. Não desperdice com "Desata" puro:
