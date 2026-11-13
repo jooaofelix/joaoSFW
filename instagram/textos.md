@@ -83,16 +83,16 @@ A primeira linha de cada uma já é o gancho — é o que aparece no feed antes 
 "... mais". Não comece por outra coisa. O porquê de cada gancho está no
 `estrategia.md`.
 
+Cada parágrafo é **uma linha só**: copie e cole inteiro, sem mexer. Quebra de
+linha no meio da frase, no celular, parece texto quebrado.
+
 ### 01 · Manifesto — `01-manifesto.png`
 ```
 A Desata nasceu de uma irritação: tecnologia que dá mais trabalho do que resolve.
 
-Eu desenvolvo sites e sistemas para pequenos negócios
-e prestadores de serviço — do jeito que a sua rotina já funciona, não do jeito
-que um software genérico manda.
+Eu desenvolvo sites e sistemas para pequenos negócios e prestadores de serviço — do jeito que a sua rotina já funciona, não do jeito que um software genérico manda.
 
-O nome vem de desatar nós. Os nós são aquelas coisas que travam o dia:
-informação espalhada, tarefa repetitiva, cliente sem saber o que você faz.
+O nome vem de desatar nós. Os nós são aquelas coisas que travam o dia: informação espalhada, tarefa repetitiva, cliente sem saber o que você faz.
 
 Me conta qual é o seu nó aqui nos comentários ou no direct.
 
@@ -103,8 +103,7 @@ Me conta qual é o seu nó aqui nos comentários ou no direct.
 ```
 Pesquise o nome do seu negócio no Google agora. O que aparece?
 
-Se veio um perfil parado — ou nada —, é disso que este post fala. Um perfil parado há três meses não responde as perguntas que o cliente tem:
-o que você faz, como funciona, quanto custa, como falar com você.
+Se veio um perfil parado — ou nada —, é disso que este post fala. Um perfil parado há três meses não responde as perguntas que o cliente tem: o que você faz, como funciona, quanto custa, como falar com você.
 
 Um site responde isso enquanto você trabalha.
 
@@ -115,8 +114,7 @@ Um site responde isso enquanto você trabalha.
 ```
 Se você copia e cola a mesma explicação no WhatsApp, esse post é sobre você.
 
-Mesmo texto, mesmas perguntas, do zero, cada vez. Isso é tempo que sai do
-atendimento de quem já é cliente.
+Mesmo texto, mesmas perguntas, do zero, cada vez. Isso é tempo que sai do atendimento de quem já é cliente.
 
 Uma página bem feita explica uma vez e continua explicando sozinha.
 
@@ -129,8 +127,7 @@ Funciona bem. Até o dia em que você esquece.
 
 Você sabe o que está pendente porque lembra — e lembrar é um trabalho a mais.
 
-Pedido no WhatsApp, anotação no caderno, planilha no computador. A informação
-existe; o que falta é um lugar só.
+Pedido no WhatsApp, anotação no caderno, planilha no computador. A informação existe; o que falta é um lugar só.
 
 Dá para resolver sem virar uma empresa cheia de sistema.
 
@@ -141,17 +138,13 @@ Dá para resolver sem virar uma empresa cheia de sistema.
 ```
 Três coisas que eu faço — e uma que eu me recuso a fazer.
 
-SITES — a página que apresenta sua empresa, explica os serviços e facilita o
-pedido de orçamento. É por onde quase todo projeto começa.
+SITES — a página que apresenta sua empresa, explica os serviços e facilita o pedido de orçamento. É por onde quase todo projeto começa.
 
-SISTEMAS — ferramentas sob medida para organizar a operação por dentro:
-pedidos, acompanhamento, formulários, informação centralizada.
+SISTEMAS — ferramentas sob medida para organizar a operação por dentro: pedidos, acompanhamento, formulários, informação centralizada.
 
 AUTOMAÇÕES — o que você repete toda semana virando rotina automática.
 
-E o que eu não faço: vender sistema pronto como se servisse para toda empresa
-igual. Cada projeto é avaliado conforme a necessidade — e se não for o melhor
-caminho para você, eu digo antes de você gastar.
+E o que eu não faço: vender sistema pronto como se servisse para toda empresa igual. Cada projeto é avaliado conforme a necessidade — e se não for o melhor caminho para você, eu digo antes de você gastar.
 
 #desenvolvimentoweb #sitesprofissionais #automacao
 ```
@@ -160,11 +153,9 @@ caminho para você, eu digo antes de você gastar.
 ```
 Você vai falar comigo o tempo todo. Não tem equipe de atendimento no meio.
 
-Sou o João. Venho da área comercial e convivi de perto com a rotina de
-empresas — por isso costumo entender o problema antes de falar de tecnologia.
+Sou o João. Venho da área comercial e convivi de perto com a rotina de empresas — por isso costumo entender o problema antes de falar de tecnologia.
 
-Na prática: você conversa comigo, eu entendo a necessidade e eu desenvolvo.
-Sem intermediário e sem palavra difícil no meio da conversa.
+Na prática: você conversa comigo, eu entendo a necessidade e eu desenvolvo. Sem intermediário e sem palavra difícil no meio da conversa.
 
 #empreendedorismo #desenvolvedor #saojosedoscampos
 ```
@@ -173,11 +164,9 @@ Sem intermediário e sem palavra difícil no meio da conversa.
 ```
 Ninguém devia contratar nada sem saber o que vem depois. Então, o passo a passo:
 
-Arrasta para o lado. Sem mistério e sem surpresa: a conversa é de graça, o escopo vai por escrito
-antes de qualquer trabalho começar, e você valida tudo antes de ir ao ar.
+Arrasta para o lado. Sem mistério e sem surpresa: a conversa é de graça, o escopo vai por escrito antes de qualquer trabalho começar, e você valida tudo antes de ir ao ar.
 
-O suporte depois da entrega fica definido na proposta — o que inclui, por
-quanto tempo e como pedir.
+O suporte depois da entrega fica definido na proposta — o que inclui, por quanto tempo e como pedir.
 
 Quer conversar sobre o seu projeto? Chama no direct.
 
