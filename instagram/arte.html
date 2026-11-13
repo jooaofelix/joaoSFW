@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Desata — artes de Instagram</title>
+<link rel="stylesheet" href="../assets/css/fontes.css">
+<style>
+/* =========================================================
+   Artes para o Instagram da Desata.
+   Cada bloco .arte vira um PNG, pelo gerar-artes.js.
+   Sistema: a mesma gramática das artes aprovadas do kit —
+   logo no topo, frase forte, assinatura no pé, laço solto.
+   ========================================================= */
+:root{--off:#F4F0E8;--graf:#242424;--lar:#E66A35;--suave:#5B5650;--claro:rgba(244,240,232,.78);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#777;font-family:'Figtree',system-ui,sans-serif;}
+
+.arte{position:relative;width:1080px;height:1350px;background:var(--off);color:var(--graf);
+      padding:88px 84px 80px;display:flex;flex-direction:column;overflow:hidden;margin:20px;}
+.arte--quadrada{height:1080px;}
+.arte--escura{background:var(--graf);color:var(--off);}
+.arte--laranja{background:var(--lar);color:var(--graf);}
+
+.arte__logo{width:300px;flex:none;}
+.arte--quadrada .arte__logo{width:250px;}
+
+.arte__meio{flex:1;display:flex;flex-direction:column;justify-content:center;}
+.frase{font-size:104px;line-height:1.02;letter-spacing:-.035em;font-weight:800;max-width:13ch;}
+.frase--media{font-size:86px;max-width:15ch;}
+.frase--curta{font-size:132px;max-width:9ch;}
+.frase em{font-style:normal;color:var(--lar);}
+.arte--laranja .frase em,.arte--escura .frase em{color:var(--off);}
+.linha{font-size:36px;line-height:1.4;color:var(--suave);margin-top:34px;max-width:24ch;font-weight:500;}
+.arte--escura .linha{color:var(--claro);}
+.arte--laranja .linha{color:#242424c4;}
+
+.arte__pe{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex:none;}
+.assinatura{font-size:30px;letter-spacing:.17em;text-transform:uppercase;font-weight:500;color:var(--suave);line-height:1.45;}
+.arte--escura .assinatura{color:var(--claro);}
+.arte--laranja .assinatura{color:#242424b0;}
+.arroba{font-size:30px;font-weight:700;letter-spacing:-.01em;color:var(--suave);}
+.arte--escura .arroba{color:var(--claro);}
+.arte--laranja .arroba{color:#242424b0;}
+
+.laco{position:absolute;pointer-events:none;}
+.laco path{fill:none;stroke:currentColor;stroke-width:11;stroke-linecap:round;}
+.laco--pe{right:-200px;bottom:-70px;width:720px;color:var(--lar);}
+.arte--laranja .laco--pe,.arte--escura .laco--pe{color:var(--off);opacity:.9;}
+.laco--alto{right:-150px;top:-90px;width:620px;color:var(--lar);opacity:.5;}
+
+/* passo do carrossel */
+.passo-n{font-size:34px;font-weight:800;letter-spacing:.16em;color:var(--lar);margin-bottom:22px;}
+.arte--escura .passo-n{color:var(--lar);}
+.arte--laranja .passo-n{color:var(--off);}
+
+/* destaque (capa de stories) */
+.capa{width:1080px;height:1080px;background:var(--lar);display:grid;place-items:center;margin:20px;position:relative;overflow:hidden;}
+.capa--escura{background:var(--graf);}
+.capa span{font-size:92px;font-weight:800;letter-spacing:-.02em;color:var(--graf);text-align:center;line-height:1.05;}
+.capa--escura span{color:var(--off);}
+.capa .laco{right:-170px;bottom:-130px;width:620px;color:#F4F0E8;opacity:.45;}
+</style>
+</head>
+<body>
+
+<!-- ============ 1. manifesto ============ -->
+<section class="arte arte--escura" data-nome="01-manifesto">
+  <img class="arte__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="arte__meio">
+    <h1 class="frase">Tecnologia não devia ser <em>mais um nó</em> na sua lista.</h1>
+    <p class="linha">A Desata existe para desatar os nós do seu dia — não para criar outros.</p>
+  </div>
+  <div class="arte__pe">
+    <p class="assinatura">Tecnologia que<br>descomplica.</p>
+  </div>
+  <svg class="laco laco--pe" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<!-- ============ 2. nó: presença ============ -->
+<section class="arte" data-nome="02-no-presenca">
+  <img class="arte__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="arte__meio">
+    <h1 class="frase">Quem procura seu trabalho encontra <em>um perfil parado</em>.</h1>
+    <p class="linha">O cliente fica na dúvida e vai para o concorrente que tem site.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">Nós do dia a dia · 01</p></div>
+  <svg class="laco laco--pe" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<!-- ============ 3. nó: repetição ============ -->
+<section class="arte arte--laranja" data-nome="03-no-repeticao">
+  <img class="arte__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="arte__meio">
+    <h1 class="frase">Você explica o mesmo serviço <em>cinco vezes por dia</em>.</h1>
+    <p class="linha">No WhatsApp, sempre do zero, sempre com as mesmas perguntas.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">Nós do dia a dia · 02</p></div>
+  <svg class="laco laco--pe" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<!-- ============ 4. nó: memória ============ -->
+<section class="arte" data-nome="04-no-memoria">
+  <img class="arte__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="arte__meio">
+    <h1 class="frase frase--media">O controle do seu negócio está na sua cabeça. Até o dia em que <em>não está</em>.</h1>
+    <p class="linha">Dá para tirar isso da memória e colocar num lugar só.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">Nós do dia a dia · 03</p></div>
+  <svg class="laco laco--pe" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<!-- ============ 5. serviços ============ -->
+<section class="arte arte--escura" data-nome="05-servicos">
+  <img class="arte__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="arte__meio">
+    <h1 class="frase frase--curta">Sites.<br>Sistemas.<br>Automações.</h1>
+    <p class="linha">Feitos sob medida para pequenos negócios e prestadores de serviço.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">Tecnologia que<br>descomplica.</p></div>
+  <svg class="laco laco--pe" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<!-- ============ 6. quem fala com você ============ -->
+<section class="arte" data-nome="06-fundador">
+  <img class="arte__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="arte__meio">
+    <h1 class="frase frase--media">Quem conversa com você é <em>quem desenvolve</em>.</h1>
+    <p class="linha">João Félix. Sem intermediário, sem atendimento robotizado e sem palavra difícil no meio.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">A Desata</p></div>
+  <svg class="laco laco--pe" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<!-- ============ carrossel: como funciona ============ -->
+<section class="arte arte--escura" data-nome="07-processo-1">
+  <img class="arte__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="arte__meio">
+    <h1 class="frase frase--curta">Como funciona um projeto aqui</h1>
+    <p class="linha">Cinco passos. Arrasta para o lado.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">Tecnologia que<br>descomplica.</p></div>
+  <svg class="laco laco--pe" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<section class="arte" data-nome="08-processo-2">
+  <img class="arte__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="arte__meio">
+    <p class="passo-n">PASSO 01</p>
+    <h1 class="frase frase--media">A gente conversa sobre o que trava</h1>
+    <p class="linha">Trinta minutos para eu entender como o seu negócio funciona de verdade. Sem custo.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">A Desata</p></div>
+</section>
+
+<section class="arte" data-nome="09-processo-3">
+  <img class="arte__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="arte__meio">
+    <p class="passo-n">PASSO 02</p>
+    <h1 class="frase frase--media">O escopo vai por escrito</h1>
+    <p class="linha">O que entra, o que fica para depois e o que eu preciso de você. Nada começa sem isso combinado.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">A Desata</p></div>
+</section>
+
+<section class="arte" data-nome="10-processo-4">
+  <img class="arte__logo" src="../assets/img/logo-desata-colorido.png" alt="">
+  <div class="arte__meio">
+    <p class="passo-n">PASSO 03 E 04</p>
+    <h1 class="frase frase--media">Desenvolvo e você valida antes de ir ao ar</h1>
+    <p class="linha">Você testa no seu celular e aponta os ajustes. É a hora de mudar o que não ficou como imaginou.</p>
+  </div>
+  <div class="arte__pe"><p class="assinatura">A Desata</p></div>
+</section>
+
+<section class="arte arte--laranja" data-nome="11-processo-5">
+  <img class="arte__logo" src="../assets/img/logo-desata-branco.png" alt="">
+  <div class="arte__meio">
+    <p class="passo-n">PASSO 05</p>
+    <h1 class="frase frase--media">Entrego e explico como usar</h1>
+    <p class="linha">Sem manual de 40 páginas. E o suporte depois fica definido na proposta.</p>
+  </div>
+  <div class="arte__pe">
+    <p class="assinatura">Chama no direct</p>
+  </div>
+  <svg class="laco laco--pe" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg>
+</section>
+
+<!-- ============ capas de destaques ============ -->
+<div class="capa" data-nome="destaque-servicos"><span>Serviços</span>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg></div>
+<div class="capa capa--escura" data-nome="destaque-processo"><span>Como<br>funciona</span>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg></div>
+<div class="capa" data-nome="destaque-duvidas"><span>Dúvidas</span>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg></div>
+<div class="capa capa--escura" data-nome="destaque-contato"><span>Contato</span>
+  <svg class="laco" viewBox="0 0 420 300"><path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/></svg></div>
+
+</body>
+</html>
