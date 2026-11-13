@@ -79,11 +79,15 @@ que nenhum, porque ele diz que você tem resposta para aquilo.
 
 ## 2. As legendas
 
+A primeira linha de cada uma já é o gancho — é o que aparece no feed antes do
+"... mais". Não comece por outra coisa. O porquê de cada gancho está no
+`estrategia.md`.
+
 ### 01 · Manifesto — `01-manifesto.png`
 ```
-Tecnologia deveria tirar trabalho da sua mesa, não acrescentar.
+A Desata nasceu de uma irritação: tecnologia que dá mais trabalho do que resolve.
 
-A Desata nasceu disso: eu desenvolvo sites e sistemas para pequenos negócios
+Eu desenvolvo sites e sistemas para pequenos negócios
 e prestadores de serviço — do jeito que a sua rotina já funciona, não do jeito
 que um software genérico manda.
 
@@ -97,9 +101,9 @@ Me conta qual é o seu nó aqui nos comentários ou no direct.
 
 ### 02 · Nó 01, presença — `02-no-presenca.png`
 ```
-Seu trabalho é bom. Mas quem procura por ele na internet encontra o quê?
+Pesquise o nome do seu negócio no Google agora. O que aparece?
 
-Um perfil parado há três meses não responde as perguntas que o cliente tem:
+Se veio um perfil parado — ou nada —, é disso que este post fala. Um perfil parado há três meses não responde as perguntas que o cliente tem:
 o que você faz, como funciona, quanto custa, como falar com você.
 
 Um site responde isso enquanto você trabalha.
@@ -109,7 +113,7 @@ Um site responde isso enquanto você trabalha.
 
 ### 03 · Nó 02, repetição — `03-no-repeticao.png`
 ```
-Conta aí: quantas vezes você explicou o mesmo serviço hoje?
+Se você copia e cola a mesma explicação no WhatsApp, esse post é sobre você.
 
 Mesmo texto, mesmas perguntas, do zero, cada vez. Isso é tempo que sai do
 atendimento de quem já é cliente.
@@ -121,8 +125,9 @@ Uma página bem feita explica uma vez e continua explicando sozinha.
 
 ### 04 · Nó 03, memória — `04-no-memoria.png`
 ```
-Você sabe o que está pendente porque lembra. Funciona bem — até o dia em que
-não lembra.
+Funciona bem. Até o dia em que você esquece.
+
+Você sabe o que está pendente porque lembra — e lembrar é um trabalho a mais.
 
 Pedido no WhatsApp, anotação no caderno, planilha no computador. A informação
 existe; o que falta é um lugar só.
@@ -134,7 +139,7 @@ Dá para resolver sem virar uma empresa cheia de sistema.
 
 ### 05 · Serviços — `05-servicos.png`
 ```
-O que eu faço, em três linhas:
+Três coisas que eu faço — e uma que eu me recuso a fazer.
 
 SITES — a página que apresenta sua empresa, explica os serviços e facilita o
 pedido de orçamento. É por onde quase todo projeto começa.
@@ -144,15 +149,16 @@ pedidos, acompanhamento, formulários, informação centralizada.
 
 AUTOMAÇÕES — o que você repete toda semana virando rotina automática.
 
-Cada projeto é avaliado conforme a necessidade. Se não for o melhor caminho
-para você, eu digo.
+E o que eu não faço: vender sistema pronto como se servisse para toda empresa
+igual. Cada projeto é avaliado conforme a necessidade — e se não for o melhor
+caminho para você, eu digo antes de você gastar.
 
 #desenvolvimentoweb #sitesprofissionais #automacao
 ```
 
 ### 06 · Fundador — `06-fundador.png`
 ```
-Quem atende é quem desenvolve.
+Você vai falar comigo o tempo todo. Não tem equipe de atendimento no meio.
 
 Sou o João. Venho da área comercial e convivi de perto com a rotina de
 empresas — por isso costumo entender o problema antes de falar de tecnologia.
@@ -165,9 +171,9 @@ Sem intermediário e sem palavra difícil no meio da conversa.
 
 ### 07 · Carrossel, como funciona — `07-processo-1` a `11-processo-5`
 ```
-Como funciona contratar um projeto aqui. Arrasta para o lado.
+Ninguém devia contratar nada sem saber o que vem depois. Então, o passo a passo:
 
-Sem mistério e sem surpresa: a conversa é de graça, o escopo vai por escrito
+Arrasta para o lado. Sem mistério e sem surpresa: a conversa é de graça, o escopo vai por escrito
 antes de qualquer trabalho começar, e você valida tudo antes de ir ao ar.
 
 O suporte depois da entrega fica definido na proposta — o que inclui, por

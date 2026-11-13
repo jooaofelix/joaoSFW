@@ -74,8 +74,9 @@ pergunta retórica óbvia, emoji no começo da frase, promessa de resultado,
 | `06-fundador` | Você vai falar comigo o tempo todo. Não tem equipe de atendimento no meio. |
 | `07-processo` (carrossel) | Ninguém devia contratar nada sem saber o que vem depois. Então, o passo a passo: |
 
-Troque a primeira linha das legendas do `textos.md` por estas. O resto do texto
-continua valendo.
+Estes ganchos **já estão aplicados** nas legendas do `textos.md` — é de lá que
+você copia na hora de postar. A tabela acima fica aqui só para você entender a
+lógica e escrever os próximos sozinho.
 
 ---
 
