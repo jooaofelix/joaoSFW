@@ -1,6 +1,6 @@
 # Instagram da Desata
 
-Artes e textos para abrir o perfil. O que escrever — bio, @, legendas e a ordem
+Artes e textos do perfil **@desatasistemas**. O que escrever — bio, @, legendas e a ordem
 de postagem — está em [`textos.md`](textos.md).
 
 ```bash

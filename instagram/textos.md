@@ -21,23 +21,20 @@ borrão — o símbolo sozinho continua legível.
 Testei os quatro reduzidos a 32px: todos continuam reconhecíveis.
 
 ### Nome (o campo "Nome", não o @)
-Esse campo entra na busca do Instagram. Não desperdice com "Desata" puro:
+Esse campo entra na busca do Instagram, e o @ já diz "sistemas" — então use o
+campo Nome para o que o @ não cobre:
 
 ```
-Desata · Sites e sistemas
+Desata · Sites e sistemas sob medida
 ```
 
 ### @ (nome de usuário)
-Não sei quais estão livres — confira na hora de criar. Em ordem de preferência:
-
-| @ | Por quê |
-|---|---|
-| `desata.dev` | Curto, diz a área, fácil de falar em voz alta. |
-| `usedesata` | Vira verbo, combina com a marca. |
-| `desata.sites` | O que você vende hoje aparece no @. |
-| `desata.digital` | Última opção: "digital" é genérico. |
-
-Evite número e sublinhado: ninguém acerta de primeira ao digitar.
+```
+@desatasistemas
+```
+Já está nas artes de fecho e no rodapé do site. Se ele estiver ocupado na hora
+de criar, me avise: tenho de trocar em três lugares (artes, `config.js` do site
+e este arquivo).
 
 ### Bio
 

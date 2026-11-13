@@ -21,8 +21,8 @@ window.DESATA_CONFIG = {
   // E-mail de contato.
   email: "jvctrfelix@gmail.com",
 
-  // PENDENTE (opcional): perfil do Instagram, só o usuário, sem "@".
-  instagram: "",
+  // Perfil do Instagram, só o usuário, sem "@".
+  instagram: "desatasistemas",
 
   // Cidade/região de atuação, exibida no rodapé.
   local: "São José dos Campos · SP"
