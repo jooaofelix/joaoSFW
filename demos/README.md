@@ -14,6 +14,18 @@ O `gravar.js` serve o repositório num servidor local, abre o palco da pasta
 indicada, filma a tela e converte para MP4 (1080×1920, H.264, sem áudio).
 Precisa do `ffmpeg` no PATH.
 
+Para assinar um vídeo que já existe — um vídeo de cliente, por exemplo:
+
+```bash
+node demos/assinar.js video.mp4                      # salva video-assinado.mp4
+node demos/assinar.js video.mp4 saida.mp4 --seg 4    # fecho mais curto
+node demos/assinar.js video.mp4 saida.mp4 --arroba   # mostra o @ no lugar do site
+```
+
+O fecho é gravado na resolução e na taxa de quadros do próprio vídeo, entra
+com meio segundo de passagem cruzada, e o áudio do original é preservado (o
+fecho recebe uma trilha de silêncio, senão a junção derruba o som).
+
 | Pasta | O que mostra |
 |---|---|
 | `landing-roupas/` | **Landing page de funil** para marca de roupas: do link do perfil até o pedido escrito no WhatsApp. É o formato de venda mais simples — uma página, um destino. |
@@ -24,6 +36,8 @@ Peças iguais em todos os vídeos:
 | Arquivo | O que é |
 |---|---|
 | `palco.css` | A cena: abertura, celular, legendas e fecho, na identidade da Desata. |
+| `assinar.js` | Cola a assinatura da Desata no fim de **qualquer** vídeo, inclusive de cliente. |
+| `fecho/fecho.html` | A assinatura em si: laço, logo, frase e contatos. |
 | `gravar.js` | Grava e converte. Recebe a pasta do demo como argumento. |
 | `<pasta>/palco.html` | A cena daquele vídeo (textos da abertura e qual página entra no celular). |
 | `<pasta>/roteiro.js` | O tempo de cada passo e o texto das legendas. É aqui que se muda o ritmo. |

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Desata — fecho</title>
+<link rel="stylesheet" href="../../assets/css/fontes.css">
+<style>
+/* Assinatura da Desata para o fim de um vídeo.
+   As medidas são em vw/vh para o mesmo arquivo servir a qualquer resolução
+   vertical — o assinar.js abre esta página no tamanho do vídeo de destino. */
+:root{--off:#F4F0E8;--graf:#242424;--lar:#E66A35;--claro:rgba(244,240,232,.76);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:100vw;height:100vh;overflow:hidden;background:var(--graf);color:var(--off);
+     font-family:'Figtree',system-ui,sans-serif;
+     display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;}
+
+.laco{position:absolute;right:-11vw;top:8vh;width:93vw;color:var(--lar);opacity:.55;}
+.laco path{fill:none;stroke:currentColor;stroke-width:9;stroke-linecap:round;
+           stroke-dasharray:var(--len,2600);stroke-dashoffset:var(--len,2600);}
+.laco.desenha path{animation:desatar 2.1s cubic-bezier(.22,.61,.36,1) forwards;}
+@keyframes desatar{to{stroke-dashoffset:0;}}
+
+img{width:40vw;opacity:0;transform:translateY(2.2vh);
+    animation:sobe .85s cubic-bezier(.22,1,.36,1) .2s forwards;}
+h1{font-size:6.7vw;letter-spacing:-.03em;font-weight:800;margin-top:5vh;text-align:center;
+   opacity:0;transform:translateY(2.2vh);animation:sobe .85s cubic-bezier(.22,1,.36,1) .45s forwards;}
+h1 em{font-style:normal;color:var(--lar);}
+.contato{margin-top:5.5vh;font-size:3.3vw;font-weight:600;color:var(--claro);text-align:center;
+         line-height:1.75;opacity:0;transform:translateY(2.2vh);
+         animation:sobe .85s cubic-bezier(.22,1,.36,1) .7s forwards;}
+.aviso{position:absolute;bottom:5vh;font-size:2.2vw;letter-spacing:.14em;text-transform:uppercase;
+       color:#f4f0e866;opacity:0;animation:aparece .8s ease .95s forwards;}
+@keyframes sobe{to{opacity:1;transform:none;}}
+@keyframes aparece{to{opacity:1;}}
+</style>
+</head>
+<body>
+<svg class="laco" id="laco" viewBox="0 0 420 300">
+  <path d="M0 214 C 96 214, 140 150, 214 156 C 286 162, 300 232, 246 250 C 200 265, 172 214, 216 178 C 268 136, 372 158, 420 96"/>
+</svg>
+
+<img src="../../assets/img/logo-desata-branco.png" alt="Desata">
+<h1>Tecnologia que <em>descomplica</em>.</h1>
+<p class="contato" id="contato"></p>
+<p class="aviso" id="aviso"></p>
+
+<script>
+const params = new URLSearchParams(location.search);
+document.getElementById("contato").innerHTML = (params.get("contato") || "").split("|").join("<br>");
+document.getElementById("aviso").textContent = params.get("aviso") || "";
+
+const laco = document.getElementById("laco");
+laco.style.setProperty("--len", Math.ceil(laco.querySelector("path").getTotalLength()));
+laco.classList.add("desenha");
+
+// o assinar.js espera por isto para saber que a animação terminou
+setTimeout(() => { document.title = "FIM"; }, Number(params.get("ms") || 6000));
+</script>
+</body>
+</html>
