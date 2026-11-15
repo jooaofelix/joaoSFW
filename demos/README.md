@@ -30,6 +30,7 @@ fecho recebe uma trilha de silêncio, senão a junção derruba o som).
 |---|---|
 | `landing-roupas/` | **Landing page de funil** para marca de roupas: do link do perfil até o pedido escrito no WhatsApp. É o formato de venda mais simples — uma página, um destino. |
 | `loja-roupas/` | Loja com vitrine, filtro por tamanho, sacola e pedido no WhatsApp. Um passo além da landing page. |
+| `pagaai/` | **Reel do pagaAí**: comercial de 35s em motion, sem narração, na identidade do próprio app. |
 
 Peças iguais em todos os vídeos:
 

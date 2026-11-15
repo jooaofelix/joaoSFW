@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>pagaAí — reel</title>
+<link rel="stylesheet" href="../../assets/css/fontes.css">
+<style>
+/* =========================================================
+   Reel do pagaAí — 1080x1920, sem narração.
+   Cores e mascote saem do próprio app (Controle-financeiro).
+   Ritmo: corte a cada 1 a 2 segundos, como a referência.
+   ========================================================= */
+:root{
+  --bg:#0B0C0A; --card:#171915; --texto:#EEF2E8; --sutil:#9CA393;
+  --borda:#262A21; --verde:#C5F439; --menta:#2A3311; --menta-tx:#D9F77F;
+  --alimentacao:#EB6834; --mercado:#2A78D6; --casa:#1BAF7A; --transporte:#EDA100;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);color:var(--texto);
+     font-family:'Figtree',system-ui,sans-serif;position:relative;}
+img{display:block;}
+
+/* ---------- cenas ---------- */
+.cena{position:absolute;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:40px;padding:140px 90px;
+      opacity:0;pointer-events:none;}
+.cena.ativa{opacity:1;}
+.cena.ativa > *{animation:entra .42s cubic-bezier(.2,.9,.25,1) both;}
+.cena.ativa > *:nth-child(2){animation-delay:.1s;}
+.cena.ativa > *:nth-child(3){animation-delay:.2s;}
+.cena.ativa > *:nth-child(4){animation-delay:.3s;}
+@keyframes entra{from{opacity:0;transform:translateY(26px) scale(.97);}to{opacity:1;transform:none;}}
+
+h1{font-size:128px;line-height:.98;letter-spacing:-.045em;font-weight:800;text-align:center;}
+h1.media{font-size:104px;}
+h1.pequena{font-size:84px;line-height:1.05;}
+h1 em{font-style:normal;color:var(--verde);}
+p.apoio{font-size:46px;color:var(--sutil);text-align:center;max-width:20ch;line-height:1.3;}
+
+.mascote{width:420px;}
+.mascote.grande{width:520px;}
+
+/* ---------- cartões de notificação ---------- */
+.notes{display:flex;flex-direction:column;gap:22px;width:100%;}
+.note{display:flex;align-items:center;gap:22px;background:var(--card);border:2px solid var(--borda);
+      border-radius:30px;padding:28px 32px;}
+.note__icone{width:72px;height:72px;border-radius:20px;flex:none;display:grid;place-items:center;
+             font-size:34px;font-weight:800;color:#0B0C0A;}
+.note__txt{flex:1;}
+.note__t{font-size:36px;font-weight:700;}
+.note__s{font-size:30px;color:var(--sutil);margin-top:4px;}
+.note__v{font-size:40px;font-weight:800;white-space:nowrap;}
+.note--verde{border-color:var(--verde);}
+
+/* ---------- celular ---------- */
+.fone{width:560px;height:1120px;border-radius:66px;background:#000;border:14px solid #1C1F19;
+      position:relative;overflow:hidden;box-shadow:0 50px 120px -40px #c5f43933;}
+.fone__entalhe{position:absolute;top:26px;left:50%;transform:translateX(-50%);
+               width:150px;height:30px;border-radius:16px;background:#000;z-index:3;}
+.fone__tela{position:absolute;inset:0;background:linear-gradient(170deg,#11140E,#0B0C0A);
+            padding:150px 34px 40px;display:flex;flex-direction:column;gap:20px;}
+.fone__hora{text-align:center;font-size:92px;font-weight:300;letter-spacing:-.03em;margin-bottom:10px;}
+.fone__data{text-align:center;font-size:30px;color:var(--sutil);margin-top:-18px;}
+.fone--claro .fone__tela{background:linear-gradient(170deg,#F2F4EE,#E4E8DC);color:#0B0C0A;}
+.fone--claro .note{background:#FFFFFFEE;border-color:#00000012;color:#0B0C0A;}
+.fone--claro .note__s{color:#5A6152;}
+
+/* ---------- etiquetas ---------- */
+.tags{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+.tag{font-size:40px;font-weight:700;padding:18px 34px;border-radius:999px;
+     background:var(--card);border:2px solid var(--borda);}
+.tag--on{background:var(--verde);color:#0B0C0A;border-color:var(--verde);}
+
+/* ---------- números e barras ---------- */
+.numero{font-size:150px;font-weight:800;letter-spacing:-.05em;font-variant-numeric:tabular-nums;}
+.barras{display:flex;align-items:flex-end;gap:26px;height:420px;width:100%;justify-content:center;}
+.barra{width:116px;background:var(--menta);border-radius:20px 20px 8px 8px;position:relative;
+       height:0;transition:height 1.1s cubic-bezier(.2,.9,.25,1);}
+.cena.ativa .barra{height:var(--h);}
+.barra span{position:absolute;bottom:-56px;left:0;right:0;text-align:center;
+            font-size:26px;color:var(--sutil);}
+.barra--destaque{background:var(--verde);}
+
+/* ---------- fecho ---------- */
+.logo{width:620px;}
+.selo{font-size:44px;font-weight:700;color:var(--verde);letter-spacing:-.01em;}
+.rodape{position:absolute;bottom:120px;font-size:30px;color:#9CA39366;letter-spacing:.16em;text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<!-- ============ gancho ============ -->
+<section class="cena" id="c1">
+  <h1>Você pagou<br>a conta.</h1>
+</section>
+
+<section class="cena" id="c2">
+  <h1 class="media">Ela pagou<br>o mercado.</h1>
+  <img class="mascote" src="assets/preocupado.webp" alt="">
+</section>
+
+<section class="cena" id="c3">
+  <h1 class="pequena">Quem anotou?</h1>
+  <div class="notes">
+    <div class="note">
+      <div class="note__icone" style="background:var(--mercado)">M</div>
+      <div class="note__txt"><p class="note__t">Mercado</p><p class="note__s">terça, 19:40</p></div>
+      <p class="note__v">R$ 212,80</p>
+    </div>
+    <div class="note">
+      <div class="note__icone" style="background:var(--alimentacao)">i</div>
+      <div class="note__txt"><p class="note__t">iFood</p><p class="note__s">quarta, 21:05</p></div>
+      <p class="note__v">R$ 48,90</p>
+    </div>
+    <div class="note">
+      <div class="note__icone" style="background:var(--transporte)">P</div>
+      <div class="note__txt"><p class="note__t">Posto</p><p class="note__s">sexta, 08:12</p></div>
+      <p class="note__v">R$ 180,00</p>
+    </div>
+  </div>
+</section>
+
+<section class="cena" id="c4">
+  <h1 class="media">E a fatura<br>vence dia 21.</h1>
+  <img class="mascote" src="assets/pensando.webp" alt="">
+</section>
+
+<!-- ============ virada ============ -->
+<section class="cena" id="c5">
+  <h1>Agora elas se anotam <em>sozinhas</em>.</h1>
+</section>
+
+<!-- ============ desenvolvimento ============ -->
+<section class="cena" id="c6">
+  <div class="fone">
+    <div class="fone__entalhe"></div>
+    <div class="fone__tela">
+      <p class="fone__hora">19:40</p>
+      <p class="fone__data">terça, 18 de novembro</p>
+      <div class="notes" style="margin-top:40px">
+        <div class="note note--verde">
+          <div class="note__icone" style="background:var(--verde)">p</div>
+          <div class="note__txt">
+            <p class="note__t">📝 Anotado: R$ 212,80</p>
+            <p class="note__s">Mercado · Nubank · Esposa</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="apoio">Você passa o cartão. O app anota.</p>
+</section>
+
+<section class="cena" id="c7">
+  <h1 class="media">Sem digitar<br>nada.</h1>
+  <div class="tags">
+    <span class="tag tag--on">Mercado</span>
+    <span class="tag">Alimentação</span>
+    <span class="tag">Transporte</span>
+    <span class="tag">Casa</span>
+  </div>
+  <p class="apoio">A categoria vem sozinha pelo nome da loja.</p>
+</section>
+
+<section class="cena" id="c8">
+  <div class="fone">
+    <div class="fone__entalhe"></div>
+    <div class="fone__tela">
+      <p class="fone__hora">23:14</p>
+      <p class="fone__data">domingo</p>
+      <div class="notes" style="margin-top:40px">
+        <div class="note note--verde">
+          <div class="note__icone" style="background:var(--verde)">p</div>
+          <div class="note__txt"><p class="note__t">📝 Anotado: R$ 48,90</p><p class="note__s">iFood · Inter · Marido</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 class="pequena">De dia. De noite.<br>No domingo.</h1>
+</section>
+
+<section class="cena" id="c9">
+  <h1 class="pequena">Quem gastou,<br>em quê,<br>de onde saiu.</h1>
+  <div class="notes">
+    <div class="note">
+      <div class="note__icone" style="background:var(--verde)">M</div>
+      <div class="note__txt"><p class="note__t">Marido</p><p class="note__s">Alimentação · Inter</p></div>
+      <p class="note__v">R$ 48,90</p>
+    </div>
+    <div class="note">
+      <div class="note__icone" style="background:var(--menta-tx)">E</div>
+      <div class="note__txt"><p class="note__t">Esposa</p><p class="note__s">Mercado · Nubank</p></div>
+      <p class="note__v">R$ 212,80</p>
+    </div>
+  </div>
+</section>
+
+<section class="cena" id="c10">
+  <h1 class="pequena">E ele avisa<br>o que vence.</h1>
+  <div class="notes">
+    <div class="note note--verde">
+      <div class="note__icone" style="background:var(--casa)">21</div>
+      <div class="note__txt"><p class="note__t">Fatura Nubank</p><p class="note__s">dia 21 · em 6 dias</p></div>
+      <p class="note__v">R$ 500,00</p>
+    </div>
+    <div class="note">
+      <div class="note__icone" style="background:var(--mercado)">21</div>
+      <div class="note__txt"><p class="note__t">Mercado do mês</p><p class="note__s">dia 21 · em 6 dias</p></div>
+      <p class="note__v">R$ 700,00</p>
+    </div>
+  </div>
+  <img class="mascote" src="assets/recibo.webp" alt="" style="width:300px">
+</section>
+
+<section class="cena" id="c11">
+  <p class="apoio">Gasto em novembro</p>
+  <p class="numero" id="contador">R$ 0</p>
+  <div class="barras">
+    <div class="barra barra--destaque" style="--h:380px"><span>Mercado</span></div>
+    <div class="barra" style="--h:250px"><span>Aliment.</span></div>
+    <div class="barra" style="--h:180px"><span>Transp.</span></div>
+    <div class="barra" style="--h:120px"><span>Casa</span></div>
+  </div>
+</section>
+
+<!-- ============ fecho ============ -->
+<section class="cena" id="c12">
+  <h1>Enquanto vocês <em>vivem</em>,</h1>
+  <h1 class="media">o pagaAí anota.</h1>
+  <img class="mascote grande" src="assets/comemora.webp" alt="">
+</section>
+
+<section class="cena" id="c13">
+  <img class="logo" src="assets/logo-pagaai.png" alt="pagaAí">
+  <p class="selo">Grátis. Simples. Do casal.</p>
+  <p class="rodape">Demonstração · valores ilustrativos</p>
+</section>
+
+<script src="roteiro.js"></script>
+</body>
+</html>
