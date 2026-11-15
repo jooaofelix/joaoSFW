@@ -6,9 +6,12 @@
 <link rel="stylesheet" href="../../assets/css/fontes.css">
 <style>
 /* =========================================================
-   Reel do pagaAí — 1080x1920, sem narração.
-   Cores e mascote saem do próprio app (Controle-financeiro).
-   Ritmo: corte a cada 1 a 2 segundos, como a referência.
+   Reel do pagaAí — plano-sequência.
+   Não há cortes. Existe um cenário só (#mundo, 2000x6300) e
+   uma câmera que anda por ele de cima para baixo. O roteiro.js
+   move a câmera e acorda cada elemento na hora certa.
+
+   O cenário é uma coluna: o eixo x do mundo é sempre 1000.
    ========================================================= */
 :root{
   --bg:#0B0C0A; --card:#171915; --texto:#EEF2E8; --sutil:#9CA393;
@@ -17,225 +20,193 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);color:var(--texto);
-     font-family:'Figtree',system-ui,sans-serif;position:relative;}
+     font-family:'Figtree',system-ui,sans-serif;}
 img{display:block;}
 
-/* ---------- cenas ---------- */
-.cena{position:absolute;inset:0;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;gap:40px;padding:140px 90px;
-      opacity:0;pointer-events:none;}
-.cena.ativa{opacity:1;}
-.cena.ativa > *{animation:entra .42s cubic-bezier(.2,.9,.25,1) both;}
-.cena.ativa > *:nth-child(2){animation-delay:.1s;}
-.cena.ativa > *:nth-child(3){animation-delay:.2s;}
-.cena.ativa > *:nth-child(4){animation-delay:.3s;}
-@keyframes entra{from{opacity:0;transform:translateY(26px) scale(.97);}to{opacity:1;transform:none;}}
+/* a câmera: o mundo inteiro é transformado de uma vez */
+#palco{width:1080px;height:1920px;overflow:hidden;position:relative;}
+#mundo{position:absolute;top:0;left:0;width:2000px;height:6300px;
+       transform-origin:0 0;will-change:transform;}
 
-h1{font-size:128px;line-height:.98;letter-spacing:-.045em;font-weight:800;text-align:center;}
-h1.media{font-size:104px;}
-h1.pequena{font-size:84px;line-height:1.05;}
-h1 em{font-style:normal;color:var(--verde);}
-p.apoio{font-size:46px;color:var(--sutil);text-align:center;max-width:20ch;line-height:1.3;}
+/* tudo que aparece com o tempo começa apagado */
+[data-em]{opacity:0;transition:opacity .85s ease, transform .95s cubic-bezier(.2,.9,.25,1);}
+[data-em].on{opacity:1;}
+[data-em].saiu{opacity:0;}
 
-.mascote{width:420px;}
-.mascote.grande{width:520px;}
+.frase{position:absolute;line-height:1.02;letter-spacing:-.045em;font-weight:800;text-align:center;}
+.frase em{font-style:normal;color:var(--verde);}
 
-/* ---------- cartões de notificação ---------- */
-.notes{display:flex;flex-direction:column;gap:22px;width:100%;}
-.note{display:flex;align-items:center;gap:22px;background:var(--card);border:2px solid var(--borda);
-      border-radius:30px;padding:28px 32px;}
-.note__icone{width:72px;height:72px;border-radius:20px;flex:none;display:grid;place-items:center;
-             font-size:34px;font-weight:800;color:#0B0C0A;}
-.note__txt{flex:1;}
-.note__t{font-size:36px;font-weight:700;}
-.note__s{font-size:30px;color:var(--sutil);margin-top:4px;}
-.note__v{font-size:40px;font-weight:800;white-space:nowrap;}
-.note--verde{border-color:var(--verde);}
+/* ---------- 1. o caos: compras soltas ---------- */
+.compra{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);
+        border:2px solid var(--borda);border-radius:26px;padding:22px 28px;width:520px;
+        box-shadow:0 30px 60px -30px #000;transform:translateY(28px) scale(.96);}
+.compra.on{transform:none;}
+.compra__i{width:62px;height:62px;border-radius:18px;flex:none;display:grid;place-items:center;
+           font-size:28px;font-weight:800;color:#0B0C0A;}
+.compra__t{font-size:30px;font-weight:700;}
+.compra__s{font-size:24px;color:var(--sutil);margin-top:2px;}
+.compra__v{font-size:32px;font-weight:800;margin-left:auto;white-space:nowrap;}
+.compra.sugada{opacity:0 !important;
+               transition:transform 1.3s cubic-bezier(.55,0,.2,1), opacity .5s ease .8s;}
 
-/* ---------- celular ---------- */
-.fone{width:560px;height:1120px;border-radius:66px;background:#000;border:14px solid #1C1F19;
-      position:relative;overflow:hidden;box-shadow:0 50px 120px -40px #c5f43933;}
-.fone__entalhe{position:absolute;top:26px;left:50%;transform:translateX(-50%);
-               width:150px;height:30px;border-radius:16px;background:#000;z-index:3;}
-.fone__tela{position:absolute;inset:0;background:linear-gradient(170deg,#11140E,#0B0C0A);
-            padding:150px 34px 40px;display:flex;flex-direction:column;gap:20px;}
-.fone__hora{text-align:center;font-size:92px;font-weight:300;letter-spacing:-.03em;margin-bottom:10px;}
-.fone__data{text-align:center;font-size:30px;color:var(--sutil);margin-top:-18px;}
-.fone--claro .fone__tela{background:linear-gradient(170deg,#F2F4EE,#E4E8DC);color:#0B0C0A;}
-.fone--claro .note{background:#FFFFFFEE;border-color:#00000012;color:#0B0C0A;}
-.fone--claro .note__s{color:#5A6152;}
+/* ---------- 2. o celular ---------- */
+.fone{position:absolute;width:620px;height:1240px;border-radius:72px;background:#05060A;
+      border:14px solid #1C1F19;box-shadow:0 70px 160px -50px #c5f4392e;overflow:hidden;}
+.fone__entalhe{position:absolute;top:24px;left:50%;transform:translateX(-50%);width:160px;height:32px;
+               border-radius:18px;background:#000;z-index:4;}
+.tela{position:absolute;inset:0;padding:120px 30px 30px;display:flex;flex-direction:column;}
+.tela__topo{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px;}
+.tela__mes{font-size:26px;color:var(--sutil);}
+.tela__total{font-size:62px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;}
+.linha{display:flex;align-items:center;gap:16px;background:#12140F;border:2px solid var(--borda);
+       border-radius:22px;padding:18px 20px;margin-bottom:14px;transform:translateY(18px);}
+.linha.on{transform:none;}
+.linha__i{width:50px;height:50px;border-radius:15px;flex:none;display:grid;place-items:center;
+          font-size:22px;font-weight:800;color:#0B0C0A;}
+.linha__t{font-size:25px;font-weight:700;}
+.linha__s{font-size:20px;color:var(--sutil);}
+.linha__v{font-size:26px;font-weight:800;margin-left:auto;}
+.linha__tag{font-size:17px;font-weight:700;padding:5px 12px;border-radius:999px;
+            background:var(--menta);color:var(--menta-tx);margin-top:6px;display:inline-block;
+            opacity:0;transform:scale(.7);transition:opacity .4s ease,transform .45s cubic-bezier(.34,1.56,.64,1);}
+.linha__tag.on{opacity:1;transform:none;}
 
-/* ---------- etiquetas ---------- */
-.tags{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
-.tag{font-size:40px;font-weight:700;padding:18px 34px;border-radius:999px;
-     background:var(--card);border:2px solid var(--borda);}
-.tag--on{background:var(--verde);color:#0B0C0A;border-color:var(--verde);}
+/* barras dentro do app */
+.graf{display:flex;align-items:flex-end;gap:16px;height:240px;margin-top:26px;padding:0 6px;}
+.col{flex:1;background:var(--menta);border-radius:12px 12px 5px 5px;height:0;
+     transition:height 1.5s cubic-bezier(.2,.9,.25,1);position:relative;}
+.col.on{height:var(--h);}
+.col--destaque{background:var(--verde);}
+.col b{position:absolute;bottom:-34px;left:0;right:0;text-align:center;font-size:18px;
+       font-weight:500;color:var(--sutil);}
 
-/* ---------- números e barras ---------- */
-.numero{font-size:150px;font-weight:800;letter-spacing:-.05em;font-variant-numeric:tabular-nums;}
-.barras{display:flex;align-items:flex-end;gap:26px;height:420px;width:100%;justify-content:center;}
-.barra{width:116px;background:var(--menta);border-radius:20px 20px 8px 8px;position:relative;
-       height:0;transition:height 1.1s cubic-bezier(.2,.9,.25,1);}
-.cena.ativa .barra{height:var(--h);}
-.barra span{position:absolute;bottom:-56px;left:0;right:0;text-align:center;
-            font-size:26px;color:var(--sutil);}
-.barra--destaque{background:var(--verde);}
+/* aviso de vencimento deslizando por cima da tela */
+.aviso{position:absolute;left:30px;right:30px;bottom:40px;background:#12140F;border:2px solid var(--verde);
+       border-radius:24px;padding:20px 22px;display:flex;align-items:center;gap:16px;
+       transform:translateY(260px);transition:transform 1.05s cubic-bezier(.2,.9,.25,1);}
+.aviso.on{transform:none;}
+.aviso__i{width:52px;height:52px;border-radius:16px;background:var(--verde);color:#0B0C0A;
+          display:grid;place-items:center;font-size:24px;font-weight:800;}
 
-/* ---------- fecho ---------- */
-.logo{width:620px;}
-.selo{font-size:44px;font-weight:700;color:var(--verde);letter-spacing:-.01em;}
-.rodape{position:absolute;bottom:120px;font-size:30px;color:#9CA39366;letter-spacing:.16em;text-transform:uppercase;}
+/* ---------- 3. a vida em volta ---------- */
+.vida{position:absolute;font-size:72px;font-weight:700;padding:26px 50px;border-radius:999px;
+      background:var(--card);border:2px solid var(--borda);color:var(--texto);white-space:nowrap;
+      transform:translateY(50px) scale(.88);}
+.vida.on{transform:none;}
+
+.mascote{position:absolute;width:420px;transform:translateY(70px) scale(.86);}
+.mascote.on{transform:none;}
+
+/* ---------- 4. assinatura ---------- */
+.logo{position:absolute;width:620px;transform:translateY(40px) scale(.94);}
+.logo.on{transform:none;}
+.selo{position:absolute;font-size:52px;font-weight:700;color:var(--verde);text-align:center;}
+.rodape{position:absolute;font-size:26px;color:#9CA39366;letter-spacing:.16em;text-transform:uppercase;
+        text-align:center;}
 </style>
 </head>
 <body>
+<div id="palco">
+<div id="mundo">
 
-<!-- ============ gancho ============ -->
-<section class="cena" id="c1">
-  <h1>Você pagou<br>a conta.</h1>
-</section>
+  <!-- ====== 1. o caos ====== -->
+  <p class="frase" data-em="300" data-ate="12000" style="left:560px;top:300px;width:880px;font-size:94px">
+    Toda semana,<br>a mesma <em>bagunça</em>.</p>
 
-<section class="cena" id="c2">
-  <h1 class="media">Ela pagou<br>o mercado.</h1>
-  <img class="mascote" src="assets/preocupado.webp" alt="">
-</section>
-
-<section class="cena" id="c3">
-  <h1 class="pequena">Quem anotou?</h1>
-  <div class="notes">
-    <div class="note">
-      <div class="note__icone" style="background:var(--mercado)">M</div>
-      <div class="note__txt"><p class="note__t">Mercado</p><p class="note__s">terça, 19:40</p></div>
-      <p class="note__v">R$ 212,80</p>
-    </div>
-    <div class="note">
-      <div class="note__icone" style="background:var(--alimentacao)">i</div>
-      <div class="note__txt"><p class="note__t">iFood</p><p class="note__s">quarta, 21:05</p></div>
-      <p class="note__v">R$ 48,90</p>
-    </div>
-    <div class="note">
-      <div class="note__icone" style="background:var(--transporte)">P</div>
-      <div class="note__txt"><p class="note__t">Posto</p><p class="note__s">sexta, 08:12</p></div>
-      <p class="note__v">R$ 180,00</p>
-    </div>
+  <div class="compra" id="cp1" data-em="1500" style="left:420px;top:700px">
+    <div class="compra__i" style="background:var(--mercado)">M</div>
+    <div><p class="compra__t">Mercado</p><p class="compra__s">terça · Nubank</p></div>
+    <p class="compra__v">R$ 212,80</p>
   </div>
-</section>
+  <div class="compra" id="cp2" data-em="2000" style="left:1060px;top:900px">
+    <div class="compra__i" style="background:var(--alimentacao)">i</div>
+    <div><p class="compra__t">iFood</p><p class="compra__s">quarta · Inter</p></div>
+    <p class="compra__v">R$ 48,90</p>
+  </div>
+  <div class="compra" id="cp3" data-em="2500" style="left:400px;top:1140px">
+    <div class="compra__i" style="background:var(--transporte)">P</div>
+    <div><p class="compra__t">Posto</p><p class="compra__s">sexta · Nubank</p></div>
+    <p class="compra__v">R$ 180,00</p>
+  </div>
+  <div class="compra" id="cp4" data-em="3000" style="left:1040px;top:1380px">
+    <div class="compra__i" style="background:var(--casa)">F</div>
+    <div><p class="compra__t">Farmácia</p><p class="compra__s">sábado · Inter</p></div>
+    <p class="compra__v">R$ 96,40</p>
+  </div>
 
-<section class="cena" id="c4">
-  <h1 class="media">E a fatura<br>vence dia 21.</h1>
-  <img class="mascote" src="assets/pensando.webp" alt="">
-</section>
+  <p class="frase" data-em="4200" data-ate="12000" style="left:560px;top:1660px;width:880px;font-size:76px">Quem anotou?</p>
+  <p class="frase" data-em="6200" data-ate="12000" style="left:500px;top:1900px;width:1000px;font-size:84px">
+    Agora elas se anotam <em>sozinhas</em>.</p>
 
-<!-- ============ virada ============ -->
-<section class="cena" id="c5">
-  <h1>Agora elas se anotam <em>sozinhas</em>.</h1>
-</section>
-
-<!-- ============ desenvolvimento ============ -->
-<section class="cena" id="c6">
-  <div class="fone">
+  <!-- ====== 2. o celular ====== -->
+  <div class="fone" id="fone" data-em="0" data-ate="25500" style="left:690px;top:2400px">
     <div class="fone__entalhe"></div>
-    <div class="fone__tela">
-      <p class="fone__hora">19:40</p>
-      <p class="fone__data">terça, 18 de novembro</p>
-      <div class="notes" style="margin-top:40px">
-        <div class="note note--verde">
-          <div class="note__icone" style="background:var(--verde)">p</div>
-          <div class="note__txt">
-            <p class="note__t">📝 Anotado: R$ 212,80</p>
-            <p class="note__s">Mercado · Nubank · Esposa</p>
-          </div>
-        </div>
+    <div class="tela">
+      <div class="tela__topo">
+        <p class="tela__mes">Gasto em novembro</p>
+        <p class="tela__total" id="total">R$ 0</p>
+      </div>
+
+      <div class="linha" data-em="9600">
+        <div class="linha__i" style="background:var(--mercado)">M</div>
+        <div><p class="linha__t">Mercado</p><p class="linha__s">Esposa · Nubank</p>
+          <span class="linha__tag" id="tag1">Mercado</span></div>
+        <p class="linha__v">R$ 212,80</p>
+      </div>
+      <div class="linha" data-em="10000">
+        <div class="linha__i" style="background:var(--alimentacao)">i</div>
+        <div><p class="linha__t">iFood</p><p class="linha__s">Marido · Inter</p>
+          <span class="linha__tag" id="tag2">Alimentação</span></div>
+        <p class="linha__v">R$ 48,90</p>
+      </div>
+      <div class="linha" data-em="10400">
+        <div class="linha__i" style="background:var(--transporte)">P</div>
+        <div><p class="linha__t">Posto</p><p class="linha__s">Marido · Nubank</p>
+          <span class="linha__tag" id="tag3">Transporte</span></div>
+        <p class="linha__v">R$ 180,00</p>
+      </div>
+      <div class="linha" data-em="10800">
+        <div class="linha__i" style="background:var(--casa)">F</div>
+        <div><p class="linha__t">Farmácia</p><p class="linha__s">Esposa · Inter</p>
+          <span class="linha__tag" id="tag4">Saúde</span></div>
+        <p class="linha__v">R$ 96,40</p>
+      </div>
+
+      <div class="graf">
+        <div class="col col--destaque" id="col1" style="--h:220px"><b>Mercado</b></div>
+        <div class="col" id="col2" style="--h:140px"><b>Aliment.</b></div>
+        <div class="col" id="col3" style="--h:170px"><b>Transp.</b></div>
+        <div class="col" id="col4" style="--h:90px"><b>Saúde</b></div>
+      </div>
+
+      <div class="aviso" id="aviso">
+        <div class="aviso__i">21</div>
+        <div><p class="linha__t">Fatura Nubank</p><p class="linha__s">vence em 6 dias · R$ 500,00</p></div>
       </div>
     </div>
   </div>
-  <p class="apoio">Você passa o cartão. O app anota.</p>
-</section>
 
-<section class="cena" id="c7">
-  <h1 class="media">Sem digitar<br>nada.</h1>
-  <div class="tags">
-    <span class="tag tag--on">Mercado</span>
-    <span class="tag">Alimentação</span>
-    <span class="tag">Transporte</span>
-    <span class="tag">Casa</span>
-  </div>
-  <p class="apoio">A categoria vem sozinha pelo nome da loja.</p>
-</section>
+  <!-- ====== 3. a vida em volta (só aparece quando a câmera afasta) ====== -->
+  <span class="vida" data-em="21000" data-ate="25500" style="left:250px;top:2220px">Aniversário</span>
+  <span class="vida" data-em="21250" data-ate="25500" style="left:1360px;top:2460px">Cinema</span>
+  <span class="vida" data-em="21500" data-ate="25500" style="left:260px;top:2720px">Viagem</span>
+  <span class="vida" data-em="21750" data-ate="25500" style="left:1355px;top:2980px">Família</span>
+  <span class="vida" data-em="22000" data-ate="25500" style="left:230px;top:3240px">Academia</span>
+  <span class="vida" data-em="22250" data-ate="25500" style="left:1350px;top:3500px">Domingo</span>
+  <span class="vida" data-em="22500" data-ate="25500" style="left:280px;top:3760px">Praia</span>
+  <span class="vida" data-em="22750" data-ate="25500" style="left:1360px;top:4000px">Churrasco</span>
 
-<section class="cena" id="c8">
-  <div class="fone">
-    <div class="fone__entalhe"></div>
-    <div class="fone__tela">
-      <p class="fone__hora">23:14</p>
-      <p class="fone__data">domingo</p>
-      <div class="notes" style="margin-top:40px">
-        <div class="note note--verde">
-          <div class="note__icone" style="background:var(--verde)">p</div>
-          <div class="note__txt"><p class="note__t">📝 Anotado: R$ 48,90</p><p class="note__s">iFood · Inter · Marido</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <h1 class="pequena">De dia. De noite.<br>No domingo.</h1>
-</section>
+  <!-- ====== 4. o fecho ====== -->
+  <p class="frase" data-em="26200" data-ate="28200" style="left:460px;top:4350px;width:1080px;font-size:100px">
+    Enquanto vocês <em>vivem</em>,<br>o pagaAí anota.</p>
+  <img class="mascote" data-em="26900" data-ate="28200" src="assets/comemora.webp" alt="" style="left:790px;top:4680px">
 
-<section class="cena" id="c9">
-  <h1 class="pequena">Quem gastou,<br>em quê,<br>de onde saiu.</h1>
-  <div class="notes">
-    <div class="note">
-      <div class="note__icone" style="background:var(--verde)">M</div>
-      <div class="note__txt"><p class="note__t">Marido</p><p class="note__s">Alimentação · Inter</p></div>
-      <p class="note__v">R$ 48,90</p>
-    </div>
-    <div class="note">
-      <div class="note__icone" style="background:var(--menta-tx)">E</div>
-      <div class="note__txt"><p class="note__t">Esposa</p><p class="note__s">Mercado · Nubank</p></div>
-      <p class="note__v">R$ 212,80</p>
-    </div>
-  </div>
-</section>
+  <img class="logo" data-em="28500" src="assets/logo-pagaai.png" alt="pagaAí" style="left:690px;top:5600px">
+  <p class="selo" data-em="29100" style="left:620px;top:5880px;width:760px">Grátis. Simples. Do casal.</p>
+  <p class="rodape" data-em="29700" style="left:620px;top:6010px;width:760px">Demonstração · valores ilustrativos</p>
 
-<section class="cena" id="c10">
-  <h1 class="pequena">E ele avisa<br>o que vence.</h1>
-  <div class="notes">
-    <div class="note note--verde">
-      <div class="note__icone" style="background:var(--casa)">21</div>
-      <div class="note__txt"><p class="note__t">Fatura Nubank</p><p class="note__s">dia 21 · em 6 dias</p></div>
-      <p class="note__v">R$ 500,00</p>
-    </div>
-    <div class="note">
-      <div class="note__icone" style="background:var(--mercado)">21</div>
-      <div class="note__txt"><p class="note__t">Mercado do mês</p><p class="note__s">dia 21 · em 6 dias</p></div>
-      <p class="note__v">R$ 700,00</p>
-    </div>
-  </div>
-  <img class="mascote" src="assets/recibo.webp" alt="" style="width:300px">
-</section>
-
-<section class="cena" id="c11">
-  <p class="apoio">Gasto em novembro</p>
-  <p class="numero" id="contador">R$ 0</p>
-  <div class="barras">
-    <div class="barra barra--destaque" style="--h:380px"><span>Mercado</span></div>
-    <div class="barra" style="--h:250px"><span>Aliment.</span></div>
-    <div class="barra" style="--h:180px"><span>Transp.</span></div>
-    <div class="barra" style="--h:120px"><span>Casa</span></div>
-  </div>
-</section>
-
-<!-- ============ fecho ============ -->
-<section class="cena" id="c12">
-  <h1>Enquanto vocês <em>vivem</em>,</h1>
-  <h1 class="media">o pagaAí anota.</h1>
-  <img class="mascote grande" src="assets/comemora.webp" alt="">
-</section>
-
-<section class="cena" id="c13">
-  <img class="logo" src="assets/logo-pagaai.png" alt="pagaAí">
-  <p class="selo">Grátis. Simples. Do casal.</p>
-  <p class="rodape">Demonstração · valores ilustrativos</p>
-</section>
-
+</div>
+</div>
 <script src="roteiro.js"></script>
 </body>
 </html>
