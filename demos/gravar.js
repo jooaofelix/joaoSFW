@@ -9,7 +9,7 @@
  * Precisa do ffmpeg no PATH.
  */
 const { chromium } = require("playwright");
-const { execFileSync } = require("child_process");
+const { execFileSync, spawnSync } = require("child_process");
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -36,7 +36,8 @@ function contatos() {
    arquivo como origem diferente — o roteiro não alcançaria a página de dentro.
    Servir por HTTP resolve sem afrouxar a segurança do navegador. */
 const TIPOS = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",
-                ".png": "image/png", ".woff2": "font/woff2", ".svg": "image/svg+xml" };
+                ".png": "image/png", ".webp": "image/webp", ".woff2": "font/woff2",
+                ".svg": "image/svg+xml", ".mp4": "video/mp4", ".webm": "video/webm" };
 
 function servir(raiz) {
   const servidor = http.createServer((req, res) => {
@@ -46,7 +47,22 @@ function servir(raiz) {
       res.writeHead(404).end("não encontrado");
       return;
     }
-    res.writeHead(200, { "Content-Type": TIPOS[path.extname(arquivo)] || "application/octet-stream" });
+    const tipo = TIPOS[path.extname(arquivo)] || "application/octet-stream";
+    const tamanho = fs.statSync(arquivo).size;
+    /* O navegador pede vídeo por pedaços. Sem resposta 206 ele desiste de
+       tocar o arquivo, e a janela do reel sairia preta na gravação. */
+    const faixa = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || "");
+    if (faixa) {
+      const ini = faixa[1] ? Number(faixa[1]) : 0;
+      const fim = faixa[2] ? Math.min(Number(faixa[2]), tamanho - 1) : tamanho - 1;
+      res.writeHead(206, {
+        "Content-Type": tipo, "Accept-Ranges": "bytes",
+        "Content-Range": `bytes ${ini}-${fim}/${tamanho}`, "Content-Length": fim - ini + 1,
+      });
+      fs.createReadStream(arquivo, { start: ini, end: fim }).pipe(res);
+      return;
+    }
+    res.writeHead(200, { "Content-Type": tipo, "Accept-Ranges": "bytes", "Content-Length": tamanho });
     fs.createReadStream(arquivo).pipe(res);
   });
   return new Promise(r => servidor.listen(0, "127.0.0.1", () => r(servidor)));
@@ -63,6 +79,16 @@ function acharChrome() {
     }
   }
   return undefined;
+}
+
+/** Quanto tempo o vídeo fica preto logo no começo (0 se já abre na imagem). */
+function pretoNoComeco(arquivo) {
+  // o relatório do blackdetect sai no stderr, com o ffmpeg terminando bem
+  const r = spawnSync("ffmpeg", ["-hide_banner", "-i", arquivo,
+    "-vf", "blackdetect=d=0.03:pic_th=0.95:pix_th=0.10", "-an", "-f", "null", "-"],
+    { encoding: "utf8" });
+  const m = /black_start:0(?:\.0+)?\s+black_end:([\d.]+)/.exec(r.stderr || "");
+  return m ? Math.min(Number(m[1]), 2) : 0;
 }
 
 (async () => {
@@ -108,9 +134,15 @@ function acharChrome() {
   const webm = fs.readdirSync(TEMP).find(f => f.endsWith(".webm"));
   if (!webm) throw new Error("gravação não encontrada");
 
+  /* A gravação começa antes de o navegador pintar o primeiro quadro, então o
+     arquivo abre com alguns décimos de preto. Num reel isso é o tempo em que
+     a pessoa decide se continua — melhor começar já na imagem. */
+  const inicio = pretoNoComeco(path.join(TEMP, webm));
+  if (inicio > 0) console.log(`· cortando ${inicio.toFixed(2)}s de preto do começo...`);
+
   console.log("· convertendo para MP4...");
   execFileSync("ffmpeg", [
-    "-y", "-i", path.join(TEMP, webm),
+    "-y", ...(inicio > 0 ? ["-ss", inicio.toFixed(3)] : []), "-i", path.join(TEMP, webm),
     "-vf", "fps=30,scale=1080:1920:flags=lanczos,format=yuv420p",
     "-c:v", "libx264", "-preset", "slow", "-crf", "21",
     "-movflags", "+faststart", "-an", SAIDA,

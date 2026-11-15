@@ -7,11 +7,14 @@
 <style>
 /* =========================================================
    Reel do pagaAí — plano-sequência.
-   Não há cortes. Existe um cenário só (#mundo, 2000x6300) e
-   uma câmera que anda por ele de cima para baixo. O roteiro.js
-   move a câmera e acorda cada elemento na hora certa.
 
-   O cenário é uma coluna: o eixo x do mundo é sempre 1000.
+   Não há cortes. Existe um cenário só (#mundo) e uma câmera que
+   desce por ele. Os clipes filmados ficam dentro do cenário, como
+   janelas que a câmera atravessa: por isso a passagem do vídeo real
+   para a parte gráfica não é um corte, é um movimento.
+
+   Cada janela tem a borda dissolvida (a vinheta do ::after), então
+   nunca aparece um retângulo — o filme flutua no escuro.
    ========================================================= */
 :root{
   --bg:#0B0C0A; --card:#171915; --texto:#EEF2E8; --sutil:#9CA393;
@@ -25,7 +28,7 @@ img{display:block;}
 
 /* a câmera: o mundo inteiro é transformado de uma vez */
 #palco{width:1080px;height:1920px;overflow:hidden;position:relative;}
-#mundo{position:absolute;top:0;left:0;width:2000px;height:6300px;
+#mundo{position:absolute;top:0;left:0;width:2000px;height:9200px;
        transform-origin:0 0;will-change:transform;}
 
 /* tudo que aparece com o tempo começa apagado */
@@ -33,13 +36,32 @@ img{display:block;}
 [data-em].on{opacity:1;}
 [data-em].saiu{opacity:0;}
 
+/* ---------- as janelas de vídeo ---------- */
+.janela{position:absolute;overflow:hidden;z-index:0;}
+.janela video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+              filter:saturate(.82) brightness(.88) contrast(1.06);}
+.janela::before,.janela::after{content:'';position:absolute;inset:0;}
+/* a vinheta dissolve a borda no fundo: a janela não tem retângulo */
+.janela::after{z-index:2;background:radial-gradient(ellipse 74% 62% at 50% 46%,
+   rgba(11,12,10,0) 28%, rgba(11,12,10,.45) 66%, #0B0C0A 100%);}
+.janela::before{z-index:1;}
+/* escurece o pé da janela onde entra texto */
+.janela--texto::before{background:linear-gradient(to bottom,
+   rgba(11,12,10,0) 34%, rgba(11,12,10,.5) 62%, rgba(11,12,10,.93) 100%);}
+/* a primeira janela já nasce acesa: o reel não pode abrir no preto */
+.janela--abre{opacity:1;transition:opacity .5s ease;}
+.janela--fundo{opacity:0;}
+.janela--fundo.on{opacity:.5;}
+.janela--fundo.saiu{opacity:0;}
+
 .frase{position:absolute;line-height:1.02;letter-spacing:-.045em;font-weight:800;text-align:center;}
 .frase em{font-style:normal;color:var(--verde);}
+.frase--sobre{text-shadow:0 12px 48px rgba(0,0,0,.85), 0 2px 10px rgba(0,0,0,.6);}
 
 /* ---------- 1. o caos: compras soltas ---------- */
 .compra{position:absolute;display:flex;align-items:center;gap:18px;background:var(--card);
         border:2px solid var(--borda);border-radius:26px;padding:22px 28px;width:520px;
-        box-shadow:0 30px 60px -30px #000;transform:translateY(28px) scale(.96);}
+        box-shadow:0 40px 80px -30px #000;transform:translateY(28px) scale(.96);}
 .compra.on{transform:none;}
 .compra__i{width:62px;height:62px;border-radius:18px;flex:none;display:grid;place-items:center;
            font-size:28px;font-weight:800;color:#0B0C0A;}
@@ -71,7 +93,6 @@ img{display:block;}
             opacity:0;transform:scale(.7);transition:opacity .4s ease,transform .45s cubic-bezier(.34,1.56,.64,1);}
 .linha__tag.on{opacity:1;transform:none;}
 
-/* barras dentro do app */
 .graf{display:flex;align-items:flex-end;gap:16px;height:240px;margin-top:26px;padding:0 6px;}
 .col{flex:1;background:var(--menta);border-radius:12px 12px 5px 5px;height:0;
      transition:height 1.5s cubic-bezier(.2,.9,.25,1);position:relative;}
@@ -80,7 +101,6 @@ img{display:block;}
 .col b{position:absolute;bottom:-34px;left:0;right:0;text-align:center;font-size:18px;
        font-weight:500;color:var(--sutil);}
 
-/* aviso de vencimento deslizando por cima da tela */
 .aviso{position:absolute;left:30px;right:30px;bottom:40px;background:#12140F;border:2px solid var(--verde);
        border-radius:24px;padding:20px 22px;display:flex;align-items:center;gap:16px;
        transform:translateY(260px);transition:transform 1.05s cubic-bezier(.2,.9,.25,1);}
@@ -94,10 +114,9 @@ img{display:block;}
       transform:translateY(50px) scale(.88);}
 .vida.on{transform:none;}
 
+/* ---------- 4. assinatura ---------- */
 .mascote{position:absolute;width:420px;transform:translateY(70px) scale(.86);}
 .mascote.on{transform:none;}
-
-/* ---------- 4. assinatura ---------- */
 .logo{position:absolute;width:620px;transform:translateY(40px) scale(.94);}
 .logo.on{transform:none;}
 .selo{position:absolute;font-size:52px;font-weight:700;color:var(--verde);text-align:center;}
@@ -109,37 +128,48 @@ img{display:block;}
 <div id="palco">
 <div id="mundo">
 
-  <!-- ====== 1. o caos ====== -->
-  <p class="frase" data-em="300" data-ate="12000" style="left:560px;top:300px;width:880px;font-size:94px">
-    Toda semana,<br>a mesma <em>bagunça</em>.</p>
+  <!-- ====== 1. o gasto acontecendo (filmado) ====== -->
+  <div class="janela janela--texto janela--abre" data-em="0" data-ate="4300"
+       style="left:160px;top:-2900px;width:1680px;height:3290px">
+    <video src="clipes/mercado.mp4" data-toca="150" muted loop playsinline preload="auto"></video>
+  </div>
+  <p class="frase frase--sobre" data-em="300" data-ate="4300"
+     style="left:540px;top:-1030px;width:920px;font-size:94px">Toda semana,<br>a mesma <em>bagunça</em>.</p>
 
-  <div class="compra" id="cp1" data-em="1500" style="left:420px;top:700px">
+  <!-- ====== 2. a bagunça: a mesa de recibos, e as compras por cima ====== -->
+  <div class="janela janela--fundo" data-em="3000" data-ate="10500"
+       style="left:160px;top:300px;width:1680px;height:1740px">
+    <video src="clipes/recibos.mp4" data-toca="3100" muted loop playsinline preload="auto"></video>
+  </div>
+
+  <div class="compra" id="cp1" data-em="4300" style="left:420px;top:700px">
     <div class="compra__i" style="background:var(--mercado)">M</div>
     <div><p class="compra__t">Mercado</p><p class="compra__s">terça · Nubank</p></div>
     <p class="compra__v">R$ 212,80</p>
   </div>
-  <div class="compra" id="cp2" data-em="2000" style="left:1060px;top:900px">
+  <div class="compra" id="cp2" data-em="4700" style="left:1060px;top:900px">
     <div class="compra__i" style="background:var(--alimentacao)">i</div>
     <div><p class="compra__t">iFood</p><p class="compra__s">quarta · Inter</p></div>
     <p class="compra__v">R$ 48,90</p>
   </div>
-  <div class="compra" id="cp3" data-em="2500" style="left:400px;top:1140px">
+  <div class="compra" id="cp3" data-em="5100" style="left:400px;top:1140px">
     <div class="compra__i" style="background:var(--transporte)">P</div>
     <div><p class="compra__t">Posto</p><p class="compra__s">sexta · Nubank</p></div>
     <p class="compra__v">R$ 180,00</p>
   </div>
-  <div class="compra" id="cp4" data-em="3000" style="left:1040px;top:1380px">
+  <div class="compra" id="cp4" data-em="5500" style="left:1040px;top:1380px">
     <div class="compra__i" style="background:var(--casa)">F</div>
     <div><p class="compra__t">Farmácia</p><p class="compra__s">sábado · Inter</p></div>
     <p class="compra__v">R$ 96,40</p>
   </div>
 
-  <p class="frase" data-em="4200" data-ate="12000" style="left:560px;top:1660px;width:880px;font-size:76px">Quem anotou?</p>
-  <p class="frase" data-em="6200" data-ate="12000" style="left:500px;top:1900px;width:1000px;font-size:84px">
-    Agora elas se anotam <em>sozinhas</em>.</p>
+  <p class="frase" data-em="6300" data-ate="12000"
+     style="left:560px;top:2170px;width:880px;font-size:76px">Quem anotou?</p>
+  <p class="frase" data-em="7600" data-ate="12500"
+     style="left:500px;top:2420px;width:1000px;font-size:84px">Agora elas se anotam <em>sozinhas</em>.</p>
 
-  <!-- ====== 2. o celular ====== -->
-  <div class="fone" id="fone" data-em="0" data-ate="25500" style="left:690px;top:2400px">
+  <!-- ====== 3. o celular ====== -->
+  <div class="fone" id="fone" data-em="0" data-ate="24000" style="left:690px;top:2940px">
     <div class="fone__entalhe"></div>
     <div class="tela">
       <div class="tela__topo">
@@ -147,25 +177,25 @@ img{display:block;}
         <p class="tela__total" id="total">R$ 0</p>
       </div>
 
-      <div class="linha" data-em="9600">
+      <div class="linha" data-em="10800">
         <div class="linha__i" style="background:var(--mercado)">M</div>
         <div><p class="linha__t">Mercado</p><p class="linha__s">Esposa · Nubank</p>
           <span class="linha__tag" id="tag1">Mercado</span></div>
         <p class="linha__v">R$ 212,80</p>
       </div>
-      <div class="linha" data-em="10000">
+      <div class="linha" data-em="11150">
         <div class="linha__i" style="background:var(--alimentacao)">i</div>
         <div><p class="linha__t">iFood</p><p class="linha__s">Marido · Inter</p>
           <span class="linha__tag" id="tag2">Alimentação</span></div>
         <p class="linha__v">R$ 48,90</p>
       </div>
-      <div class="linha" data-em="10400">
+      <div class="linha" data-em="11500">
         <div class="linha__i" style="background:var(--transporte)">P</div>
         <div><p class="linha__t">Posto</p><p class="linha__s">Marido · Nubank</p>
           <span class="linha__tag" id="tag3">Transporte</span></div>
         <p class="linha__v">R$ 180,00</p>
       </div>
-      <div class="linha" data-em="10800">
+      <div class="linha" data-em="11850">
         <div class="linha__i" style="background:var(--casa)">F</div>
         <div><p class="linha__t">Farmácia</p><p class="linha__s">Esposa · Inter</p>
           <span class="linha__tag" id="tag4">Saúde</span></div>
@@ -186,24 +216,29 @@ img{display:block;}
     </div>
   </div>
 
-  <!-- ====== 3. a vida em volta (só aparece quando a câmera afasta) ====== -->
-  <span class="vida" data-em="21000" data-ate="25500" style="left:250px;top:2220px">Aniversário</span>
-  <span class="vida" data-em="21250" data-ate="25500" style="left:1360px;top:2460px">Cinema</span>
-  <span class="vida" data-em="21500" data-ate="25500" style="left:260px;top:2720px">Viagem</span>
-  <span class="vida" data-em="21750" data-ate="25500" style="left:1355px;top:2980px">Família</span>
-  <span class="vida" data-em="22000" data-ate="25500" style="left:230px;top:3240px">Academia</span>
-  <span class="vida" data-em="22250" data-ate="25500" style="left:1350px;top:3500px">Domingo</span>
-  <span class="vida" data-em="22500" data-ate="25500" style="left:280px;top:3760px">Praia</span>
-  <span class="vida" data-em="22750" data-ate="25500" style="left:1360px;top:4000px">Churrasco</span>
+  <!-- ====== 4. a vida em volta ====== -->
+  <span class="vida" data-em="21200" data-ate="25200" style="left:120px;top:2760px">Aniversário</span>
+  <span class="vida" data-em="21450" data-ate="25200" style="left:1380px;top:3000px">Cinema</span>
+  <span class="vida" data-em="21700" data-ate="25200" style="left:180px;top:3260px">Viagem</span>
+  <span class="vida" data-em="21950" data-ate="25200" style="left:1370px;top:3520px">Família</span>
+  <span class="vida" data-em="22200" data-ate="25200" style="left:150px;top:3780px">Academia</span>
+  <span class="vida" data-em="22450" data-ate="25200" style="left:1360px;top:4040px">Domingo</span>
+  <span class="vida" data-em="22700" data-ate="25200" style="left:250px;top:4300px">Praia</span>
+  <span class="vida" data-em="22950" data-ate="25200" style="left:1350px;top:4540px">Churrasco</span>
 
-  <!-- ====== 4. o fecho ====== -->
-  <p class="frase" data-em="26200" data-ate="28200" style="left:460px;top:4350px;width:1080px;font-size:100px">
-    Enquanto vocês <em>vivem</em>,<br>o pagaAí anota.</p>
-  <img class="mascote" data-em="26900" data-ate="28200" src="assets/comemora.webp" alt="" style="left:790px;top:4680px">
+  <!-- ====== 5. o casal (filmado) ====== -->
+  <div class="janela janela--texto" data-em="24600" data-ate="29400"
+       style="left:160px;top:4800px;width:1680px;height:2800px">
+    <video src="clipes/casal.mp4" data-toca="24700" muted loop playsinline preload="auto"></video>
+  </div>
+  <p class="frase frase--sobre" data-em="25800" data-ate="29400"
+     style="left:460px;top:6700px;width:1080px;font-size:100px">Enquanto vocês <em>vivem</em>,<br>o pagaAí anota.</p>
 
-  <img class="logo" data-em="28500" src="assets/logo-pagaai.png" alt="pagaAí" style="left:690px;top:5600px">
-  <p class="selo" data-em="29100" style="left:620px;top:5880px;width:760px">Grátis. Simples. Do casal.</p>
-  <p class="rodape" data-em="29700" style="left:620px;top:6010px;width:760px">Demonstração · valores ilustrativos</p>
+  <!-- ====== 6. assinatura ====== -->
+  <img class="mascote" data-em="29000" src="assets/comemora.webp" alt="" style="left:790px;top:7900px">
+  <img class="logo" data-em="29600" src="assets/logo-pagaai.png" alt="pagaAí" style="left:690px;top:8560px">
+  <p class="selo" data-em="30200" style="left:620px;top:8840px;width:760px">Grátis. Simples. Do casal.</p>
+  <p class="rodape" data-em="30700" style="left:620px;top:8970px;width:760px">Demonstração · valores ilustrativos</p>
 
 </div>
 </div>
