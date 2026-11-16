@@ -115,8 +115,32 @@ img{display:block;}
 .vida.on{transform:none;}
 
 /* ---------- 4. assinatura ---------- */
+/* O mascote não fica parado no fecho: ele dá três pulinhos, com o esmaga e
+   estica de desenho animado. A sombra no chão acompanha — é ela que dá o peso. */
 .mascote{position:absolute;width:420px;transform:translateY(70px) scale(.86);}
 .mascote.on{transform:none;}
+.mascote img{display:block;width:100%;transform-origin:50% 100%;}
+.mascote__chao{position:absolute;left:50%;bottom:-6px;width:300px;height:48px;margin-left:-150px;
+               border-radius:50%;transform-origin:50% 50%;
+               background:radial-gradient(ellipse at center,rgba(197,244,57,.24) 0%,rgba(197,244,57,0) 70%);}
+.mascote.on img{animation:pulinho .78s cubic-bezier(.4,0,.5,1) .5s 3 both;}
+.mascote.on .mascote__chao{animation:chao .78s cubic-bezier(.4,0,.5,1) .5s 3 both;}
+@keyframes pulinho{
+  0%  {transform:translateY(0) scale(1,1);}
+  12% {transform:translateY(0) scale(1.14,.86);}
+  30% {transform:translateY(-104px) scale(.95,1.07);}
+  44% {transform:translateY(-124px) scale(1,1);}
+  58% {transform:translateY(-104px) scale(.97,1.05);}
+  76% {transform:translateY(0) scale(1.16,.84);}
+  88% {transform:translateY(0) scale(.98,1.02);}
+  100%{transform:translateY(0) scale(1,1);}
+}
+@keyframes chao{
+  0%,100%{transform:scaleX(1);opacity:.55;}
+  12% {transform:scaleX(1.12);opacity:.6;}
+  44% {transform:scaleX(.55);opacity:.2;}
+  76% {transform:scaleX(1.14);opacity:.62;}
+}
 .logo{position:absolute;width:620px;transform:translateY(40px) scale(.94);}
 .logo.on{transform:none;}
 .selo{position:absolute;font-size:52px;font-weight:700;color:var(--verde);text-align:center;}
@@ -235,7 +259,10 @@ img{display:block;}
      style="left:460px;top:6700px;width:1080px;font-size:100px">Enquanto vocês <em>vivem</em>,<br>o pagaAí anota.</p>
 
   <!-- ====== 6. assinatura ====== -->
-  <img class="mascote" data-em="29000" src="assets/comemora.webp" alt="" style="left:790px;top:7900px">
+  <div class="mascote" data-em="28600" style="left:790px;top:7900px">
+    <span class="mascote__chao"></span>
+    <img src="assets/comemora.webp" alt="">
+  </div>
   <img class="logo" data-em="29600" src="assets/logo-pagaai.png" alt="pagaAí" style="left:690px;top:8560px">
   <p class="selo" data-em="30200" style="left:620px;top:8840px;width:760px">Grátis. Simples. Do casal.</p>
   <p class="rodape" data-em="30700" style="left:620px;top:8970px;width:760px">Demonstração · valores ilustrativos</p>

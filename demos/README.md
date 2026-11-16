@@ -43,6 +43,7 @@ Peças iguais em todos os vídeos:
 | `<pasta>/palco.html` | A cena daquele vídeo (textos da abertura e qual página entra no celular). |
 | `<pasta>/roteiro.js` | O tempo de cada passo e o texto das legendas. É aqui que se muda o ritmo. |
 | `<pasta>/clipes/` | Os clipes filmados que entram na cena, já em H.264 e no tamanho certo. |
+| `pagaai/para-gerar/` | Quadros do mascote prontos para subir num gerador de vídeo, com os comandos. |
 
 ## O reel do pagaAí é um plano-sequência
 
@@ -56,6 +57,13 @@ atravessa. Cada janela tem a borda dissolvida por uma vinheta, então não
 aparece um retângulo: o filme flutua no escuro e a passagem para a parte
 gráfica é movimento, não corte. Quem já cumpriu o papel sai de cena pelo
 `data-ate`, em vez de ficar pendurado no canto dos planos abertos.
+
+O mascote do fecho **não** é vídeo: é o desenho do app com esmaga e estica em
+CSS, mais uma sombra que encolhe no ar. Foi uma escolha, não preguiça — gerador
+de vídeo a partir de imagem deforma desenho de linha: nos testes ele trocou a
+cara, sumiu com o botão lateral da carteira e transformou os cartões numa
+cédula com rosto. Em peça de marca, o personagem sair diferente custa mais caro
+do que a animação ser simples.
 
 Para trocar um clipe, basta pôr outro arquivo em `clipes/` com o mesmo nome. O
 formato que encaixa é **1080×1768, H.264, 30 fps, sem áudio e sem marca
