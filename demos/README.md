@@ -58,12 +58,17 @@ aparece um retângulo: o filme flutua no escuro e a passagem para a parte
 gráfica é movimento, não corte. Quem já cumpriu o papel sai de cena pelo
 `data-ate`, em vez de ficar pendurado no canto dos planos abertos.
 
-O mascote do fecho **não** é vídeo: é o desenho do app com esmaga e estica em
-CSS, mais uma sombra que encolhe no ar. Foi uma escolha, não preguiça — gerador
-de vídeo a partir de imagem deforma desenho de linha: nos testes ele trocou a
-cara, sumiu com o botão lateral da carteira e transformou os cartões numa
-cédula com rosto. Em peça de marca, o personagem sair diferente custa mais caro
-do que a animação ser simples.
+O mascote do fecho é um ciclo de corrida gerado a partir do desenho do app,
+mas só os quinze primeiros quadros entram: dali em diante o gerador troca a
+cara do personagem e transforma os cartões numa cédula com rosto impresso.
+Quinze quadros é exatamente um ciclo de passada, então o trecho limpo roda em
+laço e o defeito nunca aparece.
+
+Esse clipe não leva a vinheta das outras janelas: o fundo dele foi igualado ao
+preto da cena dentro do próprio arquivo — primeiro esmagando o brilho que
+sobrou do quadro enviado, depois levantando o preto de volta para `#0B0C0A`.
+Por isso `.janela--mascote` também não recebe o ajuste de brilho das outras:
+mexer nele reabriria o retângulo.
 
 Para trocar um clipe, basta pôr outro arquivo em `clipes/` com o mesmo nome. O
 formato que encaixa é **1080×1768, H.264, 30 fps, sem áudio e sem marca
