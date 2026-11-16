@@ -58,23 +58,35 @@ aparece um retângulo: o filme flutua no escuro e a passagem para a parte
 gráfica é movimento, não corte. Quem já cumpriu o papel sai de cena pelo
 `data-ate`, em vez de ficar pendurado no canto dos planos abertos.
 
-O fecho tem dois mascotes possíveis, e qual entra se escolhe numa linha só, no
+O fecho tem três mascotes possíveis, e qual entra se escolhe numa linha só, no
 alto do `roteiro.js`:
 
 ```js
-const FECHO = 'moeda';     // ou 'corrida'
+const FECHO = 'moeda';     // ou 'corrida', ou 'desenho'
 ```
 
-`moeda` é o desenho do app com a moeda, parado, mas com esmaça e estica de
-desenho animado: ele agacha e achata antes de subir, estica no ar e achata ao
-pousar, com uma sombra no chão que encolhe enquanto está no alto — é ela que dá
-o peso. Fica cravado no traço certo, em alta definição.
+`moeda` é o que está no ar: um ciclo gerado do mascote com a moeda, em
+`clipes/mascote-moeda.mp4`. É o mais limpo dos três — o personagem aguenta os
+cinco segundos inteiros sem trocar de cara.
 
-`corrida` é um ciclo de passada gerado a partir do desenho, em `clipes/`. Só os
-quinze primeiros quadros entram: dali em diante o gerador troca a cara do
-personagem e transforma os cartões numa cédula com rosto impresso. Quinze
-quadros é exatamente uma passada, então o trecho limpo roda em laço e o defeito
-nunca aparece.
+`corrida` é um ciclo de passada, também gerado. Só os quinze primeiros quadros
+entram: dali em diante o gerador troca a cara do personagem e transforma os
+cartões numa cédula com rosto impresso.
+
+`desenho` não usa clipe nenhum: é o desenho do app com esmaga e estica em CSS,
+com uma sombra no chão que encolhe enquanto ele está no alto. Serve de reserva
+se um dia não houver clipe que preste.
+
+### Como se acha o laço
+
+Nos dois clipes o trecho aproveitável foi medido, não chutado: compara-se cada
+quadro com cada outro e procura-se o par mais parecido a uma distância
+razoável. No da moeda o melhor par é **23 → 45**, com diferença 3,5; no da
+corrida é **0 → 15**, com 11. Esse intervalo é um ciclo inteiro do movimento,
+então rodar só ele em laço esconde tudo que vem depois.
+
+Quando não existe par parecido nenhum — como num primeiro clipe da moeda que
+só derivava — não há laço possível, e o clipe não serve.
 
 Esse clipe não leva a vinheta das outras janelas: o fundo dele foi igualado ao
 preto da cena dentro do próprio arquivo — primeiro esmagando o brilho que

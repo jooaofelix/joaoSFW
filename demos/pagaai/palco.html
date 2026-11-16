@@ -127,9 +127,9 @@ img{display:block;}
    mexer no brilho aqui reabriria o retângulo */
 .janela--mascote video{filter:none;}
 
-/* Fecho alternativo: o mascote com a moeda, parado, mas com esmaga e estica de
+/* Fecho 'desenho': o mascote com a moeda parado, mas com esmaga e estica de
    desenho animado. A sombra no chão acompanha — é ela que dá o peso.
-   Qual dos dois entra se escolhe no FECHO, lá no alto do roteiro.js. */
+   Qual dos três fechos entra se escolhe no FECHO, lá no alto do roteiro.js. */
 .mascote{position:absolute;width:430px;transform:translateY(70px) scale(.86);}
 .mascote.on{transform:none;}
 .mascote img{display:block;width:100%;transform-origin:50% 100%;}
@@ -272,11 +272,15 @@ img{display:block;}
      style="left:460px;top:6700px;width:1080px;font-size:100px">Enquanto vocês <em>vivem</em>,<br>o pagaAí anota.</p>
 
   <!-- ====== 6. assinatura ====== -->
+  <div class="janela janela--mascote" data-fecho="moeda" data-em="28600"
+       style="left:737px;top:7815px;width:506px;height:566px">
+    <video src="clipes/mascote-moeda.mp4" data-toca="28600" muted loop playsinline preload="auto"></video>
+  </div>
   <div class="janela janela--mascote" data-fecho="corrida" data-em="28600"
        style="left:713px;top:7832px;width:531px;height:491px">
-    <video src="clipes/mascote.mp4" data-toca="28600" muted loop playsinline preload="auto"></video>
+    <video src="clipes/mascote-corrida.mp4" data-toca="28600" muted loop playsinline preload="auto"></video>
   </div>
-  <div class="mascote" data-fecho="moeda" data-em="28600" style="left:785px;top:7870px">
+  <div class="mascote" data-fecho="desenho" data-em="28600" style="left:785px;top:7870px">
     <span class="mascote__chao"></span>
     <img src="assets/moeda.webp" alt="">
   </div>

@@ -11,9 +11,11 @@
  * por dentro delas; por isso a troca entre o vídeo real e a parte gráfica
  * é movimento, não corte.
  */
-/* Qual mascote fecha o vídeo: 'corrida' é o ciclo filmado, 'moeda' é o desenho
-   com a moeda dando pulinhos. O que não for escolhido sai da cena antes de
-   qualquer outra coisa ler o palco. */
+/* Qual mascote fecha o vídeo:
+     'moeda'   — o ciclo gerado do mascote com a moeda (o mais limpo dos três)
+     'corrida' — o ciclo de passada, também gerado
+     'desenho' — o desenho parado com esmaga e estica em CSS, sem clipe nenhum
+   O que não for escolhido sai da cena antes de qualquer outra coisa ler o palco. */
 const FECHO = 'moeda';
 for (const el of document.querySelectorAll('[data-fecho]')) {
   if (el.dataset.fecho !== FECHO) el.remove();
