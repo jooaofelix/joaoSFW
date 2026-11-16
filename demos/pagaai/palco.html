@@ -126,6 +126,34 @@ img{display:block;}
 /* o fundo deste clipe já foi acertado no arquivo, no mesmo preto da cena:
    mexer no brilho aqui reabriria o retângulo */
 .janela--mascote video{filter:none;}
+
+/* Fecho alternativo: o mascote com a moeda, parado, mas com esmaga e estica de
+   desenho animado. A sombra no chão acompanha — é ela que dá o peso.
+   Qual dos dois entra se escolhe no FECHO, lá no alto do roteiro.js. */
+.mascote{position:absolute;width:430px;transform:translateY(70px) scale(.86);}
+.mascote.on{transform:none;}
+.mascote img{display:block;width:100%;transform-origin:50% 100%;}
+.mascote__chao{position:absolute;left:50%;bottom:-6px;width:300px;height:48px;margin-left:-150px;
+               border-radius:50%;transform-origin:50% 50%;
+               background:radial-gradient(ellipse at center,rgba(197,244,57,.24) 0%,rgba(197,244,57,0) 70%);}
+.mascote.on img{animation:pulinho .78s cubic-bezier(.4,0,.5,1) .5s 4 both;}
+.mascote.on .mascote__chao{animation:chao .78s cubic-bezier(.4,0,.5,1) .5s 4 both;}
+@keyframes pulinho{
+  0%  {transform:translateY(0) scale(1,1);}
+  12% {transform:translateY(0) scale(1.14,.86);}
+  30% {transform:translateY(-104px) scale(.95,1.07);}
+  44% {transform:translateY(-124px) scale(1,1);}
+  58% {transform:translateY(-104px) scale(.97,1.05);}
+  76% {transform:translateY(0) scale(1.16,.84);}
+  88% {transform:translateY(0) scale(.98,1.02);}
+  100%{transform:translateY(0) scale(1,1);}
+}
+@keyframes chao{
+  0%,100%{transform:scaleX(1);opacity:.55;}
+  12% {transform:scaleX(1.12);opacity:.6;}
+  44% {transform:scaleX(.55);opacity:.2;}
+  76% {transform:scaleX(1.14);opacity:.62;}
+}
 .logo{position:absolute;width:620px;transform:translateY(40px) scale(.94);}
 .logo.on{transform:none;}
 .selo{position:absolute;font-size:52px;font-weight:700;color:var(--verde);text-align:center;}
@@ -244,9 +272,13 @@ img{display:block;}
      style="left:460px;top:6700px;width:1080px;font-size:100px">Enquanto vocês <em>vivem</em>,<br>o pagaAí anota.</p>
 
   <!-- ====== 6. assinatura ====== -->
-  <div class="janela janela--mascote" data-em="28600"
+  <div class="janela janela--mascote" data-fecho="corrida" data-em="28600"
        style="left:713px;top:7832px;width:531px;height:491px">
     <video src="clipes/mascote.mp4" data-toca="28600" muted loop playsinline preload="auto"></video>
+  </div>
+  <div class="mascote" data-fecho="moeda" data-em="28600" style="left:785px;top:7870px">
+    <span class="mascote__chao"></span>
+    <img src="assets/moeda.webp" alt="">
   </div>
   <img class="logo" data-em="29600" src="assets/logo-pagaai.png" alt="pagaAí" style="left:690px;top:8560px">
   <p class="selo" data-em="30200" style="left:620px;top:8840px;width:760px">Grátis. Simples. Do casal.</p>

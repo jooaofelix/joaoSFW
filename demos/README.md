@@ -58,11 +58,23 @@ aparece um retângulo: o filme flutua no escuro e a passagem para a parte
 gráfica é movimento, não corte. Quem já cumpriu o papel sai de cena pelo
 `data-ate`, em vez de ficar pendurado no canto dos planos abertos.
 
-O mascote do fecho é um ciclo de corrida gerado a partir do desenho do app,
-mas só os quinze primeiros quadros entram: dali em diante o gerador troca a
-cara do personagem e transforma os cartões numa cédula com rosto impresso.
-Quinze quadros é exatamente um ciclo de passada, então o trecho limpo roda em
-laço e o defeito nunca aparece.
+O fecho tem dois mascotes possíveis, e qual entra se escolhe numa linha só, no
+alto do `roteiro.js`:
+
+```js
+const FECHO = 'moeda';     // ou 'corrida'
+```
+
+`moeda` é o desenho do app com a moeda, parado, mas com esmaça e estica de
+desenho animado: ele agacha e achata antes de subir, estica no ar e achata ao
+pousar, com uma sombra no chão que encolhe enquanto está no alto — é ela que dá
+o peso. Fica cravado no traço certo, em alta definição.
+
+`corrida` é um ciclo de passada gerado a partir do desenho, em `clipes/`. Só os
+quinze primeiros quadros entram: dali em diante o gerador troca a cara do
+personagem e transforma os cartões numa cédula com rosto impresso. Quinze
+quadros é exatamente uma passada, então o trecho limpo roda em laço e o defeito
+nunca aparece.
 
 Esse clipe não leva a vinheta das outras janelas: o fundo dele foi igualado ao
 preto da cena dentro do próprio arquivo — primeiro esmagando o brilho que
